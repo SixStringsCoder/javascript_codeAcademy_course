@@ -10,13 +10,13 @@ const yourName = prompt("What's your name?");
 // Initialize variable for human age with prompt.
 const yourAge = prompt(`Hi, ${yourName}. How old are you?`);
 
-// This equals first two human years; a dog's life is 10.5 years per human year
+// This equals first two human years; 10.5 dog years per human 1st and 2nd year
 let earlyYears = 2;
 earlyYears *= 10.5;
 
 // Adjust human age for first two years accounted for
 let laterYears = yourAge - 2;
-// The value for later years, i.e. after year 2
+// The value for later years, i.e. after year 2, 4 dog years per 1 human year
 laterYears *= 4;
 
 // Value of human age expressed in dog years
