@@ -19,9 +19,9 @@ let laterYears = yourAge - 2;
 // The value for later years, i.e. after year 2, 4 dog years per 1 human year
 laterYears *= 4;
 
-// Value of human age expressed in dog years
+// The Value of a human age expressed in dog years.
 yourAgeInDogYears = earlyYears + laterYears;
 
-// initialize a variable to hold the final phrase along with string interpolation, then show result with an alert.
+// Initialize a variable to hold the final phrase along with string interpolation, then show result with an alert.
 let phrase = `${yourName}, you are ${yourAgeInDogYears} years old in dog years.`;
 alert(phrase);
