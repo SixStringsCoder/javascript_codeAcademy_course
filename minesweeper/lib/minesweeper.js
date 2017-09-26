@@ -5,17 +5,18 @@ This project programs a Minesweeper game
 created by Steve Hanlon Sept 21, 2017
 */
 
-// initialize blankLine to hard code a grid of squares
-var blankLine = ' | | ';
-var guessLine = '1| | ';
-var bombLine = ' |B| ';
+// hard code a sample row of squares
+var board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']];
 
-console.log('This is what an empty board would look like:');
-console.log(blankLine);
-console.log(blankLine);
-console.log(blankLine);
+var printBoard = function printBoard(board) {
+  console.log('Current Board:');
+  console.log(board[0].join('|'));
+  console.log(board[1].join('|'));
+  console.log(board[2].join('|'));
+};
 
-console.log('This is what a board with a guess and a bomb on it would look like:');
-console.log(guessLine);
-console.log(bombLine);
-console.log(blankLine);
+printBoard(board);
+
+board[0][1] = '1';
+board[2][2] = 'B';
+printBoard(board);

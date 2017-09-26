@@ -3,21 +3,25 @@ This project programs a Minesweeper game
 created by Steve Hanlon Sept 21, 2017
 */
 
-// hard code a sample row of squares
-const blankLine = ' | | ';
-// hard code a sample correct guess
-const guessLine = '1| | ';
-// hard code a sample bomb
-const bombLine = ' |B| ';
+// Rows of the game board
+const board = [
+  [' ', ' ', ' '],
+  [' ', ' ', ' '],
+  [' ', ' ', ' ']
+];
 
-// sample grid of squares
-console.log('This is what an empty board would look like:');
-console.log(blankLine);
-console.log(blankLine);
-console.log(blankLine);
+// Print array and join them with a pipe to complete an empty board
+const printBoard = (board) => {
+  console.log('Current Board:');
+  console.log(board[0].join('|'));
+  console.log(board[1].join('|'));
+  console.log(board[2].join('|'));
+}
 
-// sample grid of squares, 1 guess and 1 bomb
-console.log('This is what a board with a guess and a bomb on it would look like:');
-console.log(guessLine);
-console.log(bombLine);
-console.log(blankLine);
+// View sample empty board
+printBoard(board);
+
+// Hard code a sample guess and bomb for comparison
+board[0][1] = '1';
+board[2][2] = 'B';
+printBoard(board);
