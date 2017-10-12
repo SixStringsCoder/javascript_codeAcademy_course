@@ -33,7 +33,7 @@ class Media {
     }
     // changes the Boolean value saved to the _isCheckedOut property
     toggleCheckOutStatus() {
-      this._booleanProperty = !this._booleanProperty;
+      this._isCheckedOut = !this._isCheckedOut;
     }
     // add a new rating to the _rating array between 1 and 5
     addRating(newRating) {
