@@ -13,51 +13,19 @@ function Square(props) {
 
 // the Board component renders 9 squares with state,
 class Board extends React.Component {
-  constructor(props) {
-    super(props);
-    // create 9 square empty board
-    this.state = {
-      squares: Array(9).fill(null),
-      xIsNext: true,
-    };
-  }
-
-  handleClick(i) {
-    const squares = this.state.squares.slice();
-    // return early and ignore the click if someone has already won the game or if a square is already filled:
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    squares[i] = this.state.xIsNext ? '✗' : 'Ο';
-    this.setState({
-      squares: squares,
-      // update Board’s to flip the value of xIsNext
-      xIsNext: !this.state.xIsNext,
-    });
-  }
-
   // method for filling square
   renderSquare(i) {
     return (
       <Square
-      value={this.state.squares[i]}
-      onClick={() => this.handleClick(i)}
+      value={this.props.squares[i]}
+      onClick={() => this.props.onClick(i)}
       />
     );
   }
 
   render() {
-    const winner = calculateWinner(this.state.squares);
-    let status;
-    if (winner) {
-      status = `GAME OVER! --->  ${winner} is the Winner!`;
-    } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-    }
-
     return (
       <div>
-        <div className="status">{status}</div>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -80,15 +48,89 @@ class Board extends React.Component {
 
 // the Game component renders a board with some placeholders that we’ll fill in later.
 class Game extends React.Component {
+  constructor(props) {
+    super(props);
+    // create 9 square empty board
+    this.state = {
+      history: [{
+        squares: Array(9).fill(null),
+      }],
+      // indicate which step we’re currently viewing
+      stepNumber: 0,
+      xIsNext: true,
+    };
+  }
+
+  handleClick(i) {
+    // update stepNumber when a new move is made
+    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+    const current = history[history.length - 1];
+    const squares = current.squares.slice();
+    // return early and ignore the click if someone has already won the game or if a square is already filled:
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    squares[i] = this.state.xIsNext ? '✗' : 'Ο';
+    // push a new entry onto the stack by concatenating the new history entry to make a new history array
+    this.setState({
+      history: history.concat([{
+        squares: squares
+      }]),
+      /* update handleClick to be aware of stepNumber when reading the current board state
+      so you can go back in time then click in the board to create a new entry */
+      stepNumber: history.length,
+      // update Board’s to flip the value of xIsNext
+      xIsNext: !this.state.xIsNext,
+    });
+  }
+
+  // update that state
+  jumpTo(step) {
+    this.setState({
+      stepNumber: step,
+      // xIsNext to true if an even number
+      xIsNext: (step % 2) === 0,
+    });
+  }
+
   render() {
+    const history = this.state.history;
+    // Read from the step in the history
+    const current = history[this.state.stepNumber];
+    const winner = calculateWinner(current.squares);
+
+    const moves = history.map((step, move) => {
+      // multi-line description
+      const desc = move ?
+        'Go to move #' + move :
+        'Go to game start';
+      return (
+        // For each step in the history, we create a list item <li>
+        // with a <button> inside it that uses click handler jumpTo
+        <li key={move}>
+          <button onClick={() => {this.jumpTo(move)}}>{desc}</button>
+        </li>
+      );
+    });
+
+    let status;
+    if (winner) {
+      status = `GAME OVER! --->  ${winner} is the Winner!`;
+    } else {
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    }
+
     return (
       <div className="game">
         <div className="game-board">
-          <Board />
+          <Board
+            squares={current.squares}
+            onClick={(i) => this.handleClick(i)}
+          />
         </div>
         <div className="game-info">
-          <div>{/* status */}</div>
-          <ol>{/* TODO */}</ol>
+          <div>{status}</div>
+          <ol>{moves}</ol>
         </div>
       </div>
     );
