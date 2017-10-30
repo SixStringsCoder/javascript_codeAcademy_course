@@ -1,6 +1,6 @@
 /*
-component is to simulate what a returned list of businesses would look like
-in Ravenous (after querying the Yelp API, for example).
+This is a restaurant search app called Ravenous which queries the Yelp API for results.
+This app uses React 16, ES 6, and fetch()
 created by Steve Hanlon Oct 15, 2017
 */
 
@@ -14,7 +14,7 @@ class BusinessList extends React.Component {
       <div className="BusinessList">
       {
         this.props.businesses.map((business) => {
-          return <Business business={business} />;
+          return <Business business={business} key={business.id} />;
         })
       }
       </div>
