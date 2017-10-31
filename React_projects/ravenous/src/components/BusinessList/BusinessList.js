@@ -1,9 +1,3 @@
-/*
-This is a restaurant search app called Ravenous which queries the Yelp API for results.
-This app uses React 16, ES 6, and fetch()
-created by Steve Hanlon Oct 15, 2017
-*/
-
 import React from 'react';
 import './BusinessList.css';
 import Business from '../Business/Business';
