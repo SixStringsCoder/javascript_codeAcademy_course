@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import './SearchBar.css';
 
-<!-- SearchBar Component -->
+// SearchBar Component
 class SearchBar extends Component {
   render() {
     return (
