@@ -9,6 +9,7 @@ class SearchBar extends Component {
       term: 'Some song title'
     }
     this.search = this.search.bind(this);
+    this.handleTermChange = this.handleTermChange.bind(this);
   }
 
   search() {

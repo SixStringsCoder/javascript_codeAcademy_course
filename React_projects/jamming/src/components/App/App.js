@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import '../../index.css';
 import SearchResults from '../SearchResults/SearchResults';
 import SearchBar from '../SearchBar/SearchBar';
 import PlayList from '../PlayList/PlayList';
-import TrackList from '../TrackList/TrackList';
+
 
 class App extends Component {
   constructor(props) {
@@ -26,29 +25,27 @@ class App extends Component {
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
-
   }
 
   addTrack(track) {
-    this.state.playlistTracks.map(playlistTrack => {
-      if (playlistTrack.key != this.props.key) {
-        return track;
-      }
-    })
-    this.setState({
-      playlistTracks: [...this.state.playlistTracks, track]
-    });
+    let newPlayList = this.state.playlistTracks;
+    if (!newPlayList.includes(track)) {
+      newPlayList.push(track);
+      this.setState({
+        playlistTracks: newPlayList
+      });
+    }
   }
 
   removeTrack(track) {
-    this.playlistTracks.filter(playlistTrack => {
-      if (playlistTrack.key === this.props.key) {
-        this.playlistTracks.splice(track, 1);
-      }
-    })
-    this.setState({
-      playlistTracks: this.playlistTracks
-    });
+    let newPlayList = this.state.playlistTracks;
+    if (newPlayList.includes(track)) {
+      let pos = newPlayList.indexOf(track);
+      newPlayList.splice(pos, 1);
+      this.setState({
+        playlistTracks: newPlayList
+      });
+    }
   }
 
   updatePlaylistName(newName) {
