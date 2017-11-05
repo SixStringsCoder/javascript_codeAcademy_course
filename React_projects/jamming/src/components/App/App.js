@@ -4,21 +4,16 @@ import './App.css';
 import SearchResults from '../SearchResults/SearchResults';
 import SearchBar from '../SearchBar/SearchBar';
 import PlayList from '../PlayList/PlayList';
+import Spotify from '../../util/Spotify';
 
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [
-        { name: 'Cool Vibes', artist: 'The Shenanigans', album: 'Making Hay' }
-      ],
+      searchResults: [],
       playlistName: 'My Fav-a-favs',
-      playlistTracks: [
-        { name: 'Open Arms', artist: 'Journey', album: 'Escape' },
-        { name: 'War Pigs', artist: 'Black Sabbath', album: 'Paranoid' },
-        { name: 'Magic Power', artist: 'Triumph', album: 'Allied Forces' },
-      ],
+      playlistTracks: [],
     }
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -57,7 +52,7 @@ class App extends Component {
   savePlaylist(playlistTracks) {
     let trackURIs = [];
     playlistTracks.filter(track => {
-      let uri = track.uri
+      let uri = track.uri;
       trackURIs.push(uri);
     });
     return trackURIs;
@@ -65,6 +60,11 @@ class App extends Component {
 
   search(searchTerm) {
     console.log(searchTerm);
+    Spotify.search(searchTerm).then(searchResults => {
+      this.setState({
+        searchResults: searchResults
+      });
+    });
   }
 
   render() {
