@@ -5,6 +5,7 @@ import TrackList from '../TrackList/TrackList';
 class PlayList extends Component {
   constructor(props) {
     super(props);
+
     this.handleNameChange = this.handleNameChange.bind(this);
   }
 
