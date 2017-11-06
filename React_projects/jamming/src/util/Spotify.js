@@ -1,7 +1,7 @@
 let userAccessToken;
 const url = 'https://accounts.spotify.com/authorize';
 const clientId =  '';
-const redirectURI = 'http://tones.surge.sh';
+const redirectURI = 'http://g7flat9.surge.sh';
 
 
 const Spotify = {
