@@ -5,13 +5,13 @@ Steve Hanlon Oct 30, 2017
 */
 
 // Foursquare API Info
-const clientId = '';
-const clientSecret = '';
+const clientId = 'ZCNOO2SK3USWMUXPMBM5WR3ALMNEZAFJBZDFPEVSDLTDKOYI';
+const clientSecret = 'FQWXQHYW2E5SJIOWNWEXMYHRSZZN2Y401TXYHRPTP5XOTM0E';
 const url = 'https://api.foursquare.com/v2/venues/explore?near=';
 const imgPrefix = 'https://igx.4sqi.net/img/general/150x200';
 
 // APIXU Info
-const apiKey = '';
+const apiKey = '7792dc0549e34abdaf744820173110';
 const forecastUrl = 'https://api.apixu.com/v1/forecast.json?key=';
 
 // Page Elements

@@ -1,5 +1,5 @@
 /*
-Mini Linter project will pratice to improve the quality of a paragraph
+Mini Linter project will practice to improve the quality of a paragraph
 as well as gather some information about that paragraph.
 */
 

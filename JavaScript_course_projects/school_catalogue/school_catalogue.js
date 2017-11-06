@@ -6,10 +6,11 @@ Steve Hanlon Oct. 7, 2017
 */
 
 class School {
-  constructor(name, level, numberOfStudents) {
+  constructor(name, level, numberOfStudents, averageTestScores) {
     this._name = name;
     this._level = level;
     this._numberOfStudents = numberOfStudents;
+    this._averageTestScores = averageTestScores;
   }
   //getters
   get name() {
@@ -21,6 +22,9 @@ class School {
   get numberOfStudents() {
     return this._numberOfStudents;
   }
+  get averageTestScores() {
+    return this._averageTestScores;
+  }
   // setters
   set numberOfStudents(newNumberOfStudents) {
     if (typeof newNumberOfStudents === 'number') {
@@ -30,10 +34,18 @@ class School {
       console.log(`Invalid input. Change ${newNumberOfStudents} to a number (i.e. no quotes).`)
     }
   }
+  set averageTestScores(testScores) {
+    // testScores argument should be an array
+    this._averageTestScores = testScores;
+    const schoolAvg =  testScores.reduce((sum, value) => sum + value, 0) / testScores.length;
+    this._averageTestScores =  schoolAvg;
+    return this._averageTestScores;
+  }
+
   // methods
   quickFacts() {
     // log facts about the school based on arguments passed into constructor
-    console.log(`${this._name} educates ${this._numberOfStudents} students, typically between the ages of ${this._level} school children.`);
+    console.log(`${this._name} educates ${this._numberOfStudents} students, typically between the ages of ${this._level} school children with a test score average of ${this._averageTestScores}`);
   }
 
   static pickSubstituteTeacher(substituteTeachers) {
@@ -46,8 +58,8 @@ class School {
 
 // subclass Primary
 class PrimarySchool extends School {
-  constructor(name, numberOfStudents, pickupPolicy) {
-    super(name, 'primary', numberOfStudents);
+  constructor(name, numberOfStudents, pickupPolicy, averageTestScores) {
+    super(name, 'primary', numberOfStudents, averageTestScores);
     this._pickupPolicy = pickupPolicy;
   }
   get pickupPolicy() {
@@ -58,13 +70,13 @@ class PrimarySchool extends School {
 // subclass Middle
 class MiddleSchool extends School {
   constructor(name, numberOfStudents) {
-    super(name, 'middle', numberOfStudents)
+    super(name, 'middle', numberOfStudents, averageTestScores)
   }
 }
 
 // subclass High
 class HighSchool extends School {
-  constructor(name, numberOfStudents, sportsTeams) {
+  constructor(name, numberOfStudents, sportsTeams, averageTestScores) {
     super(name, 'high', numberOfStudents);
     this._sportsTeams = sportsTeams;
   }
@@ -74,7 +86,7 @@ class HighSchool extends School {
 }
 
 // sample instance for Primary Shcool
-const lorraineHansbury = new PrimarySchool('Lorraine Hansbury', 514, 'Students must be picked up by a parent, guardian, or a family member over the age of 13.');
+const lorraineHansbury = new PrimarySchool('Lorraine Hansbury', 514, 'Students must be picked up by a parent, guardian, or a family member over the age of 13.', [3, 3, 3, 3]);
 lorraineHansbury.quickFacts();
 School.pickSubstituteTeacher(['Jamal Crawford', 'Lou Williams', 'J. R. Smith', 'James Harden', 'Jason Terry', 'Manu Ginobli']);
 
