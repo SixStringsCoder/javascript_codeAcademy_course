@@ -1,7 +1,7 @@
 let userAccessToken;
 const url = 'https://accounts.spotify.com/authorize';
 const clientId =  '';
-const redirectURI = 'http://localhost:3000/';
+const redirectURI = 'http://tones.surge.sh';
 
 
 const Spotify = {
@@ -9,15 +9,15 @@ const Spotify = {
   // Retrieves an access token from Spotify API to authenticate requests and retrieve data
   getAccessToken: function() {
     if (userAccessToken) {
-      return new Promise(resolve => resolve(userAccessToken));
+      return userAccessToken;
     }
 
       const accessTokenValue = window.location.href.match(/access_token=([^&]*)/);
       const expireTimeValue = window.location.href.match(/expires_in=([^&]*)/);
 
         if (accessTokenValue && expireTimeValue) {
-          userAccessToken = accessTokenValue;
-          const expiresIn = expireTimeValue;
+          userAccessToken = accessTokenValue[1];
+          const expiresIn = Number(expireTimeValue[1]);
           window.setTimeout(() => userAccessToken = '', expiresIn * 1000);
           window.history.pushState('Access Token', null, '/');
         } else {
