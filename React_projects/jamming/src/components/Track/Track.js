@@ -24,8 +24,10 @@ class Track extends Component {
       <div className="Track">
         <div className="Track-information">
           <h3>{this.props.track.name}</h3>
-          <p>{this.props.track.artist} | {this.props.track.album}</p>
+          <p>{this.props.track.artist} | {this.props.track.album} <span className="Track-sample">&#x25b6;</span></p>
         </div>
+
+
           { this.props.onAdd ?
             <a className="Track-action" onClick={this.addTrack}>+</a>
             :

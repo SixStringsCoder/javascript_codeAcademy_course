@@ -6,7 +6,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import PlayList from '../PlayList/PlayList';
 import Spotify from '../../util/Spotify';
 
-
+// Outside of Render
 class App extends Component {
   constructor(props) {
     super(props);
@@ -71,6 +71,7 @@ class App extends Component {
     return (
       <div>
           <h1>Ja<span className="highlight">mmm</span>ing</h1>
+
             <div className="App">
               <SearchBar onSearch={this.search}/>
                 <div className="App-playlist">

@@ -1,5 +1,6 @@
 .Track {
   display: flex;
+  justify-content: center;
   align-items: center;
   border-bottom: 1px solid rgba(256, 256, 256, 0.8);
 }
@@ -31,4 +32,26 @@
   font-size: .83rem;
   font-weight: 300;
   color: rgba(256, 256, 256, 0.8);
+}
+
+.Track-sample {
+  align-items: center;
+  margin-left: 10px;
+  font-size: 1.5em;
+  height: 3rem;
+  justify-content: center;
+  width: 3rem;
+  padding: .3rem;
+  border: none;
+}
+
+.Track-sample:hover {
+  background-color: white;
+  color: #120f54;
+  border: 1px solid white;
+}
+
+.Track-sample:active {
+  color: #6e2b8a;
+  transition: border .1s;
 }
