@@ -23,16 +23,25 @@ class Track extends Component {
     return (
       <div className="Track">
         <div className="Track-information">
-          <h3>{this.props.track.name}</h3>
-          <p>{this.props.track.artist} | {this.props.track.album} <span className="Track-sample">&#x25b6;</span></p>
-        </div>
-
-
-          { this.props.onAdd ?
-            <a className="Track-action" onClick={this.addTrack}>+</a>
-            :
-            <a className="Track-action" onClick={this.removeTrack}>-</a>
-          }
+          <div className="Track-image"><img src={this.props.track.image} /></div>
+            <div className="Track-name"><h3>{this.props.track.name}</h3><br />
+            <div className="Track-artist-album"><p><strong>artist:</strong> {this.props.track.artist} <br />
+              <strong>album:</strong> {this.props.track.album} </p>
+            </div>
+            <div className="Track-sample">
+              <audio controls name="media">
+                <source src={this.props.track.preview} type="audio/mpeg" />
+              </audio>
+            </div>
+          </div>
+          </div>
+          <div className="Track-add-remove">
+            { this.props.onAdd ?
+              <a className="Track-action" onClick={this.addTrack}>+</a>
+              :
+              <a className="Track-action" onClick={this.removeTrack}>-</a>
+            }
+          </div>
       </div>
     );
   }
