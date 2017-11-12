@@ -14,9 +14,12 @@ class App extends Component {
       searchResults: [],
       playlistName: 'My Fav-a-favs',
       playlistTracks: [],
+      audioPlaying: false
     }
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
+    this.playAudio = this.playAudio.bind(this);
+    this.stopAudio = this.stopAudio.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
@@ -41,6 +44,14 @@ class App extends Component {
         playlistTracks: newPlayList
       });
     }
+  }
+
+  playAudio(track) {
+    // setState for audioPlaying to be true
+  }
+
+  stopAudio(track) {
+    // setState for audioPlaying to be false
   }
 
   updatePlaylistName(newName) {
@@ -77,6 +88,8 @@ class App extends Component {
                 <div className="App-playlist">
                   <SearchResults searchResults={this.state.searchResults}
                                 onAdd={this.addTrack}
+                                playAudio={this.playAudio}
+                                stopAudio={this.stopAudio}
                                 />
                   <PlayList playlistName={this.state.playlistName}
                         playlistTracks={this.state.playlistTracks}

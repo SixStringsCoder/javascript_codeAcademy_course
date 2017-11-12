@@ -1,6 +1,6 @@
 let userAccessToken;
 const url = 'https://accounts.spotify.com/authorize';
-const clientId =  '';
+const clientId =  '2440eef637cc4fc996015127cde2c3f7';
 const redirectURI = 'http://localhost:3000/';
 // const redirectURI = 'http://g7flat9.surge.sh';
 

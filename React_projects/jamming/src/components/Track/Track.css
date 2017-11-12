@@ -1,16 +1,17 @@
 .Track {
   display: flex;
   flex-direction: row;
-  /*justify-content: center;*/
+  justify-content: space-between;
   align-items: flex-start;
   margin: 15px 0;
   border-bottom: 1px solid rgba(256, 256, 256, 0.8);
 }
 
 .Track-action {
+  align-self:stretch;
   cursor: pointer;
   padding: .5rem;
-  font-size: 1.05rem;
+  font-size: 1.5rem;
   transition: color .25s;
 }
 
@@ -42,6 +43,11 @@
   color: rgba(256, 256, 256, 0.8);
 }
 
+.trackCat {
+  font-weight: bold;
+  color: #95B4B5;
+}
+
 .Track-artist-album {
   margin-top: -10px;
 }
@@ -49,4 +55,22 @@
 .Track-sample {
   align-self: flex-start;
   margin: 10px -73px;
+
+}
+
+.Track-sample {
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+  background-color: #fff;
+  color: #000;
+  transition: color .25s ease-out, background-color .25s ease-out,font-size .15s ease-out;
+  outline: none;
+}
+
+.Track-sample:hover {
+  background-color: white;
+  color: rgba(111, 44, 138, 1);
+  font-size: 1.4rem;
 }
