@@ -1,9 +1,18 @@
-## Kelvin Weather Converter  ReadMe
+__Title__: Kelvin Temperature Converter
+By: Steve Hanlon Nov. 14, 2017
 
-#### Intro
-Title: Kelvin Temperature Converter
+__Goal__: Develop a React App based on a Kelvin to Celsius and Fahrenheit converter with an answer rendered to the DOM.  Practice making separate components which pass props between them.
 
-This converter takes a Kelvin temperature and converts it to Celsius and Fahrenheit then display the results to the DOM.
+
+#### Work flow
+1. Start React project
+2. Sketch out Components based on Programming flow and create Component Directory with JS and CSS files.
+3. Develop index.html static site with hard coded content.
+4. Divy up the hard coded content into the various React components
+5. Create logic through methods and pass props
+
+
+
 
 #### Programming flow
 1. User **inputs** the starting Kelvin temperature through a prompt which is then stored in the variable _kelvin_.
@@ -24,19 +33,3 @@ if (fahrenheit < 50) {
   console.log("Prep for Saudi Arabian Summer Olympics marathon!");
 }
 ```
-
-#### Setup
-1. Develop webpage with UI
- * make static HTML page for basic design
-    * Use HTML input to get Kelvin temperature <input type=text>
-
-    * Render equation results in a paragraph with image changing accordingly.
- * break up into component for React --> [More Details](#)
- 2. Add additional logic and control flow
- 3. Develop into React webpage
-
-
-
-
-#### Usage
-Use this converter to take a Kelvin temperature and convert it to Celsius and Fahrenheit then display the results on a webpage.
