@@ -1,0 +1,35 @@
+.ResultsArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(209, 176, 54, 0.36);
+  padding: 2rem;
+}
+
+.ResultsArea h3 {
+  font-size: 1.9rem;
+  color: #D98E04;
+  margin-top: 2rem;
+}
+
+.ResultsArea p {
+  font-size: 1.3rem;
+  color: #AA1A11;
+  margin: 2rem;
+}
+
+.ResultsArea img {
+  box-shadow: 1px 2px 2px black;
+  border-radius: 3rem;
+  width: 40vw;
+}
+
+/*.image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background: #000;
+
+}*/
