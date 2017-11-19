@@ -1,22 +1,32 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './ResultsArea.css';
 
 /*
-The purpose of the <ConversionActivity /> component is to represent how the temperatures
+The purpose of the <ResultsArea /> component is to represent how the temperatures
 will display along with a background picture.
 */
 
 class ResultsArea extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.showTempSentence = this.showTempSentence.bind(this);
+
+  }
+
+  showTempSentence() {
+    this.props.show(this.props.fahrDegrees, this.props.celsDegrees);
+  }
+
+
+
   render() {
     return (
-
-      <section className="ResultsArea">
-        <h3>The temperture is 98F or 26C.</h3>
-        <p>Prepare for Las Vegan Summer Olympics Cactus Juggling Event!</p>
+      <section className="ResultsArea" id="results">
+        <h3 answer={this.props.answer}></h3>
+        <p activity={this.props.activity}></p>
         <img className="image-container" src="./images/cactusJuggling_Desktop.jpg" />
       </section>
-
     );
   }
 }
