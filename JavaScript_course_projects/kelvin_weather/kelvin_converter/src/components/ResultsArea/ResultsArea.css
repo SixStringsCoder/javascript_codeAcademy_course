@@ -5,16 +5,19 @@
   align-items: center;
   background-color: rgba(209, 176, 54, 0.36);
   padding: 2rem;
+  height: 100vh;
+  /*margin-bottom: 0;*/
 }
 
 .ResultsArea h3 {
   font-size: 1.9rem;
   color: #D98E04;
   margin-top: 2rem;
+  margin-bottom: 0;
 }
 
 .ResultsArea p {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   color: #AA1A11;
   margin: 2rem;
 }
@@ -25,7 +28,7 @@
   width: 40vw;
 }
 
-/*.image-container {
+/*.imageContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;

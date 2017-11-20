@@ -11,60 +11,40 @@ html {
   }
 }
 
-input:focus {
-  outline: none;
-}
-
-/* Reusable Component - Image Container */
-
-.image-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-  background: #000;
-}
-
-.image-container img {
-  width: 100%;
-}
 
 /* App Styles */
-
-.App {
-  font-family: 'Work Sans', sans-serif;
-}
-
 h1 {
   padding: 1.3rem 0;
   margin: 0;
   text-align: center;
   background-color: #d16735;
   font-family: 'Encode Sans Expanded', sans-serif;
-  font-size: 2.4rem;
+  font-size: 2.8rem;
   color: #fff;
 }
 
-
+/* TemperatureBar Styles */
 .TempBar {
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 background-color: #ccc;
-background-image: url('./CKTherm_BGDesktop.jpg');
+background-image: url('./CKTherm_BGDesktop-3.jpg');
 background-size: cover;
 background-repeat: no-repeat;
 height: 25rem;
 }
 
 .TempBar h3 {
-  font-size: 1.7rem;
+  font-size: 2rem;
   color: #fdf1e9;
-  text-shadow: 0 2px #3B2C05;
+  text-shadow: 1px 2px #3B2C05;
   margin-bottom: 1rem;
+  padding: 10px 22px;
+  border-radius: 5px;
+  background-color: rgba(160, 135, 102, .2);
 }
-
 
 .TempBar input {
   width: 287px;
@@ -99,7 +79,7 @@ height: 25rem;
 }
 
 
-
+/* ResultsArea Styles */
 .ResultsArea {
   display: flex;
   flex-direction: column;
@@ -124,4 +104,14 @@ height: 25rem;
 .ResultsArea img {
   box-shadow: 1px 2px 2px black;
   border-radius: 3rem;
+  width: 40vw;
 }
+
+/*.image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background: #000;
+
+}*/

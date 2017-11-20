@@ -11,60 +11,47 @@ class App extends React.Component {
       celsius: 0,
       answer: "",
       activity: "",
-      pic: "./images/cactusJuggling_Desktop.jpg"
+      picture: ""
     }
     this.convertTemp = this.convertTemp.bind(this);
-    this.setActivity = this.setActivity.bind(this);
   }
 
-  // Temp Converter with concise method
+  // Temp Converter using concise method
+  // convertTemp returns F and C temps which then builds the total response
   convertTemp(kelvin) {
     // Celsius is 273 degrees less than Kelvin
-    this.celsius = kelvin - 273;
+    const c = this.celsius = kelvin - 273;
     // Solve for Fahrenheit based on Celsius; round down with Math library
-    this.fahrenheit = Math.floor(this.celsius * (9/5) + 32);
+    const f = this.fahrenheit = Math.floor(c * (9/5) + 32);
     // Make the answer based on temperatures
-    // console.log(celsius, fahrenheit);
+    this.answer = `The temperature is ${f}F or ${c}C.`;
+    // Set the activity and corresponding pic based on temperatures
+    if (f < 50) {
+      this.activity = "Prepare for Antartic Winter olympics!";
+      this.picture = <img alt="Antarctica" src={require('../ResultsArea/images/Antarctica_Olympics_desktop.jpg')} />;
+    } else if (f < 90) {
+      this.activity = "Time to go kayaking on the Willamette!";
+      this.picture = <img src={require('../ResultsArea/images/Willamette_Olympics_desktop.jpg')} />;
+    } else if (f < 110) {
+      this.activity = "Prepare for Las Vegan Summer Olympics Cactus Juggling Event!";
+      this.picture = <img src={require('../ResultsArea/images/cactusJuggling_Desktop.jpg')} />;
+    } else {
+      this.activity = "Prepare for Saudi Arabian Summer Olympics Dirtboarding Event!";
+      this.picture = <img src={require('../ResultsArea/images/Arabian_Olympics_desktop.jpg')} />;
+    }
+    // set state for these properties
     this.setState({
       celsius: this.celsius,
-      fahrenhiet: this.fahrenheit,
+      fahrenheit: this.fahrenheit,
+      answer: this.answer,
+      activity: this.activity,
+      picture: this.picture
     });
-    this.setActivity(this.celsius, this.fahrenheit);
   }
 
-  setActivity(c, f) {
-    const thingToDo = this.state.activity;
-    console.log(`This is ${c}C and ${f}F in  method`);
-    const answerWithTemps = `The temperture is ${f}F or ${c}C.`;
-
-    // follow up statements based on temp.
-    if (f < 50) {
-      this.thingToDo = "Prepare for Antartic Winter olympics!";
-    } else if (f > 50 && f < 90) {
-      this.thingToDo = "Time to go kayaking on the Willamette!";
-    } else if (f > 90 && f < 110) {
-      this.thingToDo = "Prepare for Las Vegan Summer Olympics Cactus Juggling Event!";
-    } else {
-      this.thingToDo = "Prepare for Saudi Arabian Summer Olympics marathon!";
-    }
-
-    this.setState({
-      activity: this.thingToDo,
-      answer: answerWithTemps,
-    });
-
-  }
-
-  showPic(picLink) {
-    picLink = this.state.pic;
-
-    this.setState({
-      pic: picLink,
-    });
-
-  }
-
-
+// Pass states to other components
+// TemperatureBar needs to receive convertTemp method for onClick set up there
+// ResultsArea needs to receive states to set up props in its render area
   render() {
     return (
       <div className="App">
@@ -73,13 +60,12 @@ class App extends React.Component {
         </header>
           <TemperatureBar convert={this.convertTemp} />
           <ResultsArea
-            show={this.setActivity}
             fahrDegrees={this.state.fahrenheit}
             celsDegrees={this.state.celsius}
             answer={this.state.answer}
             activity={this.state.activity}
-            picture={this.showPic}
-            />
+            pic={this.state.picture}
+          />
       </div>
     );
   }

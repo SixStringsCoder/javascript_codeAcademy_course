@@ -1,6 +1,8 @@
 import React from 'react';
 import './TemperatureBar.css';
 
+// TemperatureBar receives convertTemp method for onChange handler to set state of Kelvin
+// and props for onClick event
 class TemperatureBar extends React.Component {
   constructor(props) {
     super(props);
@@ -12,7 +14,7 @@ class TemperatureBar extends React.Component {
   }
 
   convert() {
-    this.props.convert(this.state.k_number)
+    this.props.convert(this.state.k_number);
   }
 
   handleInputEvent(event) {
