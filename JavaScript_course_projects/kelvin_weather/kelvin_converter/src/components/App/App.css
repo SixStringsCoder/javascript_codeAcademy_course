@@ -25,4 +25,8 @@ h1 {
   html {
     font-size: 15px;
   }
+
+  h1 {
+    font-size: 1.8rem;
+  }
 }

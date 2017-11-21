@@ -7,8 +7,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fahrenheit: 0,
-      celsius: 0,
+      fahrenheit: null,
+      celsius: null,
       answer: "",
       activity: "",
       picture: ""
@@ -25,6 +25,11 @@ class App extends React.Component {
     const f = this.fahrenheit = Math.floor(c * (9/5) + 32);
     // Make the answer based on temperatures
     this.answer = `The temperature is ${f}F or ${c}C.`;
+    // Alert if text input is empty and button is clicked
+    if (kelvin === 'undefined' || kelvin === null) {
+        alert("I pity the fool who just clicks the button. Enter a number!");
+        return false;
+    }
     // Set the activity and corresponding pic based on temperatures
     if (f < 50) {
       this.activity = "Prepare for Antartic Winter olympics!";
