@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <!-- CSS Reset -->
+    <link rel="stylesheet" type="text/css" href="./reset.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded|Slabo+27px" rel="stylesheet">
+
+    <title>Kelvin Konverter</title>
+  </head>
+  <body>
+    <div id="root">
+
+        <header class="NavBar">
+          <h1>Kelvin Konverter</h1>
+        </header>
+
+        <section class="TempBar">
+          <h3>Enter the Kelvin temperature.</h3>
+          <input type="text" placeholder="Right here, Buttercup!" />
+          <a onClick="convertTemp" href="#">Konvert</a>
+        </section>
+
+        <section class="ResultsArea">
+          <h3>The temperture is 98F or 26C.</h3>
+          <p>Prepare for Las Vegan Summer Olympics Cactus Juggling Event!</p>
+          <img class="image-container" src="./cactusJuggling_Desktop.jpg" />
+        </section>
+
+    </div>
+
+    <script>
+    // Temp Converter method
+    const convertTemp = (kelvin) => {
+      // Celsius is 273 degrees less than Kelvin
+      const celsius = kelvin - 273;
+      // fahrenheit to be rounded with Math library so storing as 'let' for flexibility
+      const fahrenheit = Math.floor(celsius * (9/5) + 32);
+
+      showAnswer(celsius, fahrenheit);
+    }
+
+    // Render answer
+    const showAnswer = (c, f) => {
+      // logging temp. in F using JS string interpolation
+      console.log(`The temperture is ${f}F or ${c}C.`);
+      // follow up statements based on
+      if (f < 50) {
+        console.log("Prepare for Antartic Winter olympics!");
+      } else if (f > 50 && f < 90) {
+        console.log("Time to go kayaking on the Willamette!");
+      } else if (f > 90 && f < 110) {
+        console.log("Prepare for Las Vegan Summer Olympics Cactus Juggling Event!");
+      } else {
+        console.log("Prepare for Saudi Arabian Summer Olympics marathon!");
+      }
+    }
+    </script>
+
+
+  </body>
+</html>

@@ -1,0 +1,117 @@
+/* Universal Styles */
+
+html {
+  font-family: 'Slabo 27px', serif;
+  font-size: 18px;
+}
+
+@media only screen and (max-width: 560px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+
+/* App Styles */
+h1 {
+  padding: 1.3rem 0;
+  margin: 0;
+  text-align: center;
+  background-color: #d16735;
+  font-family: 'Encode Sans Expanded', sans-serif;
+  font-size: 2.8rem;
+  color: #fff;
+}
+
+/* TemperatureBar Styles */
+.TempBar {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background-color: #ccc;
+background-image: url('./CKTherm_BGDesktop-3.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+height: 25rem;
+}
+
+.TempBar h3 {
+  font-size: 2rem;
+  color: #fdf1e9;
+  text-shadow: 1px 2px #3B2C05;
+  margin-bottom: 1rem;
+  padding: 10px 22px;
+  border-radius: 5px;
+  background-color: rgba(160, 135, 102, .2);
+}
+
+.TempBar input {
+  width: 287px;
+  padding: .88rem 0;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  margin-bottom: 2.22rem;
+  color: #010c3f;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.TempBar input:focus {
+  outline: none;
+}
+
+.TempBar a {
+  cursor: pointer;
+  text-decoration: none;
+  width: 8.11rem;
+  padding: .77rem 0;
+  border-radius: 54px;
+  color: #fff;
+  background-color: #3B2C05;
+  text-align: center;
+  font-size: 1.3rem;
+  transition: background-color .25s;
+}
+
+.TempBar a:hover {
+  background-color: rgba(61, 45, 2, .8);
+}
+
+
+/* ResultsArea Styles */
+.ResultsArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(209, 176, 54, 0.36);
+  padding: 2rem;
+}
+
+.ResultsArea h3 {
+  font-size: 1.9rem;
+  color: #D98E04;
+  margin-top: 2rem;
+}
+
+.ResultsArea p {
+  font-size: 1.3rem;
+  color: #AA1A11;
+  margin: 2rem;
+}
+
+.ResultsArea img {
+  box-shadow: 1px 2px 2px black;
+  border-radius: 3rem;
+  width: 40vw;
+}
+
+/*.image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background: #000;
+
+}*/
