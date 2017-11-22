@@ -1,0 +1,77 @@
+.TempBar {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background-color: #ccc;
+background-image: url('./images/CKTherm_BGDesktop.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+height: 25rem;
+}
+
+.TempBar h3 {
+  font-size: 2rem;
+  color: #fdf1e9;
+  text-shadow: 1px 2px #3B2C05;
+  margin-bottom: 1rem;
+  padding: 10px 22px;
+  border-radius: 5px;
+  /*background-color: rgba(160, 135, 102, .2);*/
+}
+
+
+.TempBar input {
+  width: 28vw;
+  padding: .88rem 0;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  margin-bottom: 2.22rem;
+  color: #010c3f;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.TempBar input:focus {
+  outline: none;
+}
+
+.TempBar a {
+  cursor: pointer;
+  text-decoration: none;
+  width: 8.11rem;
+  padding: .77rem 0;
+  border-radius: 54px;
+  color: #fff;
+  border: 1px solid #fff;
+  text-align: center;
+  font-size: 1.3rem;
+  transition: background-color .25s;
+}
+
+.TempBar a:hover {
+  background-color: rgba(199, 100, 14, .8);
+}
+
+.TempBar a:active {
+  background-color: rgba(230, 121, 26, .8);
+}
+
+@media only screen and (max-width: 560px){
+  .TempBar {
+  background-image: url('./images/CKTherm_BGMobile.jpg');
+  height: 25rem;
+  justify-content: space-evenly;
+  }
+
+  .TempBar h3 {
+    font-size: 1.8rem;
+    padding: 0;
+  }
+
+  .TempBar input {
+    width: 50vw;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+}

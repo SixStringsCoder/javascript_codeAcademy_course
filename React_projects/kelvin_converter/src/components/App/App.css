@@ -1,0 +1,32 @@
+/* Universal Styles */
+
+html {
+  font-family: 'Slabo 27px', serif;
+  font-size: 18px;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  padding: 1.3rem 0;
+  margin: 0;
+  text-align: center;
+  background-color: #d16735;
+  font-family: 'Encode Sans Expanded', sans-serif;
+  font-size: 2.8rem;
+  color: #fff;
+}
+
+
+/* Media Query Styles */
+@media only screen and (max-width: 560px) {
+  html {
+    font-size: 15px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+}
