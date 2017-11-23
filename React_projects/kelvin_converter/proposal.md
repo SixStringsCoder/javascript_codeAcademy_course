@@ -7,6 +7,8 @@ __Goal__: Develop a React App based on a Kelvin to Celsius and Fahrenheit conver
 1. Develop index.html static site with hard-coded content.
 2. Create React project
 3. Sketch out Components based on HTML static site then create Component Directories with JS and CSS files.
+
+  ![Component map](./screenshots/Kelvin_CompMap.jpeg)
 4. Copy/Paste the hard-coded HTML and CSS into the various React components, rewrite file/link paths
 5. Create logic through methods and pass props
 
