@@ -52,31 +52,24 @@
     </div>
 
     <script>
-    // Temp Converter method
-    const convertTemp = (kelvin) => {
-      // Celsius is 273 degrees less than Kelvin
-      const celsius = kelvin - 273;
-      // fahrenheit to be rounded with Math library so storing as 'let' for flexibility
-      const fahrenheit = Math.floor(celsius * (9/5) + 32);
 
-      showAnswer(celsius, fahrenheit);
+    const handChoice = ["rock", "paper", "scissors"];
+
+    // Choose computer's answer
+    const computerChoice = () => {
+      // Pick random number between 0 and 2
+      const choice = Math.floor(Math.random() * 3);
+      // Return number to access handChoice array elements with graphics' links
+      return choice;
     }
 
-    // Render answer
-    const showAnswer = (c, f) => {
-      // logging temp. in F using JS string interpolation
-      console.log(`The temperture is ${f}F or ${c}C.`);
-      // follow up statements based on
-      if (f < 50) {
-        console.log("Prepare for Antartic Winter olympics!");
-      } else if (f > 50 && f < 90) {
-        console.log("Time to go kayaking on the Willamette!");
-      } else if (f > 90 && f < 110) {
-        console.log("Prepare for Las Vegan Summer Olympics Cactus Juggling Event!");
-      } else {
-        console.log("Prepare for Saudi Arabian Summer Olympics marathon!");
-      }
+    // Choose your answer
+    const yourChoice = (choice) => {
+      // Choice equals 0, 1 or 2 which accesses index of an array to pick hand graphic
+        return handChoice[choice];
     }
+
+
     </script>
 
 
