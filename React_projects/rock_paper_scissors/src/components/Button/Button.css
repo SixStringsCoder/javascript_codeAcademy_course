@@ -1,0 +1,19 @@
+.btnImageBorder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 7rem;
+  border-radius: 100%;
+  margin: 0 2rem;
+  border: 2px solid red;
+  background-color: white;
+}
+
+.btnImageBorder:hover,
+.btnImageBorder:active {
+  border: 2px solid orange;
+}
+
+.btnImage {
+  width: 4vw;
+}

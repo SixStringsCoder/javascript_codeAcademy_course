@@ -1,0 +1,14 @@
+/* Game Hands section */
+.gameHands {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  height: 60vh;
+  /*border: 2px solid purple;*/
+}
+
+.gameHandsImage {
+  flex: auto;
+  width: 15vw;
+}
