@@ -13,7 +13,7 @@ class ScoreBar extends React.Component {
             </div>
 
             <div className="playerBox">
-              <PlayerName />
+              <h3 className="playerName">CompCrusher</h3>
               <ScoreNumber />
             </div>
       </section>

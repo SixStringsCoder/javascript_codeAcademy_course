@@ -18,7 +18,7 @@ This **R P S** game will use the standard rules of the *Rock, Paper, Scissors* g
 
 3. Start React project
 4. Divide HTML page into React components and move CSS over to component stylesheets.
-5. Determine methods for UI functionality and which states will change and any onClick event to handle.
+5. Determine methods for UI functionality and which states will change and any onClick events to handle.
 
 #### Usage
 This *R P S* project is part of my exercises to take basic JavaScript projects (which are part of the React course at Code Academy), and make them into basic React apps.  I'm also using these exercises to practice *app workflow* from sketching to first MVP to feature requests.
