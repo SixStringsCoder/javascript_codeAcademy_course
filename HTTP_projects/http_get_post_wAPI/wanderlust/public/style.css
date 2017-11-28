@@ -69,6 +69,11 @@ footer {
   color: #4a4a4a;
 }
 
+#weather, #venues {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .weather {
   width: 200px;
   height: 300px;

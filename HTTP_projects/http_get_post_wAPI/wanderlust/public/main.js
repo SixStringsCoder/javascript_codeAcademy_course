@@ -19,8 +19,8 @@ const $input = $('#city');
 const $submit = $('#button');
 const $destination = $('#destination');
 const $container = $('.container');
-const $venueDivs = [$("#venue1"), $("#venue2"), $("#venue3"), $("#venue4")];
-const $weatherDivs = [$("#weather1"), $("#weather2"), $("#weather3"), $("#weather4")];
+const $venueDivs = [$("#venue1"), $("#venue2"), $("#venue3"), $("#venue4"), $("#venue5"), $("#venue6"), $("#venue7"), $("#venue8"), $("#venue9"), $("#venue10")];
+const $weatherDivs = [$("#weather1"), $("#weather2"), $("#weather3"), $("#weather4"), $("#weather5"), $("#weather6"), $("#weather7")];
 const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 // AJAX functions
@@ -28,12 +28,12 @@ const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Satur
 async function getVenues() {
   const city = $input.val();
   const urlToFetch = url + city + '&venuePhotos=1&limit=10&client_id=' + clientId + '&client_secret=' + clientSecret + '&v=20171030';
-
+  
   try {
     let response = await fetch(urlToFetch);
     if (response.ok) {
       let jsonResponse = await response.json();
-      // console.log(jsonResponse);
+      console.log(jsonResponse);
       let venues = jsonResponse.response.groups[0].items.map(location => location.venue);
       return venues;
     }
@@ -50,6 +50,7 @@ async function getForecast() {
     let response = await fetch(urlToFetch);
     if (response.ok) {
       let jsonResponse = await response.json();
+      console.log(jsonResponse);
       let days = jsonResponse.forecast.forecastday;
       return days;
     }
@@ -66,10 +67,12 @@ function renderVenues(venues) {
       '<h2>' + venues[index].name + '</h2>' +
       '<img class="venueimage" src="' + imgPrefix +
       venues[index].photos.groups[0].items[0].suffix + '"/>' +
+      '<p>' + '(' + venues[index].categories[0].name + ')' + '</p>' + 
       '<h3>Address:</h3>' +
       '<p>' + venues[index].location.address + '</p>' +
       '<p>' + venues[index].location.city + '</p>' +
-      '<p>' + venues[index].location.country + '</p>';
+      '<p>' + venues[index].location.country + '</p>' +
+      '<button>' + '<a href=' + venues[index].url + ' target="_blank">' + "Visit" + '</a>' + '</button>'  ;
     $venue.append(venueContent);
   });
   $destination.append('<h2>' + venues[0].location.city + '</h2>');
@@ -80,9 +83,11 @@ function renderForecast(days) {
     let weatherContent =
       '<h2> High: ' + days[index].day.maxtemp_f + '</h2>' +
       '<h2> Low: ' + days[index].day.mintemp_f + '</h2>' +
+      '<h3> Humidity: ' + days[index].hour[0].humidity + '</h3>' +  
       '<img src="http://' + days[index].hour[0].condition.icon +
       '" class="weathericon" />' +
-      '<h2>' + weekDays[(new Date(days[index].date)).getDay()] + '</h2>';
+      '<p>' + days[index].hour[0].condition.text + '</p>' +
+      '<h2><strong>' + weekDays[(new Date(days[index].date)).getDay()] + '</strong></h2>';
     $day.append(weatherContent);
   });
 }
