@@ -4,3 +4,10 @@
   margin: 0;
   color: red;
 }
+
+.scoreBoard {
+  margin: 0;
+  width: 55vw;
+  display:flex;
+  justify-content: space-between;
+}

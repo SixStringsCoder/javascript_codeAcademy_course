@@ -24,8 +24,8 @@ __Goal__: Develop a React App based on the Rock, Paper, Scissors game.  One play
 
 - **App** component - to handle logic and states and render gameArea component, header Title
 
-  - **GameArea** component renders ScoreBar, GameHand, ButtonBar
-    - GameHand component - use state to set state of hand images
+ - **GameArea** component renders ScoreBar, GameHand, ButtonBar
+   - GameHand component - use state to set state of hand images
  - **ScoreBar** component - to handle score logic (increment score) and Winner state, player name (input) and computer name (hardcoded), renders
    - PlayerName component
    - ScoreNumber component

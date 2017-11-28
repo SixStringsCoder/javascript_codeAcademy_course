@@ -5,7 +5,7 @@ import Button from '../Button/Button';
 class ButtonBar extends React.Component {
   render() {
     return (
-        <Button />
+        <Button theChoice={this.props.theChoice} />
     );
   }
 }

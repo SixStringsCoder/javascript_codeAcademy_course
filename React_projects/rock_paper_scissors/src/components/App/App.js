@@ -9,23 +9,35 @@ class App extends Component {
     this.state = {
       yourScore: 0,
       compScore: 0,
-      gameHand: [],
+      yourHand: "",
+      compHand: "",
     }
+    this.theChoice = this.theChoice.bind(this);
   }
 
-  // // Choose computer's answer
-  // const computerChoice = () => {
-  //   // Pick random number between 0 and 2
-  //   const choice = Math.floor(Math.random() * 3);
-  //   // Return number to access handChoice array elements with graphics' links
-  //   return choice;
-  // }
-  //
-  // // Choose your answer
-  // const yourChoice = (choice) => {
-  //   // Choice equals 0, 1 or 2 which accesses index of an array to pick hand graphic
-  //     return handChoice[choice];
-  // }
+
+  // Choose your answer
+  theChoice(choice) {
+    const handChoices = [
+      <img alt="rock" className="gameHandsImage" src={require("../GameHand/images/rock.jpg")} />,
+      <img alt="paper" className="gameHandsImage" src={require("../GameHand/images/paper.jpg")} />,
+      <img alt="scissors" className="gameHandsImage" src={require("../GameHand/images/scissors.jpg")} />
+    ]
+
+    // Pick from Button onClick events
+    const yourChoice = handChoices[choice];
+    console.log(`You chose ${choice} which is ${handChoices[choice]}`);
+
+    // Pick random number between 0 and 2 for computer's choice
+    const randomPick = Math.floor(Math.random() * 3);
+    const compChoice = handChoices[randomPick];
+    console.log(`The computer chooses ${randomPick} which is ${compChoice}`);
+
+      this.setState({
+        yourHand: yourChoice,
+        compHand: compChoice
+      });
+  }
 
   render() {
     return (
@@ -33,7 +45,12 @@ class App extends Component {
         <header className="NavBar">
           <h1>R P S</h1>
         </header>
-          <GameArea />
+          <GameArea theChoice={this.theChoice}
+          yourHand={this.state.yourHand}
+          computerHand={this.state.compHand}
+          yourScore={this.state.yourScore}
+          computerScore={this.state.compScore}
+          />
       </section>
     );
   }

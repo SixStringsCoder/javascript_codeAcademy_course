@@ -4,7 +4,10 @@ import './ScoreNumber.css';
 class ScoreNumber extends React.Component {
   render() {
     return (
-      <p className="playerScore">2</p>
+      <div className="scoreBoard">
+      <p className="playerScore">{this.props.yScore}</p>
+      <p className="playerScore">{this.props.cScore}</p>
+      </div>
     );
   }
 }
