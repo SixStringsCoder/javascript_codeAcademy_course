@@ -4,7 +4,7 @@
   align-items: center;
   width: 7rem;
   border-radius: 100%;
-  margin: 0 2rem;
+  margin: 0 0 0 4.5rem;
   border: 2px solid red;
   background-color: white;
 }
@@ -16,4 +16,5 @@
 
 .btnImage {
   width: 4vw;
+
 }
