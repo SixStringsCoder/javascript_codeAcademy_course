@@ -12,13 +12,13 @@ class App extends Component {
       yourHand: "",
       compHand: "",
       referee: "",
-
     }
     this.theChoice = this.theChoice.bind(this);
     this.setYourScore = this.setYourScore.bind(this);
     this.setCompScore = this.setCompScore.bind(this);
     this.refereeCall = this.refereeCall.bind(this);
     this.whoWins = this.whoWins.bind(this);
+    this.resetScoreBoard = this.resetScoreBoard.bind(this);
   }
 
   // Choose an answer
@@ -27,18 +27,20 @@ class App extends Component {
       <img alt="rock" className="gameHandsImage" src={require("../GameHand/images/rock.jpg")} />,
       <img alt="paper" className="gameHandsImage" src={require("../GameHand/images/paper.jpg")} />,
       <img alt="scissors" className="gameHandsImage" src={require("../GameHand/images/scissors.jpg")} />
-    ]
+    ];
+
+    const handNames = ["rock", "paper", "scissors"];
 
     // The Player picks a hand using the buttons (handChoices index position provided by onClick events)
     const yourChoice = handChoices[choice];
     const yourNumber = choice;
-    console.log(`You chose ${choice} which is ${handChoices[choice]}`);
+    console.log(`You chose ${choice} which is ${handNames[yourNumber]}`);
 
     // Computer's choice comes from random number between 0 and 2 which correspond to index positions for handChoices array
     const randomPick = Math.floor(Math.random() * 3);
     const compChoice = handChoices[randomPick];
     const compNumber = randomPick;
-    console.log(`The computer chose ${randomPick} which is ${compChoice}`);
+    console.log(`The computer chose ${randomPick} which is ${handNames[compNumber]}`);
 
       this.setState({
         yourHand: yourChoice,
@@ -62,6 +64,16 @@ class App extends Component {
     console.log(`Comp wins that round! You: ${this.state.yourScore} Compcrusher: ${this.state.compScore}`);
   }
 
+  resetScoreBoard() {
+    // After a match winner, reset page
+    window.location.reload(true);
+    // reset scoreboard
+    this.setState({
+      yourScore: 0,
+      compScore: 0
+    });
+  }
+
   // These are the short phrases populating center screen between plays to indicate a tie or who won
   refereeCall() {
     const refCall = this.referee;
@@ -74,24 +86,26 @@ class App extends Component {
     // yourChoice and compChoice return numbers 0 to 2
     // It's a tie
     if (yourChoice === compChoice) {
-      console.log("Tie!");
+      console.log(`Tie! You: ${this.state.yourScore} Compcrusher: ${this.state.compScore}`);
       // You win that round
     } else if (yourChoice === 0 && compChoice === 2 ||
     yourChoice === 1 && compChoice === 0 ||
     yourChoice === 2 && compChoice === 1){
       // You get a point
       this.setYourScore();
-      console.log(`You: ${this.state.yourScore} Compcrusher: ${this.state.compScore}`);
     } else {
       // Computer wins that round and gets a point
       this.setCompScore();
-      console.log(`You: ${this.state.yourScore} Compcrusher: ${this.state.compScore}`);
     }
     // Conditions to win the game
     if (this.state.yourScore === 3) {
       console.log('Game over! You win!');
+      this.resetScoreBoard();
+      return false;
     } else if (this.state.compScore === 3) {
       console.log('Game over! Compcrusher wins!');
+      this.resetScoreBoard();
+      return false;
     } else {
       return false;
     }
@@ -104,11 +118,11 @@ class App extends Component {
           <h1>R P S</h1>
         </header>
           <GameArea theChoice={this.theChoice}
-          yourHand={this.state.yourHand}
-          computerHand={this.state.compHand}
-          yourScore={this.state.yourScore}
-          computerScore={this.state.compScore}
-          />
+            yourHand={this.state.yourHand}
+            computerHand={this.state.compHand}
+            yourScore={this.state.yourScore}
+            computerScore={this.state.compScore}
+            />
       </section>
     );
   }

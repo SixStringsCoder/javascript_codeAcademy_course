@@ -12,9 +12,14 @@ __Goal__: Develop a React App based on the Rock, Paper, Scissors game.  One play
 ![Component map](./screenshots/RPS_sketch2_desktop.jpeg)
 5. Create logic through methods, pass props, onClick and onChange handlers
   - App
+    - Get Hands appearing on DOM
+    - Get Score to increment based on outcome
+    - Get referee call messages to show on DOM
   - GameArea
   - ScoreBar
   - ButtonBar
+  - Button
+    - Set up onClick handler and State of player choice
 
 #### Programming flow
 **Component Level Map**

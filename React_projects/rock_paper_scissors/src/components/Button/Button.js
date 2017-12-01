@@ -1,5 +1,6 @@
 import React from 'react';
 import './Button.css';
+import '../GameHand/GameHand.css';
 
 class Button extends React.Component {
   constructor(props) {
@@ -19,7 +20,6 @@ class Button extends React.Component {
     });
 
     this.props.theChoice(indexNumber);
-    console.log(indexNumber, typeof indexNumber);
   }
 
   render() {

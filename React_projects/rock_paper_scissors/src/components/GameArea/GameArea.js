@@ -20,8 +20,8 @@ class GameArea extends React.Component {
       <section className="GameArea">
           <ScoreBar />
 
-          <ScoreNumber cScore={this.props.computerScore}
-                    yScore={this.props.yourScore}
+          <ScoreNumber compScore={this.props.computerScore}
+                    yourScore={this.props.yourScore}
                     />
 
           <GameHand theChoice={this.props.theChoice}

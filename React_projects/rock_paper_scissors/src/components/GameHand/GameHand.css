@@ -12,3 +12,8 @@
   flex: auto;
   width: 15vw;
 }
+
+.handAnimation {
+  transition: transform .8s ease-in-out;
+  transform: rotate(1440deg);
+}
