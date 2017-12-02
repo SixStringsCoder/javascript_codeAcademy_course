@@ -1,16 +1,22 @@
 /* Game Hands section */
 .gameHands {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  flex: 1 1 0;
   width: 100vw;
   height: 60vh;
   /*border: 2px solid purple;*/
 }
 
+.gameHands div {
+  margin: 0 4rem;
+  /*border: 2px solid orange;*/
+}
+
 .gameHandsImage {
-  flex: auto;
-  width: 15vw;
+  /*flex: auto;*/
+  width: 12vw;
 }
 
 .handAnimation {

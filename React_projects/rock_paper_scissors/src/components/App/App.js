@@ -52,14 +52,14 @@ class App extends Component {
 
   setYourScore() {
     this.setState({
-      yourScore: this.state.yourScore + 1
+      yourScore: this.state.yourScore + 1,
     });
     console.log(`You win that round! You: ${this.state.yourScore} Compcrusher: ${this.state.compScore}`);
   }
 
   setCompScore() {
     this.setState({
-      compScore: this.state.compScore + 1
+      compScore: this.state.compScore + 1,
     });
     console.log(`Comp wins that round! You: ${this.state.yourScore} Compcrusher: ${this.state.compScore}`);
   }
@@ -74,11 +74,20 @@ class App extends Component {
     });
   }
 
+
+
   // These are the short phrases populating center screen between plays to indicate a tie or who won
-  refereeCall() {
-    const refCall = this.referee;
+  refereeCall(callOut) {
+    const refCall = [
+      "Tie!",
+      "You got that one!",
+      "Compcrusher got that one!",
+      "Game over! You win!",
+      "Game over! Compcrusher wins!"
+    ];
+    console.log(`${callOut} returns ${refCall[callOut]}`);
     this.setState({
-      referee: refCall
+      referee: refCall[callOut]
     });
   }
 
@@ -86,6 +95,7 @@ class App extends Component {
     // yourChoice and compChoice return numbers 0 to 2
     // It's a tie
     if (yourChoice === compChoice) {
+      this.refereeCall(0);
       console.log(`Tie! You: ${this.state.yourScore} Compcrusher: ${this.state.compScore}`);
       // You win that round
     } else if (yourChoice === 0 && compChoice === 2 ||
@@ -93,19 +103,20 @@ class App extends Component {
     yourChoice === 2 && compChoice === 1){
       // You get a point
       this.setYourScore();
+      this.refereeCall(1);
     } else {
       // Computer wins that round and gets a point
       this.setCompScore();
+      this.refereeCall(2);
     }
     // Conditions to win the game
     if (this.state.yourScore === 3) {
-      console.log('Game over! You win!');
-      this.resetScoreBoard();
+      this.refereeCall(3);
+      setTimeout(this.resetScoreBoard().bind(this), 3000);
       return false;
     } else if (this.state.compScore === 3) {
-      console.log('Game over! Compcrusher wins!');
-      this.resetScoreBoard();
-      return false;
+      this.refereeCall(4);
+      setTimeout(this.resetScoreBoard().bind(this), 3000);
     } else {
       return false;
     }
@@ -122,6 +133,7 @@ class App extends Component {
             computerHand={this.state.compHand}
             yourScore={this.state.yourScore}
             computerScore={this.state.compScore}
+            referee={this.state.referee}
             />
       </section>
     );

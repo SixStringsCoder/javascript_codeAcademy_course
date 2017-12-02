@@ -3,6 +3,7 @@ import './GameArea.css';
 import ScoreBar from '../ScoreBar/ScoreBar';
 import ScoreNumber from '../ScoreNumber/ScoreNumber';
 import GameHand from '../GameHand/GameHand';
+import Referee from '../Referee/Referee';
 import ButtonBar from '../ButtonBar/ButtonBar';
 
 class GameArea extends React.Component {
@@ -27,6 +28,7 @@ class GameArea extends React.Component {
           <GameHand theChoice={this.props.theChoice}
                     computerHand={this.props.computerHand}
                     yourHand={this.props.yourHand}
+                    referee={this.props.referee}
                     />
 
           <ButtonBar theChoice={this.props.theChoice} />

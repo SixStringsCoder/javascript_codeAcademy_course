@@ -71,22 +71,41 @@ header {
 /* Game Hands section */
 .gameHands {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  flex: 1 1 0;
   width: 100vw;
   height: 60vh;
   border: 2px solid purple;
 }
 
+.gameHands div {
+  border: 2px solid orange;
+  margin: 0 2rem;
+}
+
 .gameHandsImage {
-  flex: auto;
+  /*flex: auto;*/
   width: 15vw;
 }
+
+.referee {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 12rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: red;
+}
+
+
 
 /* Bottom button section */
 .buttonsArea {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   height: 20vh;
   border: 2px solid yellow;
 }

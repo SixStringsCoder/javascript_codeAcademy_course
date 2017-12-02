@@ -3,8 +3,8 @@
   display: flex;
   justify-content:flex-start;
   width: 100vw;
-  height: 20vh;
-  padding: 10px 0;
+  height: 14vh;
+  padding: 10px 0 10px 7vw;
   background-color: black;
   /*border: 2px solid yellow;*/
 }

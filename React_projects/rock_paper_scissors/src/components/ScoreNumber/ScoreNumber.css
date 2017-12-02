@@ -1,12 +1,13 @@
 .playerScore {
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: bold;
   margin: 0;
   color: red;
+  font-family: 'Black Ops One', cursive;
 }
 
 .scoreBoard {
-  margin: 0;
+  margin: 1rem 0 0 0;
   width: 50vw;
   display:flex;
   justify-content: space-between;

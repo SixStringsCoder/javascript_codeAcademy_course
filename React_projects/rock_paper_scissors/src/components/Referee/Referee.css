@@ -1,0 +1,16 @@
+/* Referee middle call-out section */
+
+.referee {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 20rem;
+  font-size: 2.5rem;
+  line-height: 150%;
+  font-weight: bold;
+  color: #04940f;
+  font-family: 'Black Ops One', cursive;
+  /*font-family: 'Wallpoet', cursive;*/
+  /*font-family: 'Press Start 2P', cursive;*/
+}

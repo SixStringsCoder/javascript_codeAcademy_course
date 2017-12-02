@@ -1,11 +1,12 @@
 .playerName {
   font-size: 3.5rem;
+  font-family: 'Wallpoet', cursive;
   text-transform: uppercase;
-  margin: 1rem 0 0 0;
+  margin: 0;
 }
 
 input {
-  width: 70%;
+  width: 80%;
   border: 0;
   outline: none;
   font-weight: bold;
