@@ -5,16 +5,42 @@
   width: 6rem;
   border-radius: 100%;
   margin: 0 0 0 4.5rem;
-  border: 2px solid red;
+  border: 2px solid black;
   background-color: white;
 }
 
 .btnImageBorder:hover,
 .btnImageBorder:active {
-  border: 2px solid orange;
+  border: 2px solid red;
 }
 
 .btnImage {
   width: 4vw;
 
+}
+
+.playAgainDiv {
+  display: flex;
+  width: 40%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.btnPlayAgain {
+  display: flex;
+  justify-content: center;
+  width: 16rem;
+  height: 4rem;
+  border-radius: 5%;
+  font-size: 1.8rem;
+  color: #aaa;
+  background-color: #000;
+  border: 1px solid #aaa;
+  transition: background-color .3s, color .1s;
+  outline: none;
+}
+
+.btnPlayAgain:hover {
+  color: #fff;
+  background-color: #bb0303;
 }

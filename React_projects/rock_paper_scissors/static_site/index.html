@@ -42,15 +42,15 @@
             <section class="gameHands">
                 <div><img id="rpsImages_me" class="gameHandsImage" src="./images/rock.jpg" /></div>
                 <div class="referee"><h3>Rock crushes scissors!</h3></div>
-                <div><img id="rpsImages_me" class="gameHandsImage" src="./images/scissors.jpg" /></div>
+                <div><img id="rpsImages_me2" class="gameHandsImage" src="./images/scissors.jpg" /></div>
             </section>
 
         </section>
 
         <section class="buttonsArea">
-          <div class="btnImageBorder"><a href=#><img class="btnImage" id="rock" src="./images/rock.jpg" /></a></div>
-          <div class="btnImageBorder"><a href=#><img class="btnImage" id="paper" src="./images/paper.jpg" /></a></div>
-          <div class="btnImageBorder"><a href=#><img class="btnImage" id="scissors" src="./images/scissors.jpg" /></a></div>
+          <div class="btnImageBorder"><a onclick="animate(this)" href="#"><img class="btnImage" id="rock" src="./images/rock.jpg" /></a></div>
+          <div class="btnImageBorder"><a onclick="animate(this)" class="btn" href="#"><img class="btnImage" id="paper" src="./images/paper.jpg" /></a></div>
+          <div class="btnImageBorder"><a onclick="animate(this)" class="btn" href="#"><img class="btnImage" id="scissors" src="./images/scissors.jpg" /></a></div>
         </section>
 
       </section>
@@ -59,21 +59,41 @@
 
     <script>
 
-    const handChoice = ["rock", "paper", "scissors"];
+    const button = document.getElementsByTagName('a');
+    const image = document.querySelector('.btnImage');
 
-    // Choose computer's answer
-    const computerChoice = () => {
-      // Pick random number between 0 and 2
-      const choice = Math.floor(Math.random() * 3);
-      // Return number to access handChoice array elements with graphics' links
-      return choice;
-    }
 
-    // Choose your answer
-    const yourChoice = (choice) => {
-      // Choice equals 0, 1 or 2 which accesses index of an array to pick hand graphic
-        return handChoice[choice];
-    }
+    function animate(event) {
+      const gameHand = document.getElementById('rpsImages_me');
+      const gameHand2 = document.getElementById('rpsImages_me2');
+    button.addEventListener('click', function() {
+        console.log(event.target);
+          gameHand.style.transform = 'rotate(1440deg)';
+          gameHand2.style.transform = 'rotate(1440deg)';
+        });
+       }
+
+
+    // button.addEventListener('click', function() {
+	// div.style.transform = 'rotate(7000deg)';
+  //   });
+
+    //
+    // const handChoice = ["rock", "paper", "scissors"];
+    //
+    // // Choose computer's answer
+    // const computerChoice = () => {
+    //   // Pick random number between 0 and 2
+    //   const choice = Math.floor(Math.random() * 3);
+    //   // Return number to access handChoice array elements with graphics' links
+    //   return choice;
+    // }
+    //
+    // // Choose your answer
+    // const yourChoice = (choice) => {
+    //   // Choice equals 0, 1 or 2 which accesses index of an array to pick hand graphic
+    //     return handChoice[choice];
+    // }
 
 
     </script>

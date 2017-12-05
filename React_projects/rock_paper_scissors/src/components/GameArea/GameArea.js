@@ -3,18 +3,10 @@ import './GameArea.css';
 import ScoreBar from '../ScoreBar/ScoreBar';
 import ScoreNumber from '../ScoreNumber/ScoreNumber';
 import GameHand from '../GameHand/GameHand';
-import Referee from '../Referee/Referee';
+// import Referee from '../Referee/Referee';
 import ButtonBar from '../ButtonBar/ButtonBar';
 
 class GameArea extends React.Component {
-  constructor(props) {
-    super(props);
-    // this.state = {
-    //   compChoice = 0;
-    //   yourChoice = 0;
-    // }
-  }
-
 
   render() {
     return (
@@ -31,7 +23,9 @@ class GameArea extends React.Component {
                     referee={this.props.referee}
                     />
 
-          <ButtonBar theChoice={this.props.theChoice} />
+          <ButtonBar theChoice={this.props.theChoice}
+                    playAgain={this.props.playAgain}
+                    />
       </section>
     );
   }

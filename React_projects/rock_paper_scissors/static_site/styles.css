@@ -87,6 +87,13 @@ header {
 .gameHandsImage {
   /*flex: auto;*/
   width: 15vw;
+  transition: transform .8s ease-in-out;
+  transform: rotate(0deg);
+}
+
+.animate {
+  transition: transform .8s ease-in-out;
+  transform: rotate(0deg);
 }
 
 .referee {
@@ -127,6 +134,7 @@ header {
 
 .btnImage {
   width: 4vw;
+  transition: transform .8s ease-in-out;
 }
 
 

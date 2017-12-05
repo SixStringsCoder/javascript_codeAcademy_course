@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import GameArea from '../GameArea/GameArea';
 
+const styles = {
+  animationDuration: '.5s',
+  animationName: 'animateHands'
+};
 
 class App extends Component {
   constructor(props) {
@@ -18,18 +22,19 @@ class App extends Component {
     this.setCompScore = this.setCompScore.bind(this);
     this.refereeCall = this.refereeCall.bind(this);
     this.whoWins = this.whoWins.bind(this);
+    this.playAgain = this.playAgain.bind(this);
   }
 
   // Choose an answer
   theChoice(choice) {
     const handChoices = [
-      <img alt="rock" className="gameHandsImage" src={require("../GameHand/images/rock.jpg")} />,
-      <img alt="paper" className="gameHandsImage" src={require("../GameHand/images/paper.jpg")} />,
-      <img alt="scissors" className="gameHandsImage" src={require("../GameHand/images/scissors.jpg")} />
+      require("../GameHand/images/rock.png"),
+      require("../GameHand/images/paper.png"),
+      require("../GameHand/images/scissors.png")
     ];
 
+    // Just for console.log readability
     const handNames = ["rock", "paper", "scissors"];
-
     // The Player picks a hand using the buttons (handChoices index position provided by onClick events)
     const yourChoice = handChoices[choice];
     const yourNumber = choice;
@@ -43,9 +48,10 @@ class App extends Component {
 
       this.setState({
         yourHand: yourChoice,
-        compHand: compChoice
+        compHand: compChoice,
       });
 
+    // Send index numbers to whoWins() to make Callouts and determine Wins and Ties
     this.whoWins(yourNumber, compNumber);
   }
 
@@ -59,7 +65,7 @@ class App extends Component {
       // Show "Game Over" message
       this.refereeCall(4);
       // Reset window which auto resets score
-      setTimeout(function(){ window.location.reload(true); }, 2500);
+      // setTimeout(function(){ window.location.reload(true); }, 2000);
     } else {
       // Increment score before last point
       this.setState({
@@ -67,6 +73,7 @@ class App extends Component {
       });
     }
   }
+
 
   setCompScore() {
     // If computer gets last point,
@@ -77,8 +84,6 @@ class App extends Component {
       });
       // Show "Game Over" message
       this.refereeCall(5);
-      // Reset window which auto resets score
-      setTimeout(function(){ window.location.reload(true); }, 2500);
     } else {
       // Increment score before last point
       this.setState({
@@ -86,7 +91,6 @@ class App extends Component {
       });
     }
   }
-
 
   // These are the short phrases populating center screen between plays to indicate a tie or who won
   refereeCall(callOut) {
@@ -96,7 +100,7 @@ class App extends Component {
       "Paper covers rock",
       "Scissors cut paper",
       "GAME OVER! You win!",
-      "GAME OVER! Compcrusher wins!"
+      "GAME OVER! Compcrusher wins!",
     ];
 
     this.setState({
@@ -108,6 +112,7 @@ class App extends Component {
   whoWins(yourChoice, compChoice) {
     // All outcomes before game ends at 3
     if (this.state.yourScore != 3 || this.state.compScore != 3) {
+        // If You win, referee callout plus increment score
         if (yourChoice === 0 && compChoice === 2) {
           this.refereeCall(1);
           this.setYourScore();
@@ -117,6 +122,7 @@ class App extends Component {
         } else if (yourChoice === 2 && compChoice === 1) {
           this.refereeCall(3);
           this.setYourScore();
+          // If Computer wins, referee callout plus increment score
         } else if (yourChoice === 2 && compChoice === 0) {
           this.refereeCall(1);
           this.setCompScore();
@@ -127,9 +133,15 @@ class App extends Component {
           this.refereeCall(3);
           this.setCompScore();
         } else {
+          // If there's a Tie
           this.refereeCall(0);
         }
       };
+    }
+
+    // Reset window which auto resets score
+    playAgain() {
+      window.location.reload(true);
     }
 
   render() {
@@ -144,6 +156,7 @@ class App extends Component {
             yourScore={this.state.yourScore}
             computerScore={this.state.compScore}
             referee={this.state.referee}
+            playAgain={this.playAgain}
             />
       </section>
     );

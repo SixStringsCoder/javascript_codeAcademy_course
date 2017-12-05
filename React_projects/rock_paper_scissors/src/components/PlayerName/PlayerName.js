@@ -10,7 +10,6 @@ class PlayerName extends React.Component {
       <input type="text"
         placeholder="Your Name"
         className="playerName"
-        onChange=""
         autofocus
         />
     );
