@@ -1,15 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './ButtonBar.css';
 import Button from '../Button/Button';
 
-class ButtonBar extends React.Component {
-  render() {
-    return (
-        <Button theChoice={this.props.theChoice}
-                playAgain={this.props.playAgain}
-                />
-    );
-  }
+// 3 buttons to pick RPS and play again button
+export const ButtonBar = props => {
+  return (
+      <Button theChoice={props.theChoice}
+              playAgain={props.playAgain}
+              />
+  );
 }
 
-export default ButtonBar;
+ButtonBar.propTypes = {
+  theChoice: PropTypes.func.isRequired,
+  playAgain: PropTypes.func.isRequired
+}

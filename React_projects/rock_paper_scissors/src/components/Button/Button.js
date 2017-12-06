@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Button.css';
 import '../GameHand/GameHand.css';
 
@@ -33,6 +34,11 @@ class Button extends React.Component {
       </section>
     );
   }
+}
+
+Button.propTypes = {
+  playAgain: PropTypes.func.isRequired,
+  theChoice: PropTypes.func.isRequired,
 }
 
 export default Button;

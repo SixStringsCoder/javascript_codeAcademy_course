@@ -74,7 +74,6 @@ class App extends Component {
     }
   }
 
-
   setCompScore() {
     // If computer gets last point,
     if (this.state.compScore === 2) {
@@ -139,10 +138,10 @@ class App extends Component {
       };
     }
 
-    // Reset window which auto resets score
-    playAgain() {
-      window.location.reload(true);
-    }
+  // Reset window which auto resets score
+  playAgain() {
+    window.location.reload(true);
+  }
 
   render() {
     return (

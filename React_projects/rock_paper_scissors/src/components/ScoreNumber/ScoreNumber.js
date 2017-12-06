@@ -1,15 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './ScoreNumber.css';
 
-class ScoreNumber extends React.Component {
-  render() {
+export const ScoreNumber = props => {
     return (
       <div className="scoreBoard">
-      <p className="playerScore">{this.props.yourScore}</p>
-      <p className="playerScore">{this.props.compScore}</p>
+      <p className="playerScore">{props.yourScore}</p>
+      <p className="playerScore">{props.compScore}</p>
       </div>
     );
   }
-}
 
-export default ScoreNumber;
+ScoreNumber.propTypes = {
+  yourScore: PropTypes.string.isRequired,
+  compScore: PropTypes.string.isRequired
+}

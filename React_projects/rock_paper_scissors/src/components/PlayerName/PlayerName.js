@@ -1,11 +1,8 @@
 import React from 'react';
 import './PlayerName.css';
 
-class PlayerName extends React.Component {
-
-
-
-  render() {
+// Input to fill in your player name
+export const PlayerName = props => {
     return (
       <input type="text"
         placeholder="Your Name"
@@ -14,6 +11,3 @@ class PlayerName extends React.Component {
         />
     );
   }
-}
-
-export default PlayerName;

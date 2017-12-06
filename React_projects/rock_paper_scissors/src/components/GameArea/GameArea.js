@@ -1,13 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './GameArea.css';
-import ScoreBar from '../ScoreBar/ScoreBar';
-import ScoreNumber from '../ScoreNumber/ScoreNumber';
-import GameHand from '../GameHand/GameHand';
-// import Referee from '../Referee/Referee';
-import ButtonBar from '../ButtonBar/ButtonBar';
+import { ScoreBar } from '../ScoreBar/ScoreBar';
+import { ScoreNumber } from '../ScoreNumber/ScoreNumber';
+import { GameHand } from '../GameHand/GameHand';
+import { ButtonBar } from '../ButtonBar/ButtonBar';
 
 class GameArea extends React.Component {
-
   render() {
     return (
       <section className="GameArea">
@@ -29,6 +28,16 @@ class GameArea extends React.Component {
       </section>
     );
   }
+}
+
+GameArea.propTypes = {
+  computerScore: PropTypes.number.isRequired,
+  yourScore: PropTypes.number.isRequired,
+  theChoice: PropTypes.func.isRequired,
+  playAgain: PropTypes.func.isRequired,
+  computerHand: PropTypes.string.isRequired,
+  yourHand: PropTypes.string.isRequired,
+  referee: PropTypes.string.isRequired,
 }
 
 export default GameArea;

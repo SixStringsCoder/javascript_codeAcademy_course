@@ -1,27 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './GameHand.css';
 import Button from '../Button/Button';
-import Referee from '../Referee/Referee';
+import { Referee } from '../Referee/Referee';
 
 
-class GameHand extends React.Component {
-  render() {
-    return (
+export const GameHand = props => {
+  return (
+    <section className="gameHands">
+        <div>
+          <img className="gameHandsImage" src={props.yourHand} />
+        </div>
 
-      <section className="gameHands">
-          <div>
-            <img className="gameHandsImage" src={this.props.yourHand} />
-          </div>
+        <Referee referee={props.referee} />
 
-          <Referee referee={this.props.referee} />
-
-          <div>
-            <img className="gameHandsImage" src={this.props.computerHand} />
-          </div>
-      </section>
-
-    );
-  }
+        <div>
+          <img className="gameHandsImage" src={props.computerHand} />
+        </div>
+    </section>
+  );
 }
 
-export default GameHand;
+GameHand.propTypes = {
+  computerHand: PropTypes.string.isRequired,
+  yourHand: PropTypes.string.isRequired,
+  referee: PropTypes.string.isRequired,
+}

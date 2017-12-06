@@ -1,16 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Referee.css';
-import Button from '../Button/Button';
-import GameHand from '../GameHand/GameHand';
 
-class Referee extends React.Component {
-  render() {
+// Callouts to say who wins or Tie
+export const Referee = props => {
     return (
       <div className="referee">
-        <h3>{this.props.referee}</h3>
+        <h3>{props.referee}</h3>
       </div>
     );
   }
-}
 
-export default Referee;
+Referee.propTypes = {
+  referee: PropTypes.string.isRequired
+}
