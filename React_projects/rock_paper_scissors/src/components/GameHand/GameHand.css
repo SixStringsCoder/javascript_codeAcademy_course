@@ -20,9 +20,43 @@
 }
 
 .gameHandsImage {
-  /*flex: auto;*/
   width: 12vw;
   /*transition: transform .8s ease-in-out;
   transform: rotate(0deg);
   transform: rotate(1440deg);*/
+}
+
+/* ==================================
+   ReactCSSTransitionGroup Classes
+===================================== */
+/* start Enter state */
+.spin-enter {
+  transform: rotate(0deg);
+}
+
+/* end Enter state */
+.spin-enter.spin-enter-active {
+  transform: rotate(1440deg);
+  transition: transform .3s ease-in;
+}
+
+/* start Leave state */
+.spin-leave {
+  opacity: 1;
+}
+
+/* end Leave state */
+.spin-leave.spin-leave-active {
+  opacity: 0;
+  transition: .8s ease-out;
+}
+
+/* iniital mounting */
+.spin-appear {
+  opacity: 0;
+}
+
+.spin-appear.spin-appear-active {
+  opacity: 1;
+  transition: transform .4s ease-in-out;
 }

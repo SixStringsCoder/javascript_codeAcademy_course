@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
+// import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import './App.css';
 import GameArea from '../GameArea/GameArea';
-
-const styles = {
-  animationDuration: '.5s',
-  animationName: 'animateHands'
-};
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +11,7 @@ class App extends Component {
       compScore: 0,
       yourHand: "",
       compHand: "",
-      referee: "",
+      referee: ""
     }
     this.theChoice = this.theChoice.bind(this);
     this.setYourScore = this.setYourScore.bind(this);
@@ -28,9 +24,9 @@ class App extends Component {
   // Choose an answer
   theChoice(choice) {
     const handChoices = [
-      require("../GameHand/images/rock.png"),
-      require("../GameHand/images/paper.png"),
-      require("../GameHand/images/scissors.png")
+      <img className="gameHandsImage" src={require("../GameHand/images/rock.png")} />,
+      <img className="gameHandsImage" src={require("../GameHand/images/paper.png")} />,
+      <img className="gameHandsImage" src={require("../GameHand/images/scissors.png")} />
     ];
 
     // Just for console.log readability
@@ -48,7 +44,7 @@ class App extends Component {
 
       this.setState({
         yourHand: yourChoice,
-        compHand: compChoice,
+        compHand: compChoice
       });
 
     // Send index numbers to whoWins() to make Callouts and determine Wins and Ties
@@ -99,7 +95,7 @@ class App extends Component {
       "Paper covers rock",
       "Scissors cut paper",
       "GAME OVER! You win!",
-      "GAME OVER! Compcrusher wins!",
+      "GAME OVER! Compcrusher wins!"
     ];
 
     this.setState({

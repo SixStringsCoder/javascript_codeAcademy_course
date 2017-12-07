@@ -14,7 +14,6 @@ class Button extends React.Component {
 
   // This method sets state to index positions, 0 to 2, for handChoices array in App.js
   clickEventHandler(event) {
-    event.preventDefault();
     let indexNumber = Number(event.target.id);
 
     this.setState({
@@ -22,6 +21,7 @@ class Button extends React.Component {
     });
 
     this.props.theChoice(indexNumber);
+    event.preventDefault();
   }
 
   render() {

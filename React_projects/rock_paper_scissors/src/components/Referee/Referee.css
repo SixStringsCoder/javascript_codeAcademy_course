@@ -14,3 +14,41 @@
   /*font-family: 'Wallpoet', cursive;*/
   /*font-family: 'Press Start 2P', cursive;*/
 }
+
+
+/* ==================================
+   ReactCSSTransitionGroup Classes
+===================================== */
+/* start Enter state */
+/*.fade-enter {
+  transform: rotate(0deg);
+}*/
+
+/* end Enter state */
+/*.fade-enter.fade-enter-active {
+  transform: rotate(1440deg);
+  transition: transform .3s ease-in;
+}*/
+
+/* start Leave state */
+/*.fade-leave {
+  opacity: 1;
+  display: block;
+}*/
+
+/* end Leave state */
+/*.fade-leave.fade-leave-active {
+  opacity: 0;
+  transition: .8s ease-out;
+  display: none;
+}*/
+
+/* iniital mounting */
+/*.fade-appear {
+  opacity: 0;
+}
+
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: transform .4s ease-in-out;
+}*/
