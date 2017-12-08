@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './TemperatureBar.css';
 
 // TemperatureBar receives convertTemp method for onChange handler to set state of Kelvin
@@ -34,5 +35,8 @@ class TemperatureBar extends React.Component {
   }
 }
 
+TemperatureBar.PropTypes = {
+  convert: PropTypes.func.isRequired
+}
 
 export default TemperatureBar;

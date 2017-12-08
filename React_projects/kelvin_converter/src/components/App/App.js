@@ -36,13 +36,13 @@ class App extends React.Component {
       this.picture = <img alt="Antarctica" src={require('../ResultsArea/images/Antarctica_Olympics_desktop.jpg')} />;
     } else if (f < 90) {
       this.activity = "Time to go kayaking on the Willamette!";
-      this.picture = <img src={require('../ResultsArea/images/Willamette_Olympics_desktop.jpg')} />;
+      this.picture = <img alt="Willamette" src={require('../ResultsArea/images/Willamette_Olympics_desktop.jpg')} />;
     } else if (f < 110) {
       this.activity = "Prepare for Las Vegan Summer Olympics Cactus Juggling Event!";
-      this.picture = <img src={require('../ResultsArea/images/cactusJuggling_Desktop.jpg')} />;
+      this.picture = <img alt="Cactus Juggling" src={require('../ResultsArea/images/cactusJuggling_Desktop.jpg')} />;
     } else {
       this.activity = "Prepare for Saudi Arabian Summer Olympics Dirtboarding Event!";
-      this.picture = <img src={require('../ResultsArea/images/Arabian_Olympics_desktop.jpg')} />;
+      this.picture = <img alt="Dirtboarding" src={require('../ResultsArea/images/Arabian_Olympics_desktop.jpg')} />;
     }
     // set state for these properties
     this.setState({

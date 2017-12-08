@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './ResultsArea.css';
 
 /*
@@ -18,6 +19,10 @@ class ResultsArea extends React.Component {
       </section>
     );
   }
+}
+
+ResultsArea.propTypes = {
+	activity: PropTypes.string.isRequired
 }
 
 
