@@ -1,0 +1,148 @@
+/* Universal Styles */
+
+html {
+  font-family: 'Slabo 27px', serif;
+  font-size: 18px;
+}
+
+
+h1 {
+  font-size: 4rem;
+  text-align: center;
+  font-family: 'Encode Sans Expanded', sans-serif;
+  color: #000;
+  text-decoration: underline;
+  padding: 1.3rem 0;
+}
+
+/* LAYOUT */
+#screen {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  border: 2px solid red;
+  margin: 0;
+}
+
+/* Top Title */
+header {
+  margin: 0;
+  background-color: #ccc;
+  height: 15vh;
+}
+
+/* Middle game section */
+.GameArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  /*flex-wrap: wrap;*/
+  height: 70vh;
+  border: 2px solid blue;
+}
+
+/* ScoreBar section */
+.scoreBar {
+  display: flex;
+  justify-content: space-around;
+  height: 20vh;
+  width: 100vw;
+}
+
+.playerBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.playerName {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+}
+
+.playerScore {
+  font-size: 3rem;
+  font-weight: bold;
+  color: red;
+}
+
+/* Game Hands section */
+.gameHands {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 0;
+  width: 100vw;
+  height: 60vh;
+  border: 2px solid purple;
+}
+
+.gameHands div {
+  border: 2px solid orange;
+  margin: 0 2rem;
+}
+
+.gameHandsImage {
+  /*flex: auto;*/
+  width: 15vw;
+  transition: transform .8s ease-in-out;
+  transform: rotate(0deg);
+}
+
+.animate {
+  transition: transform .8s ease-in-out;
+  transform: rotate(0deg);
+}
+
+.referee {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 12rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: red;
+}
+
+
+
+/* Bottom button section */
+.buttonsArea {
+  display: flex;
+  justify-content: flex-start;
+  height: 20vh;
+  border: 2px solid yellow;
+}
+
+.btnImageBorder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 8rem;
+  border-radius: 100%;
+  margin: 0 2rem;
+  border: 2px solid blue;
+}
+
+.btnImageBorder:hover,
+.btnImageBorder:active {
+  border: 2px solid orange;
+}
+
+.btnImage {
+  width: 4vw;
+  transition: transform .8s ease-in-out;
+}
+
+
+/*=========================
+      Media Queries
+===========================*/
+@media only screen and (max-width: 560px) {
+  html {
+    font-size: 15px;
+  }
+}

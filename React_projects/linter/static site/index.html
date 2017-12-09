@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <!-- CSS Reset -->
+    <link rel="stylesheet" type="text/css" href="./reset.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded|Slabo+27px" rel="stylesheet">
+
+    <title>R P S</title>
+  </head>
+  <body>
+    <div id="root">
+
+      <section id="screen">
+
+        <header class="NavBar">
+          <h1>R P S</h1>
+        </header>
+
+        <section class="GameArea">
+
+            <section class="scoreBar">
+                  <div class="playerBox">
+                    <h3 class="playerName">DaHammer</h3>
+                    <p class="playerScore">2</p>
+                  </div>
+
+                  <div class="playerBox">
+                    <h3 class="playerName">Compkrush</h3>
+                    <p class="playerScore">3</p>
+                  </div>
+            </section>
+
+            <section class="gameHands">
+                <div><img id="rpsImages_me" class="gameHandsImage" src="./images/rock.jpg" /></div>
+                <div class="referee"><h3>Rock crushes scissors!</h3></div>
+                <div><img id="rpsImages_me2" class="gameHandsImage" src="./images/scissors.jpg" /></div>
+            </section>
+
+        </section>
+
+        <section class="buttonsArea">
+          <div class="btnImageBorder"><a onclick="animate(this)" href="#"><img class="btnImage" id="rock" src="./images/rock.jpg" /></a></div>
+          <div class="btnImageBorder"><a onclick="animate(this)" class="btn" href="#"><img class="btnImage" id="paper" src="./images/paper.jpg" /></a></div>
+          <div class="btnImageBorder"><a onclick="animate(this)" class="btn" href="#"><img class="btnImage" id="scissors" src="./images/scissors.jpg" /></a></div>
+        </section>
+
+      </section>
+
+    </div>
+
+    <script>
+
+    const button = document.getElementsByTagName('a');
+    const image = document.querySelector('.btnImage');
+
+
+    function animate(event) {
+      const gameHand = document.getElementById('rpsImages_me');
+      const gameHand2 = document.getElementById('rpsImages_me2');
+    button.addEventListener('click', function() {
+        console.log(event.target);
+          gameHand.style.transform = 'rotate(1440deg)';
+          gameHand2.style.transform = 'rotate(1440deg)';
+        });
+       }
+
+
+    // button.addEventListener('click', function() {
+	// div.style.transform = 'rotate(7000deg)';
+  //   });
+
+    //
+    // const handChoice = ["rock", "paper", "scissors"];
+    //
+    // // Choose computer's answer
+    // const computerChoice = () => {
+    //   // Pick random number between 0 and 2
+    //   const choice = Math.floor(Math.random() * 3);
+    //   // Return number to access handChoice array elements with graphics' links
+    //   return choice;
+    // }
+    //
+    // // Choose your answer
+    // const yourChoice = (choice) => {
+    //   // Choice equals 0, 1 or 2 which accesses index of an array to pick hand graphic
+    //     return handChoice[choice];
+    // }
+
+
+    </script>
+
+
+  </body>
+</html>
