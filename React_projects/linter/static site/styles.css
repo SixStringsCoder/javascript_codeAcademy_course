@@ -5,144 +5,162 @@ html {
   font-size: 18px;
 }
 
-
 h1 {
-  font-size: 4rem;
+  font-size: 1rem;
   text-align: center;
+  width: 163px;
   font-family: 'Encode Sans Expanded', sans-serif;
-  color: #000;
-  text-decoration: underline;
-  padding: 1.3rem 0;
+  font-weight: bold;
+  text-shadow: 2px 2px black;
+  color: #fff;
+  padding: 1rem;
 }
 
 /* LAYOUT */
-#screen {
+#app {
+  background: #fff url('images/workspace.jpeg') center top;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   height: 100vh;
   border: 2px solid red;
   margin: 0;
+  overflow: scroll;
 }
+
 
 /* Top Title */
 header {
-  margin: 0;
-  background-color: #ccc;
-  height: 15vh;
-}
-
-/* Middle game section */
-.GameArea {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  /*flex-wrap: wrap;*/
-  height: 70vh;
-  border: 2px solid blue;
-}
-
-/* ScoreBar section */
-.scoreBar {
-  display: flex;
-  justify-content: space-around;
-  height: 20vh;
-  width: 100vw;
-}
-
-.playerBox {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.playerName {
-  font-size: 3.5rem;
-  text-transform: uppercase;
-}
-
-.playerScore {
-  font-size: 3rem;
-  font-weight: bold;
-  color: red;
-}
-
-/* Game Hands section */
-.gameHands {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1 1 0;
-  width: 100vw;
-  height: 60vh;
-  border: 2px solid purple;
+  flex-wrap: wrap;
+  line-height: 150%;
+  background-color: rgba(25, 25, 25, .4);
+
+  border: 2px solid green;
 }
 
-.gameHands div {
-  border: 2px solid orange;
-  margin: 0 2rem;
+h1 span {
+  font-size: .8rem;
+  font-style: italic;
 }
 
-.gameHandsImage {
-  /*flex: auto;*/
-  width: 15vw;
-  transition: transform .8s ease-in-out;
-  transform: rotate(0deg);
-}
 
-.animate {
-  transition: transform .8s ease-in-out;
-  transform: rotate(0deg);
-}
-
-.referee {
+/* Text Area section */
+.textArea {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  width: 12rem;
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: red;
-}
-
-
-
-/* Bottom button section */
-.buttonsArea {
-  display: flex;
-  justify-content: flex-start;
-  height: 20vh;
-  border: 2px solid yellow;
-}
-
-.btnImageBorder {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  width: 8rem;
-  border-radius: 100%;
-  margin: 0 2rem;
-  border: 2px solid blue;
+  border: 2px solid pink;
 }
 
-.btnImageBorder:hover,
-.btnImageBorder:active {
+.textArea h3 {
+  display: flex;
+  justify-content: center;
+  padding: .5rem 0;
+}
+
+.textBox {
+  display: flex;
+  justify-content: center;
+  width: 90vw;
+  height: 30vw;
+  border: 1px solid black;
+}
+
+/* Analyze lower-left section */
+.analyzerArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border: 2px solid orange;
 }
 
-.btnImage {
-  width: 4vw;
-  transition: transform .8s ease-in-out;
+.analyzeBtnArea {
+  border: 2px solid red;
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
 }
+
+
+.analyzerArea button {
+  font-size: 100%;
+  padding: auto;
+  margin: .5rem .5rem;
+  height: auto;
+  border: 1px solid black;
+  background-color: #fff;
+  outline: none;
+}
+
+.analyzeBox {
+  display: flex;
+  justify-content: center;
+  width: 90vw;
+  height: 20vh;
+  border: 1px solid black;
+}
+
+/* Oxford Dictionary Thesaurus section */
+.oxfordArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid blue;
+}
+
+.dictTitleAndBtn {
+  display: flex;
+  width: 100vw;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.oxfordArea h5 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: .5rem 0;
+}
+
+
+.oxfordArea button {
+  font-size: 100%;
+  padding: .3rem 2.1rem;
+  margin: .5rem .5rem;
+  border: 1px solid black;
+  background-color: #fff;
+  outline: none;
+}
+
+
+.wordDictBox {
+  display: flex;
+  justify-content: center;
+  margin: .5rem 0;
+  width: 50vw;
+  height: 1rem;
+  border: 1px solid black;
+}
+
+.definitionBox {
+  display: flex;
+  justify-content: center;
+  width: 90vw;
+  height: 20vh;
+  border: 1px solid black;
+}
+
+/* comments */
+
 
 
 /*=========================
       Media Queries
 ===========================*/
-@media only screen and (max-width: 560px) {
+/*@media only screen and (min-width: 560px) {
   html {
     font-size: 15px;
   }
-}
+}*/
