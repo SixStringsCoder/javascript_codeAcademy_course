@@ -9,7 +9,7 @@ h1 {
   font-size: 1rem;
   text-align: center;
   width: 163px;
-  font-family: 'Encode Sans Expanded', sans-serif;
+  font-family: 'Paytone One', sans-serif;
   font-weight: bold;
   text-shadow: 2px 2px black;
   color: #fff;
@@ -22,8 +22,8 @@ h1 {
   background-size: cover;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  border: 2px solid red;
+  height: 100%;
+  /*border: 2px solid red;*/
   margin: 0;
   overflow: scroll;
 }
@@ -36,9 +36,8 @@ header {
   align-items: center;
   flex-wrap: wrap;
   line-height: 150%;
-  background-color: rgba(25, 25, 25, .4);
-
-  border: 2px solid green;
+  background-color: rgba(39, 50, 70, .76);
+  /*border: 2px solid green;*/
 }
 
 h1 span {
@@ -52,47 +51,63 @@ h1 span {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid pink;
+  /*border: 2px solid pink;*/
 }
 
 .textArea h3 {
   display: flex;
+  font-family: 'Paytone One', sans-serif;
+  font-size: 1.3rem;
   justify-content: center;
   padding: .5rem 0;
 }
 
 .textBox {
   display: flex;
+  font-size: .7rem;
+  padding: .5rem 0 0 .5rem;
   justify-content: center;
   width: 90vw;
   height: 30vw;
   border: 1px solid black;
 }
 
-/* Analyze lower-left section */
+/* Analyze-Translate section */
 .analyzerArea {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid orange;
+  /*border: 2px solid orange;*/
 }
 
 .analyzeBtnArea {
-  border: 2px solid red;
+  /*border: 2px solid red;*/
   display: flex;
   justify-content: space-around;
   width: 100vw;
+  padding: .5rem 0;
 }
 
 
 .analyzerArea button {
   font-size: 100%;
-  padding: auto;
+  font-family: 'Josefin Sans', sans-serif;
+  text-transform: uppercase;
+  padding: .6rem 1.4rem .4rem;
   margin: .5rem .5rem;
-  height: auto;
   border: 1px solid black;
-  background-color: #fff;
+  background-color: #263048;
+  color: #f5f5f5;
   outline: none;
+  transition: background-color .5s;
+}
+
+.analyzerArea button:hover {
+  background-color: #485A85;
+}
+
+.analyzerArea button:active {
+  color: #B0BAD1;
 }
 
 .analyzeBox {
@@ -100,6 +115,7 @@ h1 span {
   justify-content: center;
   width: 90vw;
   height: 20vh;
+  padding: 1rem 0;
   border: 1px solid black;
 }
 
@@ -108,7 +124,7 @@ h1 span {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid blue;
+  /*border: 2px solid blue;*/
 }
 
 .dictTitleAndBtn {
@@ -120,27 +136,41 @@ h1 span {
 
 .oxfordArea h5 {
   font-size: 1.2rem;
+  /*font-family: 'Spectral SC', serif;*/
+font-family: 'Josefin Sans', sans-serif;
   font-weight: bold;
-  padding: .5rem 0;
+  padding: 1rem 0 .5rem;
 }
-
 
 .oxfordArea button {
   font-size: 100%;
-  padding: .3rem 2.1rem;
+  font-family: 'Josefin Sans', sans-serif;
+  text-transform: uppercase;
+  padding: .6rem 1.4rem .4rem;
   margin: .5rem .5rem;
   border: 1px solid black;
-  background-color: #fff;
+  background-color: #263048;
+  color: #f5f5f5;
   outline: none;
+  transition: background-color .5s;
 }
 
+.oxfordArea button:hover {
+  background-color: #485A85;
+}
 
-.wordDictBox {
+.oxfordArea button:active {
+  color: #B0BAD1;
+}
+
+.wordInputGoBtn {
   display: flex;
   justify-content: center;
+  font-size: .7rem;
+  padding: .5rem .5rem;
   margin: .5rem 0;
-  width: 50vw;
-  height: 1rem;
+  width: 52vw;
+  height: 1.5rem;
   border: 1px solid black;
 }
 
@@ -149,6 +179,7 @@ h1 span {
   justify-content: center;
   width: 90vw;
   height: 20vh;
+  margin: .7rem 0 2rem;
   border: 1px solid black;
 }
 
@@ -159,8 +190,56 @@ h1 span {
 /*=========================
       Media Queries
 ===========================*/
-/*@media only screen and (min-width: 560px) {
+@media only screen and (min-width: 768px) {
   html {
     font-size: 15px;
   }
-}*/
+
+  .textArea h3 {
+    font-size: 2rem;
+    padding-top: 1rem;
+  }
+
+  .definitionBox {
+      margin-bottom: 4rem;
+    }
+
+}
+
+@media only screen and (min-width: 1000px) {
+
+  header {
+    padding: .6rem 0;
+    line-height: 300%;
+  }
+
+  h1 {
+    font-size: 3rem;
+    width: 490px;
+  }
+
+  h1 span {
+    font-size: 1.8rem;
+  }
+
+  .textBox {
+    font-size: 1.4rem;
+  }
+
+  .analyzerArea button {
+    padding: .7rem 1.4rem .4rem;
+  }
+
+  .oxfordArea h5 {
+    font-size: 1.7rem;
+  }
+
+  .wordInputGoBtn {
+    font-size: 1.4rem;
+  }
+
+
+@media only screen and (min-width: 1200px) {
+
+
+}
