@@ -1,0 +1,82 @@
+/* Text Area section */
+.textArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*border: 2px solid pink;*/
+}
+
+.textArea h3 {
+  display: flex;
+  font-family: 'Paytone One', sans-serif;
+  font-size: 1.3rem;
+  justify-content: center;
+  padding: .5rem 0;
+}
+
+.textBox {
+  display: flex;
+  font-size: .7rem;
+  padding: .5rem 0 0 .5rem;
+  justify-content: center;
+  width: 90vw;
+  height: 30vw;
+  border: 1px solid black;
+}
+
+
+/*=========================
+      Media Queries
+===========================*/
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+
+  .textArea h3 {
+    font-size: 2rem;
+    padding-top: 1rem;
+  }
+
+  .definitionBox {
+      margin-bottom: 4rem;
+    }
+
+}
+
+@media only screen and (min-width: 1000px) {
+
+  header {
+    padding: .6rem 0;
+    line-height: 300%;
+  }
+
+  h1 {
+    font-size: 3rem;
+    width: 490px;
+  }
+
+  h1 span {
+    font-size: 1.8rem;
+  }
+
+  .textBox {
+    font-size: 1.4rem;
+  }
+
+  .analyzerArea button {
+    padding: .7rem 1.4rem .4rem;
+  }
+
+  .oxfordArea h5 {
+    font-size: 1.7rem;
+  }
+
+  .wordInputGoBtn {
+    font-size: 1.4rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+
+}
