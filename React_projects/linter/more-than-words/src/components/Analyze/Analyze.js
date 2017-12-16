@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Analyze.css';
+import AnalyzeTextArea from '../AnalyzeTextArea/AnalyzeTextArea';
 
 class Analyze extends Component {
   render() {
@@ -9,9 +10,9 @@ class Analyze extends Component {
           <button id="analyze">Analyze</button>
           <button id="translate">Translate</button>
         </div>
-        <div class="analyzeTextArea">
-          <div class="analyzeBox"></div>
-        </div>
+
+        <AnalyzeTextArea />
+
       </section>
     );
   }
