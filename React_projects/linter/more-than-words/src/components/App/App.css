@@ -53,15 +53,6 @@ h1 span {
     font-size: 15px;
   }
 
-  .textArea h3 {
-    font-size: 2rem;
-    padding-top: 1rem;
-  }
-
-  .definitionBox {
-      margin-bottom: 4rem;
-    }
-
 }
 
 @media only screen and (min-width: 1000px) {
@@ -78,22 +69,6 @@ h1 span {
 
   h1 span {
     font-size: 1.8rem;
-  }
-
-  .textBox {
-    font-size: 1.4rem;
-  }
-
-  .analyzerArea button {
-    padding: .7rem 1.4rem .4rem;
-  }
-
-  .oxfordArea h5 {
-    font-size: 1.7rem;
-  }
-
-  .wordInputGoBtn {
-    font-size: 1.4rem;
   }
 }
 

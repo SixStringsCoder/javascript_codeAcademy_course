@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './Analyze.css';
-import AnalyzeTextArea from '../AnalyzeTextArea/AnalyzeTextArea';
 
 class Analyze extends Component {
   constructor(props) {
@@ -17,12 +16,11 @@ class Analyze extends Component {
   render() {
     return (
       <section class="analyzerArea">
+
         <div class="analyzeBtnArea">
           <button id="analyze" onClick={this.handleClick}>Analyze</button>
           <button id="translate">Translate</button>
         </div>
-
-        <AnalyzeTextArea print={this.props.print} />
 
       </section>
     );
