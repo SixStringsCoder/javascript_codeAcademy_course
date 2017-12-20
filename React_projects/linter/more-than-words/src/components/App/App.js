@@ -9,7 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      story: 'Last weekend, I took literally the most beautiful bike ride of my life. The route is called "The 9W to Nyack" and it actually stretches all the way from Riverside Park in Manhattan to South Nyack, New Jersey. It\'s really an adventure from beginning to end! It is a 48 mile loop and it basically took me an entire day. I stopped at Riverbank State Park to take some extremely artsy photos. It was a short stop, though, because I had a really long way left to go. After a quick photo op at the very popular Little Red Lighthouse, I began my trek across the George Washington Bridge into New Jersey.  The GW is actually very long - 4,760 feet! I was already very tired by the time I got to the other side.  An hour later, I reached Greenbrook Nature Sanctuary, an extremely beautiful park along the coast of the Hudson.  Something that was very surprising to me was that near the end of the route you actually cross back into New York! At this point, you are very close to the end.',
+      textEntry: '',
       wordCount: 0,
       sentenceCount: 0,
       overusedWordsCount: 0,
@@ -24,8 +24,15 @@ class App extends Component {
     } // end of this.state
     this.cleanAnalyze = this.cleanAnalyze.bind(this);
     this.setPrintState = this.setPrintState.bind(this);
+    this.addText = this.addText.bind(this);
   }
 
+  // Text pasted into <textarea> box
+  addText(text) {
+    this.setState({
+      textEntry: text
+    });
+  }
 
   cleanAnalyze(text) {
     // Storage object for 'stats' before setting state
@@ -43,7 +50,7 @@ class App extends Component {
     }
 
     // Split text entry into an array and get length to know numberOfWords
-    let storyWords = this.state.story.split(' ');
+    let storyWords = this.state.textEntry.split(' ');
     stats.numberOfWords = storyWords.length;
     console.log(storyWords);
 
@@ -94,7 +101,7 @@ class App extends Component {
     	    }
     }); // End of forEach
 
-    // send stats storage object to setPrintState function to set state
+    // Send stats storage object to setPrintState function to set state
     this.setPrintState(stats);
   } // End of cleanAnalyze
 
@@ -133,7 +140,7 @@ class App extends Component {
           <h1>More Than Words &#9997; <span>The Online Linter</span></h1>
         </header>
 
-        <TextArea text={this.state.story} />
+        <TextArea addText={this.addText} text={this.state.textEntry} />
         <Analyze analyze={this.cleanAnalyze} />
         <AnalyzeTextArea printAnalysis={this.state.analysis} />
         <Dictionary />
