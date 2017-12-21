@@ -4,6 +4,7 @@ import TextArea from '../TextArea/TextArea';
 import Analyze from '../Analyze/Analyze';
 import AnalyzeTextArea from '../AnalyzeTextArea/AnalyzeTextArea';
 import Dictionary from '../Dictionary/Dictionary';
+import Oxford from '../../util/Oxford';
 
 class App extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class App extends Component {
       literally: 0,
       actually: 0,
       analysis: '',
+      dictWord: 'chicken',
     } // end of this.state
     this.cleanAnalyze = this.cleanAnalyze.bind(this);
     this.setPrintState = this.setPrintState.bind(this);
@@ -133,6 +135,13 @@ class App extends Component {
     });
   }
 
+  lookUpWord(word) {
+    Oxford.getAccess();
+    // this.setState({
+    //   dictWord: word
+    // });
+  }
+
   render() {
     return (
       <main id="app">
@@ -143,7 +152,7 @@ class App extends Component {
         <TextArea addText={this.addText} text={this.state.textEntry} />
         <Analyze analyze={this.cleanAnalyze} />
         <AnalyzeTextArea printAnalysis={this.state.analysis} />
-        <Dictionary />
+        <Dictionary lookUpWord={this.lookUpWord}/>
 
       </main>
     );
