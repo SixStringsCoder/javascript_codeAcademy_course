@@ -6,6 +6,12 @@ import AnalyzeTextArea from '../AnalyzeTextArea/AnalyzeTextArea';
 import Dictionary from '../Dictionary/Dictionary';
 import Oxford from '../../util/Oxford';
 
+const styles = {
+  color: 'red',
+  textShadow: '1px 1px green',
+};
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,14 +21,9 @@ class App extends Component {
       sentenceCount: 0,
       overusedWordsCount: 0,
       unNecessaryWordsCount: 0,
-      really: 0,
-      very: 0,
-      basically: 0,
-      extremely: 0,
-      literally: 0,
-      actually: 0,
+
       analysis: '',
-      dictWord: 'chicken',
+      dictWord: '',
     } // end of this.state
     this.cleanAnalyze = this.cleanAnalyze.bind(this);
     this.setPrintState = this.setPrintState.bind(this);
@@ -49,6 +50,7 @@ class App extends Component {
       literally: 0,
       actually: 0,
       basically: 0,
+      story: '',
     }
 
     // Split text entry into an array and get length to know numberOfWords
@@ -80,9 +82,12 @@ class App extends Component {
     });
 
     // Isolate UNNECESSARY words and log their frequency
-    storyWords.forEach(function(noNeedWord) {
+    storyWords.forEach(function(noNeedWord, index) {
       if (unnecessaryWords.includes(noNeedWord)) {
         stats.unnecessaryWordsCount += 1;
+        storyWords[index] = `<span style={{color: 'red'}}>${noNeedWord}</span>`;
+        console.log(storyWords[index]);
+        stats.story = storyWords;
       }
       if (noNeedWord === unnecessaryWords[0]) {
           stats.extremely += 1;
@@ -109,28 +114,24 @@ class App extends Component {
 
   // Fill in report template with stats and Set state for all stats
   setPrintState(statsObject) {
+    const highlights = statsObject.story.join(' ');
+    const updatedText = <p>{highlights}</p>;
+
     // Populate template with object values
-    let report = `There are ${statsObject.numberOfWords} words.
-                 There are ${statsObject.sentenceCount} sentences.
-                 You included these over-used words ${statsObject.overusedWordsCount} times.
-                 REALLY: ${statsObject.really} times
-                 VERY: ${statsObject.very} times
-                 BASICALLY: ${statsObject.basically} time(s)
-                 You included these unnecessary words ${statsObject.unnecessaryWordsCount} times.
-                 EXTREMELY: ${statsObject.extremely} times
-                 LITERALLY: ${statsObject.literally} times
-                 ACTUALLY: ${statsObject.actually} time(s)`;
+    let report = <div class="report">
+                 <ul><li>There are {statsObject.numberOfWords} words.</li>
+                 <li>There are {statsObject.sentenceCount} sentences.</li></ul>
+                 <ul><li>You included these <span style={{color: 'red'}}>over-used words</span> {statsObject.overusedWordsCount} times.</li>
+                 <li>You included these <span style={{fontWeight: 'bold'}}>unnecessary words</span> {statsObject.unnecessaryWordsCount} times.</li></ul>
+                </div>;
+
+
 
     this.setState({
+      textEntry: updatedText,
       wordCount: statsObject.numberOfWords,
       sentenceCount: statsObject.sentenceCount,
       overusedWordsCount: statsObject.overusedWordsCount,
-      really: statsObject.really,
-      very: statsObject.very,
-      basically: statsObject.basically,
-      extremely: statsObject.extremely,
-      literally: statsObject.literally,
-      actually: statsObject.actually,
       analysis: report
     });
   }
@@ -143,6 +144,8 @@ class App extends Component {
   }
 
   render() {
+
+
     return (
       <main id="app">
         <header class="navBar">
@@ -152,6 +155,7 @@ class App extends Component {
         <TextArea addText={this.addText} text={this.state.textEntry} />
         <Analyze analyze={this.cleanAnalyze} />
         <AnalyzeTextArea printAnalysis={this.state.analysis} />
+
         <Dictionary lookUpWord={this.lookUpWord}/>
 
       </main>
