@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import TemperatureBar from '../TemperatureBar/TemperatureBar';
-import ResultsArea from '../ResultsArea/ResultsArea';
+import { ResultsArea } from '../ResultsArea/ResultsArea';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,7 +16,6 @@ class App extends React.Component {
     this.convertTemp = this.convertTemp.bind(this);
   }
 
-  // Temp Converter using concise method
   // convertTemp returns F and C temps which then builds the total response
   convertTemp(kelvin) {
     // Celsius is 273 degrees less than Kelvin

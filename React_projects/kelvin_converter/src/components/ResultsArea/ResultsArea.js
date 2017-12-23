@@ -3,27 +3,23 @@ import PropTypes from 'prop-types';
 import './ResultsArea.css';
 
 /*
-<ResultsArea /> component accepts properties for
+ResultsArea functional component accepts properties for
 the temperature answer, activity sentence and
 a corresponding background picture.
 */
 
-class ResultsArea extends React.Component {
-
-  render() {
+export const ResultsArea = (props) => {
     return (
       <section className="ResultsArea">
-        <h3>{this.props.answer}</h3>
-        <p id="results">{this.props.activity}</p>
-        <div>{this.props.pic}</div>
+        <h3>{props.answer}</h3>
+        <p id="results">{props.activity}</p>
+        <div>{props.pic}</div>
       </section>
     );
   }
-}
 
 ResultsArea.propTypes = {
-	activity: PropTypes.string.isRequired
+  answer: PropTypes.string.isRequired,
+	activity: PropTypes.string.isRequired,
+  pic: PropTypes.string.isRequired
 }
-
-
-export default ResultsArea;
