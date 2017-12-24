@@ -17,11 +17,6 @@ class App extends Component {
     super(props);
     this.state = {
       textEntry: '',
-      wordCount: 0,
-      sentenceCount: 0,
-      overusedWordsCount: 0,
-      unNecessaryWordsCount: 0,
-
       analysis: '',
       dictWord: '',
     } // end of this.state
@@ -44,62 +39,17 @@ class App extends Component {
       overusedWordsCount: 0,
       unnecessaryWordsCount: 0,
       sentenceCount: 0,
-      really: 0,
-      very: 0,
-      extremely: 0,
-      literally: 0,
-      actually: 0,
-      basically: 0,
-      story: '',
+      editedText: '',
     }
 
-    // Split text entry into an array and get length to know numberOfWords
-    let storyWords = this.state.textEntry.split(' ');
-    stats.numberOfWords = storyWords.length;
-    console.log(storyWords);
+    // Split text entry into an array
+    let textAsArray = this.state.textEntry.split(' ');
 
-    // Set the word rules based on these arrays
-    let overusedWords = ['really', 'very', 'basically'];
-    let unnecessaryWords = ['extremely', 'literally', 'actually' ];
-
-    // Filter out unnecessary words
-    let betterWords = storyWords.filter(function(word) {
-      	return !unnecessaryWords.includes(word);
-    });
-
-    // Isolate OVER-USED words and log their frequency
-    betterWords.forEach(function(freqWord) {
-      if (overusedWords.includes(freqWord)) {
-        stats.overusedWordsCount += 1;
-      }
-      if (freqWord === overusedWords[0]) {
-          stats.really += 1;
-    	 } else if (freqWord === overusedWords[1]) {
-           stats.very += 1;
-    	 } else if (freqWord === overusedWords[2]) {
-           stats.basically += 1;
-    	 };
-    });
-
-    // Isolate UNNECESSARY words and log their frequency
-    storyWords.forEach(function(noNeedWord, index) {
-      if (unnecessaryWords.includes(noNeedWord)) {
-        stats.unnecessaryWordsCount += 1;
-        storyWords[index] = `<span style={{color: 'red'}}>${noNeedWord}</span>`;
-        console.log(storyWords[index]);
-        stats.story = storyWords;
-      }
-      if (noNeedWord === unnecessaryWords[0]) {
-          stats.extremely += 1;
-    	 } else if (noNeedWord === unnecessaryWords[1]) {
-           stats.literally += 1;
-    	 } else if (noNeedWord === unnecessaryWords[2]) {
-           stats.actually += 1;
-    	 };
-    });
+    // Count number of words
+    stats.numberOfWords = textAsArray.length;
 
     // Count how many sentences are in the paragraph based on punctuation
-    betterWords.forEach((punctuation) => {
+    textAsArray.forEach((punctuation) => {
       const re = /[.!?]/;
       // Length-1 is the last character in the element
       const punct = punctuation[punctuation.length-1];
@@ -108,14 +58,40 @@ class App extends Component {
     	    }
     }); // End of forEach
 
-    // Send stats storage object to setPrintState function to set state
+    // Define OVER-USED and UNNECESSARY words
+    let overusedWords = ['really', 'very', 'basically'];
+    let unnecessaryWords = ['extremely', 'literally', 'actually' ];
+
+    // Isolate OVER-USED words and log their frequency
+    textAsArray.map(function(freqWord, index) {
+      if (overusedWords.includes(freqWord)) {
+        stats.overusedWordsCount += 1;
+        textAsArray[index] = <span style={{color: 'red'}}>freqWord</span>;
+        stats.editedText = textAsArray;
+      }
+    });
+
+    // Isolate UNNECESSARY words and log their frequency
+    textAsArray.map(function(noNeedWord, index) {
+      if (unnecessaryWords.includes(noNeedWord)) {
+        stats.unnecessaryWordsCount += 1;
+        textAsArray[index] = <span style={{fontWeight: 'bold'}}>noNeedWord</span>;
+        stats.editedText = textAsArray;
+      }
+    });
+    console.log(textAsArray);
+
+    // // Filter out unnecessary words
+    // let betterWords = textAsArray.filter(function(word) {
+    //   	return !unnecessaryWords.includes(word);
+    // });
+
     this.setPrintState(stats);
   } // End of cleanAnalyze
 
   // Fill in report template with stats and Set state for all stats
   setPrintState(statsObject) {
-    const highlights = statsObject.story.join(' ');
-    const updatedText = <p>{highlights}</p>;
+    // const highlights = statsObject.editedText.join(' ');
 
     // Populate template with object values
     let report = <div class="report">
@@ -123,15 +99,10 @@ class App extends Component {
                  <li>There are {statsObject.sentenceCount} sentences.</li></ul>
                  <ul><li>You included these <span style={{color: 'red'}}>over-used words</span> {statsObject.overusedWordsCount} times.</li>
                  <li>You included these <span style={{fontWeight: 'bold'}}>unnecessary words</span> {statsObject.unnecessaryWordsCount} times.</li></ul>
+                 <p> {statsObject.editedText.join(' ')} </p>
                 </div>;
 
-
-
     this.setState({
-      textEntry: updatedText,
-      wordCount: statsObject.numberOfWords,
-      sentenceCount: statsObject.sentenceCount,
-      overusedWordsCount: statsObject.overusedWordsCount,
       analysis: report
     });
   }
