@@ -17,7 +17,7 @@
 .textBox {
   display: flex;
   font-size: .7rem;
-  padding: .5rem 0 0 .5rem;
+  padding: 1rem;
   justify-content: center;
   width: 90vw;
   height: 30vw;

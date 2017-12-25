@@ -39,11 +39,12 @@ class App extends Component {
       overusedWordsCount: 0,
       unnecessaryWordsCount: 0,
       sentenceCount: 0,
-      editedText: '',
+      editedText: null,
     }
 
     // Split text entry into an array
-    let textAsArray = this.state.textEntry.split(' ');
+    const textAsArrayNoSpaces = this.state.textEntry.split(' ');
+    const textAsArray = textAsArrayNoSpaces.map(word => word + " ");
 
     // Count number of words
     stats.numberOfWords = textAsArray.length;
@@ -59,14 +60,14 @@ class App extends Component {
     }); // End of forEach
 
     // Define OVER-USED and UNNECESSARY words
-    let overusedWords = ['really', 'very', 'basically'];
-    let unnecessaryWords = ['extremely', 'literally', 'actually' ];
+    let overusedWords = ['really ', 'very ', 'basically '];
+    let unnecessaryWords = ['extremely ', 'literally ', 'actually ' ];
 
     // Isolate OVER-USED words and log their frequency
     textAsArray.map(function(freqWord, index) {
       if (overusedWords.includes(freqWord)) {
         stats.overusedWordsCount += 1;
-        textAsArray[index] = <span style={{color: 'red'}}>freqWord</span>;
+        textAsArray[index] = <span style={{color: 'red'}}>{freqWord} </span>;
         stats.editedText = textAsArray;
       }
     });
@@ -75,11 +76,12 @@ class App extends Component {
     textAsArray.map(function(noNeedWord, index) {
       if (unnecessaryWords.includes(noNeedWord)) {
         stats.unnecessaryWordsCount += 1;
-        textAsArray[index] = <span style={{fontWeight: 'bold'}}>noNeedWord</span>;
+        textAsArray[index] = <span style={{fontWeight: 'bold'}}>{noNeedWord} </span>;
         stats.editedText = textAsArray;
+
       }
+
     });
-    console.log(textAsArray);
 
     // // Filter out unnecessary words
     // let betterWords = textAsArray.filter(function(word) {
@@ -91,15 +93,13 @@ class App extends Component {
 
   // Fill in report template with stats and Set state for all stats
   setPrintState(statsObject) {
-    // const highlights = statsObject.editedText.join(' ');
-
-    // Populate template with object values
+    console.log(statsObject.editedText);
     let report = <div class="report">
                  <ul><li>There are {statsObject.numberOfWords} words.</li>
                  <li>There are {statsObject.sentenceCount} sentences.</li></ul>
                  <ul><li>You included these <span style={{color: 'red'}}>over-used words</span> {statsObject.overusedWordsCount} times.</li>
                  <li>You included these <span style={{fontWeight: 'bold'}}>unnecessary words</span> {statsObject.unnecessaryWordsCount} times.</li></ul>
-                 <p> {statsObject.editedText.join(' ')} </p>
+                 <p> {statsObject.editedText} </p>
                 </div>;
 
     this.setState({
