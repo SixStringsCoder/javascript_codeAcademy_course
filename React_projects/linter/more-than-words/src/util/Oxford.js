@@ -1,11 +1,8 @@
-const url = 'https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com:443/api/v1/entries/en/city';
-const appID = '26f7dfd9';
-const appKey =  '';
-// const redirectURI = 'http://localhost:3000/';
-
-// const language = 'en/';
-const word_id = '';
-
+const url = "https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com:443/api/v1/entries/en/city";
+const appID = "26f7dfd9";
+const appKey =  "4ca3af03f35fdaec24f01e918541829a";
+const word_id = "chicken";
+// const cors = "https://cors-anywhere.herokuapp.com/";
 
 const Oxford = {
   // Retrieves an access token from Oxford API to authenticate requests and retrieve data
@@ -26,18 +23,30 @@ const Oxford = {
     xhr.send();
   },
 
-  search: function(term) {
-    const wordLookUp = url + word_id.toLowerCase();
+  search: function(word) {
+        return fetch(`https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com:443/api/v1/entries/en/${word}`, {
+          headers: {
+            Accept: "application/json",
+            app_id: appID,
+            app_key: appKey
+          }
+        }).then(response => {
+          return response.json();
+        }).then(jsonResponse => {
+          console.log(jsonResponse);
+          if (jsonResponse.results) {
+            console.log(jsonResponse.results[0]);
+            console.log(jsonResponse.results[0].id);
+            console.log(jsonResponse.results[0].lexicalEntries[0].entries[0].etymologies[0]);
 
-      fetch(wordLookUp).then(response => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error('Request failed!');
-    }, networkError => {
-      console.log(networkError.message);
-    }).then(jsonResponse => jsonResponse);
-  }
+              return {
+                id: jsonResponse.results[0].id,
+                ety: jsonResponse.results[0].lexicalEntries[0].entries[0].etymologies[0]
+              }
+
+          }
+        }); // end of 2nd .then()
+    }, // end of search method
 
 } // end of Oxford object
 

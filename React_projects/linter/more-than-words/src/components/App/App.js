@@ -18,11 +18,12 @@ class App extends Component {
     this.state = {
       textEntry: '',
       analysis: '',
-      dictWord: 'chicken',
+      wordDefDetails: '',
     } // end of this.state
     this.cleanAnalyze = this.cleanAnalyze.bind(this);
     this.setPrintState = this.setPrintState.bind(this);
     this.addText = this.addText.bind(this);
+    this.searchOxford = this.searchOxford.bind(this);
   }
 
   // Text pasted into <textarea> box
@@ -107,27 +108,27 @@ class App extends Component {
     });
   }
 
-  lookUpWord(word) {
-    Oxford.getAccess();
-    this.setState({
-      dictWord: word
+  // Search Oxford online Dictionary
+  searchOxford(word) {
+    Oxford.search(word).then(wordDefDetails => {
+      this.setState({
+        wordDefDetails: wordDefDetails
+      });
     });
   }
 
   render() {
-
-
     return (
       <main id="app">
         <header className="navBar">
-          <h1>More Than Words &#9997; <span>The Online Linter</span></h1>
+          <h1>More Than Words <span>&#9997</span>; <span>The Online Linter</span></h1>
         </header>
 
         <TextArea addText={this.addText} text={this.state.textEntry} />
         <Analyze analyze={this.cleanAnalyze} />
         <AnalyzeTextArea printAnalysis={this.state.analysis} />
 
-        <Dictionary lookUpWord={this.lookUpWord}/>
+        <Dictionary lookUpWord={this.searchOxford} wordDetails={this.state.wordDefDetails}/>
 
       </main>
     );
