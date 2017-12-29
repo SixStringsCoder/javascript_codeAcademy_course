@@ -6,10 +6,10 @@ import AnalyzeTextArea from '../AnalyzeTextArea/AnalyzeTextArea';
 import Dictionary from '../Dictionary/Dictionary';
 import Oxford from '../../util/Oxford';
 
-const styles = {
-  color: 'red',
-  textShadow: '1px 1px green',
-};
+// const styles = {
+//   color: 'red',
+//   textShadow: '1px 1px green',
+// };
 
 
 class App extends Component {
@@ -18,7 +18,7 @@ class App extends Component {
     this.state = {
       textEntry: '',
       analysis: '',
-      dictWord: '',
+      dictWord: 'chicken',
     } // end of this.state
     this.cleanAnalyze = this.cleanAnalyze.bind(this);
     this.setPrintState = this.setPrintState.bind(this);
@@ -50,7 +50,7 @@ class App extends Component {
     stats.numberOfWords = textAsArray.length;
 
     // Count how many sentences are in the paragraph based on punctuation
-    textAsArray.forEach((punctuation) => {
+    textAsArrayNoSpaces.forEach((punctuation) => {
       const re = /[.!?]/;
       // Length-1 is the last character in the element
       const punct = punctuation[punctuation.length-1];
@@ -109,9 +109,9 @@ class App extends Component {
 
   lookUpWord(word) {
     Oxford.getAccess();
-    // this.setState({
-    //   dictWord: word
-    // });
+    this.setState({
+      dictWord: word
+    });
   }
 
   render() {
@@ -119,7 +119,7 @@ class App extends Component {
 
     return (
       <main id="app">
-        <header class="navBar">
+        <header className="navBar">
           <h1>More Than Words &#9997; <span>The Online Linter</span></h1>
         </header>
 

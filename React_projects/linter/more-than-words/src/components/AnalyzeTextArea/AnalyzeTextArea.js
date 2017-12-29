@@ -6,8 +6,8 @@ import './AnalyzeTextArea.css';
 class AnalyzeTextArea extends Component {
   render() {
     return (
-        <div class="analyzeTextArea">
-          <div class="analyzeBox">
+        <div className="analyzeTextArea">
+          <div className="analyzeBox">
             {this.props.printAnalysis}
           </div>
         </div>

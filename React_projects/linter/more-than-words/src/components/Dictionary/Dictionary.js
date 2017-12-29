@@ -14,13 +14,13 @@ class Dictionary extends Component {
 
   render() {
     return (
-      <section class="oxfordArea">
+      <section className="oxfordArea">
           <h5>Dictionary & Thesaurus</h5>
-        <div class="dictTitleAndBtn">
-          <input type="text" class="wordInputGoBtn" placeholder="Enter word"/>
-          <button onClick={this.handleWord('chicken')} id="defineBtn">Go</button>
+        <div className="dictTitleAndBtn">
+          <input type="text" className="wordInputGoBtn" placeholder="Enter word"/>
+          <button onClick={this.handleWord} id="defineBtn">Go</button>
         </div>
-          <div class="definitionBox"></div>
+          <div className="definitionBox"></div>
       </section>
     )
   }

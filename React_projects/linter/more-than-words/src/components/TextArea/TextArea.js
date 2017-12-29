@@ -15,9 +15,9 @@ class TextArea extends Component {
 
   render() {
     return (
-      <section class="textArea">
+      <section className="textArea">
         <h3>Enter Text</h3>
-        <textarea onChange={this.handleChange} class="textBox" placeholder="Paste your text here..." autofocus required>
+        <textarea onChange={this.handleChange} className="textBox" placeholder="Paste your text here..." autoFocus required>
           {this.props.text}
         </textarea>
       </section>

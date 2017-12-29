@@ -15,9 +15,9 @@ class Analyze extends Component {
 
   render() {
     return (
-      <section class="analyzerArea">
+      <section className="analyzerArea">
 
-        <div class="analyzeBtnArea">
+        <div className="analyzeBtnArea">
           <button id="analyze" onClick={this.handleClick}>Analyze</button>
           <button id="translate">Translate</button>
         </div>
