@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 4rem;
   /*border: 2px solid blue;*/
 }
 
@@ -53,14 +54,6 @@ font-family: 'Josefin Sans', sans-serif;
   border: 1px solid black;
 }
 
-.definitionBox {
-  display: flex;
-  justify-content: center;
-  width: 90vw;
-  height: 20vh;
-  margin: .7rem 0 2rem;
-  border: 1px solid black;
-}
 
 /*=========================
       Media Queries
@@ -74,10 +67,6 @@ font-family: 'Josefin Sans', sans-serif;
     font-size: 2rem;
     padding-top: 1rem;
   }
-
-  .definitionBox {
-      margin-bottom: 4rem;
-    }
 
 }
 

@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import TextArea from '../TextArea/TextArea';
 import Analyze from '../Analyze/Analyze';
 import AnalyzeTextArea from '../AnalyzeTextArea/AnalyzeTextArea';
-import Dictionary from '../Dictionary/Dictionary';
+import DictSearchBar from '../DictSearchBar/DictSearchBar';
+// import {DictResults} from '../DictResults/DictResults';
 import Oxford from '../../util/Oxford';
 
 // const styles = {
@@ -18,7 +19,7 @@ class App extends Component {
     this.state = {
       textEntry: '',
       analysis: '',
-      wordDefDetails: '',
+      wordDefDetails: [],
     } // end of this.state
     this.cleanAnalyze = this.cleanAnalyze.bind(this);
     this.setPrintState = this.setPrintState.bind(this);
@@ -110,9 +111,9 @@ class App extends Component {
 
   // Search Oxford online Dictionary
   searchOxford(word) {
-    Oxford.search(word).then(wordDefDetails => {
+    Oxford.search(word).then(results => {
       this.setState({
-        wordDefDetails: wordDefDetails
+        wordDefDetails: results // the returned array in the JSON
       });
     });
   }
@@ -121,14 +122,13 @@ class App extends Component {
     return (
       <main id="app">
         <header className="navBar">
-          <h1>More Than Words <span>&#9997</span>; <span>The Online Linter</span></h1>
+          <h1>More Than Words &#9997; <span>The Online Linter</span></h1>
         </header>
 
         <TextArea addText={this.addText} text={this.state.textEntry} />
         <Analyze analyze={this.cleanAnalyze} />
         <AnalyzeTextArea printAnalysis={this.state.analysis} />
-
-        <Dictionary lookUpWord={this.searchOxford} wordDetails={this.state.wordDefDetails}/>
+        <DictSearchBar lookUpWord={this.searchOxford} wordDefDetails={this.state.wordDefDetails} />
 
       </main>
     );

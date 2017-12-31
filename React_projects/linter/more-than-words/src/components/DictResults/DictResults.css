@@ -1,0 +1,28 @@
+.definitionBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90vw;
+  height: 20vh;
+  margin: .7rem 0 2rem;
+  border: 1px solid black;
+}
+
+/*=========================
+      Media Queries
+===========================*/
+@media only screen and (min-width: 768px) {
+
+  .definitionBox {
+      margin-bottom: 4rem;
+    }
+
+}
+
+@media only screen and (min-width: 1000px) {
+
+}
+
+@media only screen and (min-width: 1200px) {
+
+}

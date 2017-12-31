@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import './Dictionary.css';
+import './DictSearchBar.css';
+import {DictResults} from '../DictResults/DictResults';
 
 
-class Dictionary extends Component {
+class DictSearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      word: '', // search term located in the search input
+      word: '', // search term typed in the input
     }
     this.handleSearch = this.handleSearch.bind(this);
     this.handleWordEntry = this.handleWordEntry.bind(this);
@@ -25,6 +26,7 @@ class Dictionary extends Component {
     event.preventDefault();
   }
 
+
   render() {
     return (
       <section className="oxfordArea">
@@ -33,11 +35,16 @@ class Dictionary extends Component {
           <input onChange={this.handleWordEntry} type="text" className="wordInputGoBtn" placeholder="Enter word"/>
           <button onClick={this.handleSearch} id="defineBtn">Go</button>
         </div>
-          <div className="definitionBox">
-          </div>
+
+        {
+          this.props.wordDefDetails.map((detail, id) => {
+          return <DictResults detail={detail} />;
+          })
+        }
+
       </section>
     )
   }
 }
 
-export default Dictionary;
+export default DictSearchBar;
