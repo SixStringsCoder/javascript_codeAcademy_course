@@ -20,6 +20,7 @@ class App extends Component {
       textEntry: '',
       analysis: '',
       wordDefDetails: [],
+      wordThesDetails: [],
     } // end of this.state
     this.cleanAnalyze = this.cleanAnalyze.bind(this);
     this.setPrintState = this.setPrintState.bind(this);
@@ -128,7 +129,9 @@ class App extends Component {
         <TextArea addText={this.addText} text={this.state.textEntry} />
         <Analyze analyze={this.cleanAnalyze} />
         <AnalyzeTextArea printAnalysis={this.state.analysis} />
-        <DictSearchBar lookUpWord={this.searchOxford} wordDefDetails={this.state.wordDefDetails} />
+        <DictSearchBar lookUpWord={this.searchOxford}
+          wordDefDetails={this.state.wordDefDetails}
+          />
 
       </main>
     );

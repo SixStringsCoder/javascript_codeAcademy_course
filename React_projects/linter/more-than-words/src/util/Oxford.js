@@ -4,24 +4,7 @@ const appKey =  "4ca3af03f35fdaec24f01e918541829a";
 // const cors = "https://cors-anywhere.herokuapp.com/";
 
 const Oxford = {
-  // // Retrieves an access token from Oxford API to authenticate requests and retrieve data
-  // getAccess: function() {
-  //   const xhr = new XMLHttpRequest();
-  //
-  //   xhr.responseType = 'json';
-  //   xhr.onreadystatechange = function() {
-  //     if (xhr.readyState === 4 && xhr.status === 200) {
-  //      console.log(xhr.response);
-  //     }
-  //   }
-  //
-  //   xhr.open('GET', url, true);
-  //   xhr.setRequestHeader("Accept", "application/json")
-  //   xhr.setRequestHeader("app_id", appID);
-  //   xhr.setRequestHeader("app_key", appKey);
-  //   xhr.send();
-  // },
-
+  // When Dictionary "Go" button is clicked
   search: function(word) {
         return fetch(`https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com:443/api/v1/entries/en/${word}`, {
           headers: {
@@ -34,18 +17,42 @@ const Oxford = {
         }).then(jsonResponse => {
           console.log(jsonResponse);
           if (jsonResponse.results) {
-            // console.log(jsonResponse.results[0]);
-            // console.log(jsonResponse.results[0].id);
-            // console.log(jsonResponse.results[0].lexicalEntries[0].entries[0].etymologies[0]);
-
             return [
-              { id: jsonResponse.results[0].id,
-               ety: jsonResponse.results[0].lexicalEntries[0].entries[0].etymologies[0]
+              {
+                id: jsonResponse.results[0].id,
+                def: jsonResponse.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0],
+                ety: jsonResponse.results[0].lexicalEntries[0].entries[0].etymologies[0],
+                pron: jsonResponse.results[0].lexicalEntries[0].pronunciations[0].phoneticSpelling,
+                listen: jsonResponse.results[0].lexicalEntries[0].pronunciations[0].audioFile,
               }
             ]
           }
         }); // end of 2nd .then()
+        this.searchThesaurus(word);
     }, // end of search method
+
+    searchThesaurus: function(word) {
+          return fetch(`https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com:443/api/v1/entries/en/${word}/synonyms;antonyms`, {
+            headers: {
+              Accept: "application/json",
+              app_id: appID,
+              app_key: appKey
+            }
+          }).then(response => {
+            return response.json();
+          }).then(jsonResponse => {
+            console.log("Thesaurus");
+            console.log(jsonResponse);
+            if (jsonResponse.results) {
+              return [
+                {
+                  ant: jsonResponse.results[0].lexicalEntries[0].entries[0].senses[0].antonyms[0],
+                  syn: jsonResponse.results[0].lexicalEntries[0].entries[0].senses[0].subsenses[0].synonyms,
+                }
+              ]
+            }
+          }); // end of 2nd .then()
+      }, // end of search method
 
 } // end of Oxford object
 

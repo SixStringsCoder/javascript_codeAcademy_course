@@ -176,12 +176,31 @@ font-family: 'Josefin Sans', sans-serif;
 
 .definitionBox {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   width: 90vw;
-  height: 20vh;
   margin: .7rem 0 2rem;
+  padding: .5rem;
   border: 1px solid black;
 }
+
+.definitionBox p {
+  font-size: 1rem;
+  line-height: 1.2rem;
+  margin-bottom: .3rem;
+}
+
+#term {
+  color: #382E13;
+  font-size: 1.3rem;
+}
+
+.classify {
+  font-weight: bold;
+  font-style: italic;
+  color: #485A85;
+}
+
 
 /* comments */
 
