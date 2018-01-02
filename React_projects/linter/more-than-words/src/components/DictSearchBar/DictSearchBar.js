@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './DictSearchBar.css';
 import {DictResults} from '../DictResults/DictResults';
+import {ThesResults} from '../ThesResults/ThesResults';
 
 
 class DictSearchBar extends Component {
@@ -26,7 +27,6 @@ class DictSearchBar extends Component {
     event.preventDefault();
   }
 
-
   render() {
     return (
       <section className="oxfordArea">
@@ -35,13 +35,19 @@ class DictSearchBar extends Component {
           <input onChange={this.handleWordEntry} type="text" className="wordInputGoBtn" placeholder="Enter word"/>
           <button onClick={this.handleSearch} id="defineBtn">Go</button>
         </div>
-
+        <div className="definitionBox">
         {
-          this.props.wordDefDetails.map((detail, id) => {
-          return <DictResults detail={detail} />;
+          this.props.wordDefDetails.map((detail) => {
+            return <DictResults detail={detail} key={detail.id} />;
           })
         }
 
+        {
+          this.props.wordThesDetails.map((detail) => {
+            return <ThesResults detail={detail} key={detail.id} />;
+          })
+        }
+        </div>
       </section>
     )
   }

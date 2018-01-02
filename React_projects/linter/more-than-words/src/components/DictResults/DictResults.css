@@ -22,7 +22,12 @@
 .classify {
   font-weight: bold;
   font-style: italic;
-  color: #485A85;
+  color: #1840a0;
+}
+
+#audioPlayer {
+  width: 11rem;
+  margin-top: .3rem;
 }
 
 /*=========================

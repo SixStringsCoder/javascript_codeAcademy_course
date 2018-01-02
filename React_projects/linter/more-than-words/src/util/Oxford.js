@@ -1,4 +1,4 @@
-// const url = "https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com:443/api/v1/entries/en/city";
+import React from 'react';
 const appID = "26f7dfd9";
 const appKey =  "4ca3af03f35fdaec24f01e918541829a";
 // const cors = "https://cors-anywhere.herokuapp.com/";
@@ -15,8 +15,10 @@ const Oxford = {
         }).then(response => {
           return response.json();
         }).then(jsonResponse => {
-          console.log(jsonResponse);
-          if (jsonResponse.results) {
+          // console.log(jsonResponse);
+          if (!jsonResponse.results) {
+            return [];
+          } else {
             return [
               {
                 id: jsonResponse.results[0].id,
@@ -28,7 +30,6 @@ const Oxford = {
             ]
           }
         }); // end of 2nd .then()
-        this.searchThesaurus(word);
     }, // end of search method
 
     searchThesaurus: function(word) {
@@ -41,13 +42,12 @@ const Oxford = {
           }).then(response => {
             return response.json();
           }).then(jsonResponse => {
-            console.log("Thesaurus");
             console.log(jsonResponse);
             if (jsonResponse.results) {
+              let synonymResults = jsonResponse.results[0].lexicalEntries[0].entries[0].senses[0].synonyms.map(synonym => <li>{synonym.id}</li>);
               return [
                 {
-                  ant: jsonResponse.results[0].lexicalEntries[0].entries[0].senses[0].antonyms[0],
-                  syn: jsonResponse.results[0].lexicalEntries[0].entries[0].senses[0].subsenses[0].synonyms,
+                  syn: synonymResults,
                 }
               ]
             }

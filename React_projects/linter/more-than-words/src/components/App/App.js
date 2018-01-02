@@ -117,6 +117,12 @@ class App extends Component {
         wordDefDetails: results // the returned array in the JSON
       });
     });
+
+    Oxford.searchThesaurus(word).then(results => {
+      this.setState({
+        wordThesDetails: results 
+      });
+    });
   }
 
   render() {
@@ -131,6 +137,7 @@ class App extends Component {
         <AnalyzeTextArea printAnalysis={this.state.analysis} />
         <DictSearchBar lookUpWord={this.searchOxford}
           wordDefDetails={this.state.wordDefDetails}
+          wordThesDetails={this.state.wordThesDetails}
           />
 
       </main>
