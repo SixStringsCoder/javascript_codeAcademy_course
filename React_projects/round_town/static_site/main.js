@@ -11,7 +11,7 @@ const url = 'https://api.foursquare.com/v2/venues/explore?near=';
 const imgPrefix = 'https://igx.4sqi.net/img/general/150x200';
 
 // APIXU Info
-const apiKey = '7792dc0549e34abdaf744820173110';
+const apiKey = '08a7fc1afc044d27a9a34310181301';
 const forecastUrl = 'https://api.apixu.com/v1/forecast.json?key=';
 
 // Page Elements
@@ -28,7 +28,7 @@ const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Satur
 async function getVenues() {
   const city = $input.val();
   const urlToFetch = url + city + '&venuePhotos=1&limit=10&client_id=' + clientId + '&client_secret=' + clientSecret + '&v=20171030';
-  
+
   try {
     let response = await fetch(urlToFetch);
     if (response.ok) {
@@ -45,7 +45,7 @@ async function getVenues() {
 
 // Return weatherforecast based on Search input value
 async function getForecast() {
-  const urlToFetch = forecastUrl + apiKey + '&q=' + $input.val() + '&days=7&hour=12'
+  const urlToFetch = forecastUrl + apiKey + '&q=' + $input.val() + '&days=7'
   try {
     let response = await fetch(urlToFetch);
     if (response.ok) {
@@ -67,27 +67,27 @@ function renderVenues(venues) {
       '<h2>' + venues[index].name + '</h2>' +
       '<img class="venueimage" src="' + imgPrefix +
       venues[index].photos.groups[0].items[0].suffix + '"/>' +
-      '<p>' + '(' + venues[index].categories[0].name + ')' + '</p>' + 
+      '<p>' + '(' + venues[index].categories[0].name + ')' + '</p>' +
       '<h3>Address:</h3>' +
       '<p>' + venues[index].location.address + '</p>' +
       '<p>' + venues[index].location.city + '</p>' +
       '<p>' + venues[index].location.country + '</p>' +
-      '<button>' + '<a href=' + venues[index].url + ' target="_blank">' + "Visit" + '</a>' + '</button>'  ;
+      '<button>' + '<a href=' + venues[index].url + ' target="_blank">' + "Visit" + '</a>' + '</button>';
     $venue.append(venueContent);
   });
-  $destination.append('<h2>' + venues[0].location.city + '</h2>');
+  $destination.append('<h2>' + venues[0].location.city + ', ' + venues[0].location.state + ', ' + venues[0].location.country +'</h2>');
 }
 
 function renderForecast(days) {
   $weatherDivs.forEach(($day, index) => {
     let weatherContent =
-      '<h2> High: ' + days[index].day.maxtemp_f + '</h2>' +
-      '<h2> Low: ' + days[index].day.mintemp_f + '</h2>' +
-      '<h3> Humidity: ' + days[index].hour[0].humidity + '</h3>' +  
-      '<img src="http://' + days[index].hour[0].condition.icon +
-      '" class="weathericon" />' +
-      '<p>' + days[index].hour[0].condition.text + '</p>' +
-      '<h2><strong>' + weekDays[(new Date(days[index].date)).getDay()] + '</strong></h2>';
+    '<div class="weatherLeft"><h2>' + weekDays[(new Date(days[index].date)).getDay()] + '</h2>' +
+    '<img src="http:' + days[index].day.condition.icon + '" class="weathericon" />' +
+    '<p>' + days[index].day.condition.text + '</p><div>' +
+    '<h2><span> High:</span> ' + days[index].day.maxtemp_f + '</h2>' +
+    '<h2><span> Wind:</span> ' + days[index].day.maxwind_mph + ' mph</h2>' +
+    '<h2><span> Low:</span> ' + days[index].day.mintemp_f + '</h2>' +
+    '<h2><span> Humidity:</span> ' + days[index].day.avghumidity + '</h2>' ;
     $day.append(weatherContent);
   });
 }
