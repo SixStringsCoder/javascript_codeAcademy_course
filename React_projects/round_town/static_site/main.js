@@ -64,15 +64,15 @@ async function getForecast() {
 function renderVenues(venues) {
   $venueDivs.forEach(($venue, index) => {
     let venueContent =
-      '<h2>' + venues[index].name + '</h2>' +
+      '<div class="topInfo"><h2>' + venues[index].name + '</h2>' +
       '<img class="venueimage" src="' + imgPrefix +
       venues[index].photos.groups[0].items[0].suffix + '"/>' +
-      '<p>' + '(' + venues[index].categories[0].name + ')' + '</p>' +
-      '<h3>Address:</h3>' +
+      '<h4>' + '(' + venues[index].categories[0].name + ')' + '</h4></div>' +
+      '<div class="bottomInfo">' +
       '<p>' + venues[index].location.address + '</p>' +
       '<p>' + venues[index].location.city + '</p>' +
       '<p>' + venues[index].location.country + '</p>' +
-      '<button>' + '<a href=' + venues[index].url + ' target="_blank">' + "Visit" + '</a>' + '</button>';
+      '<button id="venueMap">' + '<a href=' + venues[index].url + ' target="_blank">' + "Website" + '</a>' + '</button></div>';
     $venue.append(venueContent);
   });
   $destination.append('<h2>' + venues[0].location.city + ', ' + venues[0].location.state + ', ' + venues[0].location.country +'</h2>');
