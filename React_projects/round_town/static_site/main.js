@@ -67,7 +67,7 @@ function renderVenues(venues) {
       '<div class="topInfo"><h2>' + venues[index].name + '</h2>' +
       '<img class="venueimage" src="' + imgPrefix +
       venues[index].photos.groups[0].items[0].suffix + '"/>' +
-      '<h4>' + '(' + venues[index].categories[0].name + ')' + '</h4></div>' +
+      '<h4>' + '&#10084; &nbsp;' + venues[index].categories[0].name + '&nbsp; &#10084;' + '</h4></div>' +
       '<div class="bottomInfo">' +
       '<p>' + venues[index].location.address + '</p>' +
       '<p>' + venues[index].location.city + '</p>' +
@@ -84,10 +84,10 @@ function renderForecast(days) {
     '<div class="weatherLeft"><h2>' + weekDays[(new Date(days[index].date)).getDay()] + '</h2>' +
     '<img src="http:' + days[index].day.condition.icon + '" class="weathericon" />' +
     '<p>' + days[index].day.condition.text + '</p><div>' +
-    '<h2><span> High:</span> ' + days[index].day.maxtemp_f + '</h2>' +
-    '<h2><span> Wind:</span> ' + days[index].day.maxwind_mph + ' mph</h2>' +
-    '<h2><span> Low:</span> ' + days[index].day.mintemp_f + '</h2>' +
-    '<h2><span> Humidity:</span> ' + days[index].day.avghumidity + '</h2>' ;
+    '<h2><span> High:</span> ' + days[index].day.maxtemp_f + '</h2> ' +
+    '<h2><span> Wind:</span> ' + days[index].day.maxwind_mph + ' mph</h2> ' +
+    '<h2><span> Low:</span> ' + days[index].day.mintemp_f + '</h2> ' +
+    '<h2><span> Humidity:</span> ' + days[index].day.avghumidity + '</h2> ' ;
     $day.append(weatherContent);
   });
 }

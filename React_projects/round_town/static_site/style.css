@@ -1,5 +1,5 @@
 /*
-font-family: 'Shadows Into Light', cursive;
+font-family: 'Indie Flower', cursive;
 font-family: 'Caveat Brush', cursive;
 font-family: 'Oswald', sans-serif;
 font-family: 'Signika Negative', sans-serif;
@@ -10,10 +10,11 @@ body {
   margin:0;
   padding:0;
   height:100%;
+  box-sizing: border-box;
 }
 
 /* ============================
-            Header
+                          Header
 ==============================*/
 header {
   display: flex;
@@ -28,7 +29,7 @@ header {
 
 .companyName {
   font-size: 2.3rem;
-  color: #77c531;
+  color: #7AB800;
   font-family: 'Montserrat Alternates', sans-serif;
   font-weight: 700;
 }
@@ -41,7 +42,7 @@ header img {
 
 
 /* ============================
-   Billboard - Input - Button
+              Billboard - Input - Button
 ==============================*/
 main {
   display: flex;
@@ -65,6 +66,12 @@ input {
   color: #000;
 }
 
+textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
+    background-color: #FCD450;
+    border: #000;
+    outline: 0 none;
+}
+
 /* Search Input */
 #city {
   width: 286px;
@@ -72,7 +79,8 @@ input {
   border-radius: 4px;
   border: solid 2.5px #ffffff;
   opacity: 0.73;
-  font-family: Source Sans Pro;
+  font-family: 'Signika Negative', sans-serif;
+  font-weight: bold;
   font-size: 18px;
   line-height: 1;
   letter-spacing: 0.4px;
@@ -84,7 +92,7 @@ input {
   width: 140px;
   height: 46px;
   border-radius: 4px;
-  background-color: #77c531;
+  background-color: #7AB800;
   font-size: 18px;
   font-weight: 600;
   line-height: 0.94;
@@ -97,7 +105,7 @@ input {
 
 
 /* ============================
- Results for weather and venues
+          Results for weather and venues
 ==============================*/
 .resultsArea {
   width: 100vw;
@@ -111,11 +119,13 @@ input {
 #destination {
   display: flex;
   padding: 2rem 0 0 0;
-  font-family: 'Shadows Into Light', cursive;
-  font-size: 3.3rem;
+  font-family: 'Indie Flower', cursive;
+  font-size: 3rem;
+  line-height: 4rem;
   font-weight: 700;
   letter-spacing: 0.9px;
-  color: #eca128;
+  text-align: center;
+  color: #FD7400;
 }
 
 .sectiontitle {
@@ -123,14 +133,15 @@ input {
   justify-content: flex-start;
   height: 3vh;
   width: 81vw;
-  padding: 2rem 0 0 0;
+  padding: 2rem 0 2rem 0;
 }
 
 .sectiontitle h2 {
-  font-family: 'Shadows Into Light', cursive;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-weight: bold;
   font-size: 2rem;
   letter-spacing: 3.4px;
-  color: #4a4a4a;
+  color: #7AB800;
 }
 
 .container {
@@ -146,15 +157,15 @@ input {
 
 #weather {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
   min-height: 350px;
-  width: 50rem;
+  width: 80vw;
 }
 
 .weather {
   display: flex;
-  width: 21rem;
+  width: 18rem;
   height: auto;
   border: 1px solid black;
   border-radius: 1rem;
@@ -205,16 +216,17 @@ input {
 
 #venues {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
   min-height: 350px;
-  width: 50rem;
+  width: 80vw;
 }
 
 .venue {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 300px;
   border: 1px solid black;
   border-radius: 1rem;
   padding: 1rem;
@@ -225,6 +237,7 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
 .venue .topInfo h2 {
@@ -247,9 +260,9 @@ input {
 }
 
 .venue h4 {
-  font-family: 'Oswald', sans-serif;
-  font-size: 1.2rem;
-  padding: .5rem 0;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 1.1rem;
+  padding: 1rem 0;
   color: #4a4a4a;
 }
 
@@ -266,21 +279,22 @@ input {
   font-size: .7rem;
 }
 
-.venue img {
+.venueimage {
     width:  300px;
     height: 300px;
     border-radius: 1rem;
+    border: 1px solid black;
 }
 
 #venueMap {
     width: 100px;
     height: 45px;
     border-radius: 4px;
-    background-color: #77c531;
+    background-color: #7AB800;
     font-size: 1.2rem;
     letter-spacing: 0.5px;
     text-align: center;
-    margin: .2rem 0 .5rem 0;
+    margin: .6rem 0 0 0;
     font-family: 'Montserrat Alternates', sans-serif;
 }
 
@@ -294,7 +308,8 @@ footer {
    display: flex;
    justify-content: center;
    align-items: center;
-   height: 5rem;
+   height: 7rem;
+   margin-top: 1rem;
    border-top: 1px solid black;
    background: #fff url("images/round_town_BG2.png")bottom center;
  }
@@ -309,17 +324,36 @@ footer {
 /* ============================
         MEDIA QUERIES
 ==============================*/
-
+/* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .companyName {
     font-size: 4.3rem;
   }
+
+  #weather, #venues {
+    justify-content: space-between;
+    width: 89vw;
+  }
+
 }
 
-@media (min-width: 1024px) {
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  #weather, #venues {
+    justify-content: space-between;
+    width: 83vw;
+  }
+
+  #destination {
+    font-size: 3.5rem;
+  }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
   .logoCompany {
     justify-content: flex-start;
-    padding: 0;
+    padding: .8rem;
   }
 
   .companyName {
