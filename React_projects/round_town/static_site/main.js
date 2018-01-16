@@ -67,10 +67,10 @@ function renderVenues(venues) {
       '<div class="topInfo"><h2>' + venues[index].name + '</h2>' +
       '<img class="venueimage" src="' + imgPrefix +
       venues[index].photos.groups[0].items[0].suffix + '"/>' +
-      '<h4>' + '&#10084; &nbsp;' + venues[index].categories[0].name + '&nbsp; &#10084;' + '</h4></div>' +
+      '<h4>' + venues[index].categories[0].name +  '<br>'  + 'Rating: ' + venues[index].rating + '&nbsp; &#10084;' + '</h4></div>' +
       '<div class="bottomInfo">' +
       '<p>' + venues[index].location.address + '</p>' +
-      '<p>' + venues[index].location.city + '</p>' +
+      '<p>' + venues[index].location.city + ', ' +  venues[index].location.state + '</p>' +
       '<p>' + venues[index].location.country + '</p>' +
       '<button id="venueMap">' + '<a href=' + venues[index].url + ' target="_blank">' + "Website" + '</a>' + '</button></div>';
     $venue.append(venueContent);
