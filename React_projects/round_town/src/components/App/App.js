@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import SearchBar from '../SearchBar/SearchBar';
-import WeatherList from '../WeatherList/WeatherList';
+import { WeatherList } from '../WeatherList/WeatherList';
 import AttractionList from '../AttractionList/AttractionList';
 
 const bizName = "'round-Town";
@@ -10,9 +10,20 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      forecast: [],
+      venue: []
     }
   }
+
+  searchWeather(location) {
+    Yelp.search(location).then(forecast => {
+      this.setState({
+        forecast: forecastday, // the returned array in the JSON
+      });
+    });
+  }
+
+
   render() {
     return (
       <div>
@@ -32,7 +43,7 @@ class App extends Component {
             <h1>Portland, Oregon</h1>
           </div>
 
-          <WeatherList />
+          <WeatherList forecast={this.state.forecast}/>
           <AttractionList />
         </div>
 
