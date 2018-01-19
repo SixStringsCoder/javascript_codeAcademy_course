@@ -3,14 +3,40 @@ import PropTypes from 'prop-types';
 import './SearchBar.css';
 
 class SearchBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      location: ""
+    }
+    this.handleTermChange = this.handleTermChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  // location typed in the input field
+  handleTermChange(event) {
+    this.setState({
+      location: event.target.value
+    });
+  }
+
+  // Search button click handler
+  handleClick(event) {
+    event.preventDefault();
+    this.props.search(this.state.location)
+  }
+
   render() {
     return (
       <form>
-        <input type="text" id="city" placeholder="Enter City/Town or PostalCode" />
-        <button id="button" type="submit">Submit</button>
+        <input onChange={this.handleTermChange} type="text" id="city" placeholder="Enter City/Town or PostalCode" />
+        <button onClick={this.handleClick} id="button" type="submit">Search</button>
       </form>
     );
   }
+}
+
+SearchBar.propTypes = {
+  search: PropTypes.func.isRequired
 }
 
 export default SearchBar;

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './App.css';
 import SearchBar from '../SearchBar/SearchBar';
-import { WeatherList } from '../WeatherList/WeatherList';
+import WeatherList from '../WeatherList/WeatherList';
 import AttractionList from '../AttractionList/AttractionList';
+import ApiCalls from '../../utility/Api';
 
 const bizName = "'round-Town";
 
@@ -11,14 +13,17 @@ class App extends Component {
     super(props);
     this.state = {
       forecast: [],
-      venue: []
+      venue: [],
+      location: ''
     }
+    this.searchApi = this.searchApi.bind(this);
   }
 
-  searchWeather(location) {
-    Yelp.search(location).then(forecast => {
+  searchApi(location) {
+    ApiCalls.getForecast(location).then(forecast => {
       this.setState({
-        forecast: forecastday, // the returned array in the JSON
+        forecast: forecast, // the returned array in the JSON
+        location: location
       });
     });
   }
@@ -35,15 +40,15 @@ class App extends Component {
         </header>
 
         <main>
-          <SearchBar />
+          <SearchBar search={this.searchApi} />
         </main>
 
-        <div class="container">
-          <div id="destination">
-            <h1>Portland, Oregon</h1>
-          </div>
+        <div className="container">
 
-          <WeatherList forecast={this.state.forecast}/>
+          <WeatherList
+            forecast={this.state.forecast}
+            location={this.state.location}
+            />
           <AttractionList />
         </div>
 
@@ -53,6 +58,10 @@ class App extends Component {
       </div>
     );
   }
+}
+
+App.propTypes = {
+  search: PropTypes.func.isRequired
 }
 
 export default App;

@@ -60,7 +60,7 @@ Container for Weather and Venues
   align-items: center;
   justify-content: flex-start;
   margin: auto;
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 
 

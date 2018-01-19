@@ -9,50 +9,54 @@ const apiKey = '08a7fc1afc044d27a9a34310181301';
 const forecastUrl = 'https://api.apixu.com/v1/forecast.json?key=';
 
 // Page Elements
-const $input = $('#city');
-const $submit = $('#button');
-const $destination = $('#destination');
-const $container = $('.container');
-const $venueDivs = [$("#venue1"), $("#venue2"), $("#venue3"), $("#venue4"), $("#venue5"), $("#venue6"), $("#venue7"), $("#venue8"), $("#venue9"), $("#venue10")];
-const $weatherDivs = [$("#weather1"), $("#weather2"), $("#weather3"), $("#weather4"), $("#weather5"), $("#weather6"), $("#weather7")];
+const venueDivs = [document.getElementById('venue')];
+const weatherDivs = [document.getElementById('weather')];
 const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
+
 // AJAX Calls Object
-const api = {
-  // Return venues based on Search value input
-  async function getVenues() {
-    const city = $input.val();
-    const urlToFetch = url + city + '&venuePhotos=1&limit=10&client_id=' + clientId + '&client_secret=' + clientSecret + '&v=20171030';
-
-    try {
-      let response = await fetch(urlToFetch);
-      if (response.ok) {
-        let jsonResponse = await response.json();
-        console.log(jsonResponse);
-        let venues = jsonResponse.response.groups[0].items.map(location => location.venue);
-        return venues;
-      }
-    }
-    catch (error) {
-      console.log(error);
-    }
-  };
-
+const ApiCalls = {
   // Return weatherforecast based on Search input value
-  async function getForecast() {
-    const urlToFetch = forecastUrl + apiKey + '&q=' + $input.val() + '&days=7'
-    try {
-      let response = await fetch(urlToFetch);
-      if (response.ok) {
-        let jsonResponse = await response.json();
-        console.log(jsonResponse);
-        let days = jsonResponse.forecast.forecastday;
-        return days;
-      }
-    }
-    catch (error) {
-      console.log(error);
-    }
-  }
+  getForecast: function(location) {
+    const urlToFetch = `${forecastUrl}${apiKey}&q=${location}&days=7`
+    return fetch(urlToFetch)
+        .then(response => {
+        return response.json();
+      }).then(jsonResponse => {
+          console.log(jsonResponse);
+        if (jsonResponse.forecast) {
+          return jsonResponse.forecast.forecastday.map(forecastday => {
+           ({
+            // thisDay: weekDays[(new Date(forecastDay.date)).getDay()],
+            icon: forecastday.day.condition.icon,
+            // condition: forecastDay.day.condition.text,
+            // fHigh: forecastDay.day.maxtemp_f,
+            // wind: forecastDay.day.maxwind_mph,
+            // fLow: forecastDay.day.mintemp_f,
+            // humidity: forecastDay.day.avghumidity
+          })
+          }); // end of .map
+        }
+      }); // end of then(jsonResponse
+  },
 
+  // Return venues based on Search value input
+  // getVenues: function(location) {
+  //   const urlToFetch = `${url}${location}&venuePhotos=1&limit=10&client_id=${clientId}&client_secret=${clientSecret}&v=20171030`;
+  //
+  //   try {
+  //     let response = await fetch(urlToFetch);
+  //     if (response.ok) {
+  //       let jsonResponse = await response.json();
+  //       console.log(jsonResponse);
+  //       let venues = jsonResponse.response.groups[0].items.map(location => location.venue);
+  //       return venues;
+  //     }
+  //   }
+  //   catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 }
+
+export default ApiCalls
