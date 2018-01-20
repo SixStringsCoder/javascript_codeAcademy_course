@@ -21,9 +21,17 @@ class App extends Component {
 
   searchApi(location) {
     ApiCalls.getForecast(location).then(forecast => {
+      // console.log(forecast);
       this.setState({
-        forecast: forecast, // the returned array in the JSON
+        forecast: forecast, // the key name from the JSON
         location: location
+      });
+    });
+
+    ApiCalls.getVenues(location).then(response => {
+      // console.log(response);
+      this.setState({
+        venue: response
       });
     });
   }
@@ -49,7 +57,7 @@ class App extends Component {
             forecast={this.state.forecast}
             location={this.state.location}
             />
-          <AttractionList />
+          <AttractionList venue={this.state.venue} />
         </div>
 
         <footer>

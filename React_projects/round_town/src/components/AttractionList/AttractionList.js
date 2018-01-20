@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
-import './AttractionList.css'
+import './AttractionList.css';
+import Attraction from '../Attraction/Attraction';
 
 class AttractionList extends Component {
   render() {
@@ -11,41 +12,15 @@ class AttractionList extends Component {
         </div>
 
         <div id="venues">
-          <div className="venue" id="venue1">
-
-          </div>
-          <div className="venue" id="venue2">
-
-          </div>
-          <div className="venue" id="venue3">
-
-          </div>
-          <div className="venue" id="venue4">
-
-          </div>
-          <div className="venue" id="venue5">
-
-          </div>
-          <div className="venue" id="venue6">
-
-          </div>
-          <div className="venue" id="venue7">
-
-          </div>
-          <div className="venue" id="venue8">
-
-          </div>
-          <div className="venue" id="venue9">
-
-          </div>
-          <div className="venue" id="venue10">
-
-          </div>
+          {
+            this.props.venue.map((venue, index) => {
+              return <Attraction venue={venue} key={index} />
+            })
+          }
         </div>
       </section>
     );
   }
 }
-
 
 export default AttractionList;

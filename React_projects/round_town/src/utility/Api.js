@@ -9,8 +9,8 @@ const apiKey = '08a7fc1afc044d27a9a34310181301';
 const forecastUrl = 'https://api.apixu.com/v1/forecast.json?key=';
 
 // Page Elements
-const venueDivs = [document.getElementById('venue')];
-const weatherDivs = [document.getElementById('weather')];
+// const venueDivs = [document.getElementById('venue')];
+// const weatherDivs = [document.getElementById('weather')];
 const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 
@@ -25,38 +25,47 @@ const ApiCalls = {
       }).then(jsonResponse => {
           console.log(jsonResponse);
         if (jsonResponse.forecast) {
-          return jsonResponse.forecast.forecastday.map(forecastday => {
-           ({
-            // thisDay: weekDays[(new Date(forecastDay.date)).getDay()],
-            icon: forecastday.day.condition.icon,
-            // condition: forecastDay.day.condition.text,
-            // fHigh: forecastDay.day.maxtemp_f,
-            // wind: forecastDay.day.maxwind_mph,
-            // fLow: forecastDay.day.mintemp_f,
-            // humidity: forecastDay.day.avghumidity
-          })
+          return jsonResponse.forecast.forecastday.map(weatherDay => {
+            return ({
+              thisDay: weekDays[(new Date(weatherDay.date)).getDay()],
+              icon: weatherDay.day.condition.icon,
+              condition: weatherDay.day.condition.text,
+              fHigh: weatherDay.day.maxtemp_f,
+              wind: weatherDay.day.maxwind_mph,
+              fLow: weatherDay.day.mintemp_f,
+              humidity: weatherDay.day.avghumidity
+            })
           }); // end of .map
         }
       }); // end of then(jsonResponse
   },
 
   // Return venues based on Search value input
-  // getVenues: function(location) {
-  //   const urlToFetch = `${url}${location}&venuePhotos=1&limit=10&client_id=${clientId}&client_secret=${clientSecret}&v=20171030`;
-  //
-  //   try {
-  //     let response = await fetch(urlToFetch);
-  //     if (response.ok) {
-  //       let jsonResponse = await response.json();
-  //       console.log(jsonResponse);
-  //       let venues = jsonResponse.response.groups[0].items.map(location => location.venue);
-  //       return venues;
-  //     }
-  //   }
-  //   catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+  getVenues: function(location) {
+    const urlToFetch = `${url}${location}&venuePhotos=1&limit=10&client_id=${clientId}&client_secret=${clientSecret}&v=20171030`;
+    return fetch(urlToFetch)
+      .then(response => {
+        return response.json();
+      }).then(jsonResponse => {
+          console.log(jsonResponse);
+        if (jsonResponse.response) {
+          return jsonResponse.response.groups[0].items.map(place => {
+            return ({
+              name: place.venue.name,
+              pic: place.venue.photos.groups[0].items[0].suffix,
+              category: place.venue.categories[0].name,
+              rating: place.venue.rating,
+              address: place.venue.location.address,
+              city: place.venue.location.city,
+              state: place.venue.location.state,
+              country: place.venue.location.country,
+              postalcode: place.venue.location.postalCode,
+              website: place.venue.url,
+            })
+          }); // end of .map
+        }
+      });
+    }
 }
 
 export default ApiCalls
