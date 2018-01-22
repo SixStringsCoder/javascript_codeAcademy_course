@@ -67,42 +67,15 @@ Container for Weather and Venues
 /* =================================
 Results Area for weather and venues
 ==================================*/
-.resultsArea {
+/* .resultsArea {
   width: 100vw;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-}
+} */
 
-#destination {
-  display: flex;
-  padding: 2rem 0 0 0;
-  font-family: 'Indie Flower', cursive;
-  font-size: 3rem;
-  line-height: 4rem;
-  font-weight: 700;
-  letter-spacing: 0.9px;
-  text-align: center;
-  color: #FD7400;
-}
-
-.sectiontitle {
-  display: flex;
-  justify-content: flex-start;
-  height: 3vh;
-  width: 81vw;
-  padding: 2rem 0 2rem 0;
-}
-
-.sectiontitle h2 {
-  font-family: 'Montserrat Alternates', sans-serif;
-  font-weight: bold;
-  font-size: 2rem;
-  letter-spacing: 3.4px;
-  color: #7AB800;
-}
 
 /* ============================
             Footer
@@ -136,24 +109,11 @@ footer {
   main {
     /* box-shadow: 1px 1px 2px black; */
  }
-
-  #weather, #venues {
-    justify-content: space-between;
-    width: 89vw;
-  }
-
 }
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  #weather, #venues {
-    justify-content: space-between;
-    width: 83vw;
-  }
-
-  #destination {
-    font-size: 3.5rem;
-  }
+  
 }
 
 /* Large devices (large desktops, 1200px and up) */

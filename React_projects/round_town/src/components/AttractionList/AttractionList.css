@@ -6,84 +6,51 @@
   width: 80vw;
 }
 
-.venue {
+.attractionTitle {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 300px;
-  border: 1px solid black;
-  border-radius: 1rem;
-  padding: 1rem;
-  margin-bottom: .5rem;
+  justify-content: flex-start;
+  height: 3vh;
+  width: 81vw;
+  padding: 4rem 0 4rem 0;
 }
 
-.venue .topInfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.venue .topInfo h2 {
+.attractionTitle h2 {
+  font-family: 'Montserrat Alternates', sans-serif;
   font-weight: bold;
+  font-size: 1.8rem;
+  letter-spacing: 3.4px;
+  color: #7AB800;
 }
 
-.venue .bottomInfo {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-around;
+/* ============================
+        MEDIA QUERIES
+==============================*/
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .companyName {
+    font-size: 4.3rem;
+  }
+
+  #weather, #venues {
+    justify-content: space-between;
+    width: 89vw;
+  }
+
 }
 
-.venue h2 {
-  font-family: 'Montserrat Alternates', sans-serif;
-  font-size: 1.4rem;
-  padding-bottom: .5rem;
-  word-wrap: normal;
-  color: #4a4a4a;
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  #weather, #venues {
+    justify-content: space-between;
+    width: 83vw;
+  }
+
+  #destination {
+    font-size: 3.5rem;
+  }
 }
 
-.venue h4 {
-  font-family: 'Montserrat Alternates', sans-serif;
-  font-size: 1.1rem;
-  line-height: 1.3rem;
-  padding: 1rem 0;
-  color: #4a4a4a;
-}
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
 
-.venue .bottomInfo p {
-  font-family: 'Montserrat Alternates', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 300;
-  line-height: 1.3rem;
-  text-align: center;
-  color: #4a4a4a;
-}
-
-.venue .bottomInfo h2 {
-  font-size: .7rem;
-}
-
-.venueimage {
-    width:  300px;
-    height: 300px;
-    border-radius: 1rem;
-    border: 1px solid black;
-}
-
-#venueMap {
-    width: 100px;
-    height: 45px;
-    border-radius: 4px;
-    background-color: #7AB800;
-    font-size: 1.2rem;
-    letter-spacing: 0.5px;
-    text-align: center;
-    margin: .6rem 0 0 0;
-    font-family: 'Montserrat Alternates', sans-serif;
-}
-
-#venueMap a {
-  color: #ffffff;
-  text-decoration: none;
 }

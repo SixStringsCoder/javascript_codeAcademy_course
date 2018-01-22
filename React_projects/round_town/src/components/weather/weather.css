@@ -1,13 +1,6 @@
-#weather {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  min-height: 350px;
-  width: 80vw;
-}
-
 .weather {
   display: flex;
+  flex-direction: column;
   width: 18rem;
   height: auto;
   border: 1px solid black;
@@ -35,11 +28,12 @@
 .weather h2 {
   font-family: 'Montserrat Alternates', sans-serif;
   font-size: 1.2rem;
-  line-height: 1.8rem;
+  margin: 0;
+  padding: 0;
   color: #4a4a4a;
 }
 
-.weather h2 span {
+h2.weather span {
  font-weight: bold;
 }
 

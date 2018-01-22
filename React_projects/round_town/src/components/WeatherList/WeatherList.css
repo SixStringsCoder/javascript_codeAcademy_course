@@ -6,53 +6,18 @@
   width: 80vw;
 }
 
-.weather {
+.sectiontitle {
   display: flex;
-  width: 18rem;
-  height: auto;
-  border: 1px solid black;
-  border-radius: 1rem;
-  padding: 1rem;
-  margin-bottom: .5rem;
+  justify-content: flex-start;
+  height: 3vh;
+  width: 81vw;
+  padding: 0 0 4rem 0;
 }
 
-.weatherLeft {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.weatherLeft div {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap
-}
-
-.weatherLeft .day {
+.sectiontitle h2 {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-weight: bold;
   font-size: 2rem;
-}
-
-.weather h2 {
-  font-family: 'Montserrat Alternates', sans-serif;
-  font-size: 1.2rem;
-  line-height: 1.8rem;
-  color: #4a4a4a;
-}
-
-.weather h2 span {
- font-weight: bold;
-}
-
-.weathericon {
-  width: 200px;
-  height: 200px;
-}
-
-.weather p {
-  font-family: 'Montserrat Alternates', sans-serif;
-  font-size: 1rem;
-  font-weight: 300;
-  line-height: 2.36;
-  text-align: center;
-  color: #4a4a4a;
+  letter-spacing: 3.4px;
+  color: #7AB800;
 }

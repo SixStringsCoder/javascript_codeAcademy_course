@@ -5,9 +5,9 @@ import Attraction from '../Attraction/Attraction';
 class AttractionList extends Component {
   render() {
     return(
-      <section>
+      <section className="venuesSection">
 
-        <div className="sectiontitle">
+        <div className="attractionTitle">
           <h2>Top Attractions</h2>
         </div>
 

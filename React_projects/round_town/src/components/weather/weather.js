@@ -12,10 +12,10 @@ class Weather extends Component {
           </div>
 
           <div className="weatherRight">
-            <h2><span>High:</span>{this.props.day.fHigh}F</h2>
-            <h2><span>Wind:</span>{this.props.day.wind}mph</h2>
-            <h2><span>Low:</span>{this.props.day.fLow}F</h2>
-            <h2><span>Humidity:</span>{this.props.day.humidity}</h2>
+            <h2><span>High:</span> {this.props.day.fHigh}F</h2>
+            <h2><span>Wind:</span> {this.props.day.wind}mph</h2>
+            <h2><span>Low:</span> {this.props.day.fLow}F</h2>
+            <h2><span>Humidity:</span> {this.props.day.humidity}</h2>
           </div>
       </section>
     );

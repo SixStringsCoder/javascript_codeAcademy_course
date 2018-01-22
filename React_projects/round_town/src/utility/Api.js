@@ -50,9 +50,10 @@ const ApiCalls = {
           console.log(jsonResponse);
         if (jsonResponse.response) {
           return jsonResponse.response.groups[0].items.map(place => {
+            const picPrefix =  "https://igx.4sqi.net/img/general/150x200";
             return ({
               name: place.venue.name,
-              pic: place.venue.photos.groups[0].items[0].suffix,
+              pic: picPrefix + place.venue.photos.groups[0].items[0].suffix,
               category: place.venue.categories[0].name,
               rating: place.venue.rating,
               address: place.venue.location.address,

@@ -5,10 +5,7 @@ import Weather from '../Weather/Weather';
 class WeatherList extends Component {
   render() {
     return (
-      <section>
-        <div id="destination">
-          <h1>{this.props.location}</h1>
-        </div>
+      <section className="weatherSection">
 
         <div className="sectiontitle">
           <h2>Weather</h2>
