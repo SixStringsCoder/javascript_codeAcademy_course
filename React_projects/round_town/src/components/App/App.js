@@ -15,7 +15,8 @@ class App extends Component {
     this.state = {
       forecast: [],
       venue: [],
-      location: ""
+      location: "",
+      // locDisplay: ""
     }
     this.searchApi = this.searchApi.bind(this);
   }
@@ -37,6 +38,15 @@ class App extends Component {
       });
     });
   }
+
+  // H1 Heading of Location using different displayString key in JSON
+  // displayLocation(location) {
+  //   console.log(location);
+  //   this.setState({
+  //     locDisplay: location
+  //   });
+  // }
+
 
 
   render() {

@@ -1,3 +1,5 @@
+// import {displayLocation} from '../components/App/App';
+
 // Foursquare API Info
 const clientId = 'ZCNOO2SK3USWMUXPMBM5WR3ALMNEZAFJBZDFPEVSDLTDKOYI';
 const clientSecret = 'FQWXQHYW2E5SJIOWNWEXMYHRSZZN2Y401TXYHRPTP5XOTM0E';
@@ -49,6 +51,10 @@ const ApiCalls = {
       }).then(jsonResponse => {
           console.log(jsonResponse);
         if (jsonResponse.response) {
+          // Get Location name from geocode key
+          const destination = jsonResponse.response;
+          // displayLoc(destination);
+          // Get other data for Top Attractions area
           return jsonResponse.response.groups[0].items.map(place => {
             const picPrefix =  "https://igx.4sqi.net/img/general/150x200";
             return ({
@@ -64,9 +70,16 @@ const ApiCalls = {
               website: place.venue.url,
             })
           }); // end of .map
+
         }
       });
-    }
+    },
 }
+
+// const displayLoc = (destination) => {
+//   // const displayName = destination.geocode.displayString;
+//   console.log(destination.geocode.displayString);
+//   displayLocation(destination.geocode.displayString);
+// }
 
 export default ApiCalls
