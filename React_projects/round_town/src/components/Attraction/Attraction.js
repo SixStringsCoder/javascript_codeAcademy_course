@@ -9,6 +9,7 @@ class Attraction extends Component {
             <h2>{this.props.venue.name}</h2>
             <img className="venueimage" src={this.props.venue.pic} alt={this.props.venue.name} />
             <h4>{this.props.venue.category} <br />Rating: {this.props.venue.rating}&nbsp; &#10084;</h4>
+            <p><strong>Hours:</strong> {this.props.venue.hours} </p>
           </div>
           <div className="bottomInfo">
             <p>{this.props.venue.address}<br />

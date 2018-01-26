@@ -6,6 +6,7 @@ import WeatherList from '../WeatherList/WeatherList';
 import AttractionList from '../AttractionList/AttractionList';
 import { Destination } from '../Destination/Destination';
 import ApiCalls from '../../utility/Api';
+import { displayLoc } from '../../utility/Api';
 
 const bizName = "'round-Town";
 
@@ -16,7 +17,7 @@ class App extends Component {
       forecast: [],
       venue: [],
       location: "",
-      // locDisplay: ""
+      locDisplay: ""
     }
     this.searchApi = this.searchApi.bind(this);
   }
@@ -31,7 +32,6 @@ class App extends Component {
 
     ApiCalls.getVenues(location).then(response => {
       location = response[0].city + ", " + response[0].state + ", " + response[0].country
-      console.log(response);
       this.setState({
         venue: response,
         location: location
@@ -40,10 +40,10 @@ class App extends Component {
   }
 
   // H1 Heading of Location using different displayString key in JSON
-  // displayLocation(location) {
-  //   console.log(location);
+  // export const locationFullName = (destination) => {
+  //   console.log(destination);
   //   this.setState({
-  //     locDisplay: location
+  //     locDisplay: destination
   //   });
   // }
 
@@ -63,7 +63,7 @@ class App extends Component {
           <SearchBar search={this.searchApi} />
         </main>
 
-        <Destination location={this.state.location} />
+        <Destination locationFullName={this.state.location} />
 
         <div className="container">
           <WeatherList forecast={this.state.forecast} />
@@ -78,8 +78,5 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  search: PropTypes.func.isRequired
-}
 
 export default App;

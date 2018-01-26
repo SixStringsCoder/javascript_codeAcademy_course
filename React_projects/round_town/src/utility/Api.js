@@ -1,4 +1,5 @@
-// import {displayLocation} from '../components/App/App';
+// import Reacy from 'react';
+// import { locationFullName } from '../components/App/App'
 
 // Foursquare API Info
 const clientId = 'ZCNOO2SK3USWMUXPMBM5WR3ALMNEZAFJBZDFPEVSDLTDKOYI';
@@ -52,16 +53,17 @@ const ApiCalls = {
           console.log(jsonResponse);
         if (jsonResponse.response) {
           // Get Location name from geocode key
-          const destination = jsonResponse.response;
-          // displayLoc(destination);
+          const locationName = jsonResponse.response;
+          // displayLoc(locationName);
           // Get other data for Top Attractions area
           return jsonResponse.response.groups[0].items.map(place => {
-            const picPrefix =  "https://igx.4sqi.net/img/general/150x200";
+            const picPrefix = "https://igx.4sqi.net/img/general/150x200";
             return ({
               name: place.venue.name,
               pic: picPrefix + place.venue.photos.groups[0].items[0].suffix,
               category: place.venue.categories[0].name,
               rating: place.venue.rating,
+              hours: place.venue.hours.status,
               address: place.venue.location.address,
               city: place.venue.location.city,
               state: place.venue.location.state,
@@ -76,10 +78,10 @@ const ApiCalls = {
     },
 }
 
-// const displayLoc = (destination) => {
-//   // const displayName = destination.geocode.displayString;
+// export const displayLoc = (destination) => {
+//   const fullDisplayName = destination.geocode.displayString;
 //   console.log(destination.geocode.displayString);
-//   displayLocation(destination.geocode.displayString);
+//   locationFullName(fullDisplayName);
 // }
 
 export default ApiCalls
