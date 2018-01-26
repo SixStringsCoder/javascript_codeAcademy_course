@@ -4,7 +4,7 @@ import './Destination.css';
 export const Destination = props => {
   return (
     <div id="destination">
-      <h1>{props.locationFullName}</h1>
+      <h1>{props.locDisplayName}</h1>
     </div>
   )
 }

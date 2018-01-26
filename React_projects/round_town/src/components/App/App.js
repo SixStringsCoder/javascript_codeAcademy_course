@@ -6,7 +6,6 @@ import WeatherList from '../WeatherList/WeatherList';
 import AttractionList from '../AttractionList/AttractionList';
 import { Destination } from '../Destination/Destination';
 import ApiCalls from '../../utility/Api';
-import { displayLoc } from '../../utility/Api';
 
 const bizName = "'round-Town";
 
@@ -17,7 +16,6 @@ class App extends Component {
       forecast: [],
       venue: [],
       location: "",
-      locDisplay: ""
     }
     this.searchApi = this.searchApi.bind(this);
   }
@@ -31,23 +29,32 @@ class App extends Component {
     });
 
     ApiCalls.getVenues(location).then(response => {
-      location = response[0].city + ", " + response[0].state + ", " + response[0].country
+      // Location's displayString to set location and show full name on DOM
+      const displayName = response.geocode.displayString;
+      // JSON details for Venues
+      const details = response.groups[0].items.map(place => {
+        const picPrefix = "https://igx.4sqi.net/img/general/150x200";
+        return ({
+          name: place.venue.name,
+          pic: picPrefix + place.venue.photos.groups[0].items[0].suffix,
+          category: place.venue.categories[0].name,
+          rating: place.venue.rating,
+          hours: place.venue.hours.status,
+          address: place.venue.location.address,
+          city: place.venue.location.city,
+          state: place.venue.location.state,
+          country: place.venue.location.country,
+          postalcode: place.venue.location.postalCode,
+          website: place.venue.url,
+        })
+      }); // end of .map
+
       this.setState({
-        venue: response,
-        location: location
+        venue: details,
+        location: displayName
       });
     });
   }
-
-  // H1 Heading of Location using different displayString key in JSON
-  // export const locationFullName = (destination) => {
-  //   console.log(destination);
-  //   this.setState({
-  //     locDisplay: destination
-  //   });
-  // }
-
-
 
   render() {
     return (
@@ -63,7 +70,7 @@ class App extends Component {
           <SearchBar search={this.searchApi} />
         </main>
 
-        <Destination locationFullName={this.state.location} />
+        <Destination locDisplayName={this.state.location} />
 
         <div className="container">
           <WeatherList forecast={this.state.forecast} />
@@ -77,6 +84,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;
