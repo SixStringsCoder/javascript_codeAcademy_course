@@ -1,6 +1,3 @@
-// import Reacy from 'react';
-// import { locationFullName } from '../components/App/App'
-
 // Foursquare API Info
 const clientId = 'ZCNOO2SK3USWMUXPMBM5WR3ALMNEZAFJBZDFPEVSDLTDKOYI';
 const clientSecret = 'FQWXQHYW2E5SJIOWNWEXMYHRSZZN2Y401TXYHRPTP5XOTM0E';
@@ -45,28 +42,18 @@ const ApiCalls = {
 
   // Return venues based on Search value input
   getVenues: function(location) {
-    const urlToFetch = `${url}${location}&venuePhotos=1&limit=10&client_id=${clientId}&client_secret=${clientSecret}&v=20171030`;
+    const urlToFetch = `${url}${location}&venuePhotos=1&limit=10&openNow=1&client_id=${clientId}&client_secret=${clientSecret}&v=20171030`;
     return fetch(urlToFetch)
       .then(response => {
         return response.json();
       }).then(jsonResponse => {
           console.log(jsonResponse);
         if (jsonResponse.response) {
-          // Get Location name from geocode key
-          // const locationName = jsonResponse.response;
-          // displayLoc(locationName);
-          // Get other data for Top Attractions area
           return jsonResponse.response
-
         }
       });
     },
 }
 
-// export const displayLoc = (destination) => {
-//   const fullDisplayName = destination.geocode.displayString;
-//   console.log(destination.geocode.displayString);
-//   locationFullName(fullDisplayName);
-// }
 
 export default ApiCalls

@@ -33,6 +33,9 @@ class App extends Component {
       const displayName = response.geocode.displayString;
       // JSON details for Venues
       const details = response.groups[0].items.map(place => {
+        if (!place.venue.hours) {
+          return {hours: "Not Available"};
+        }
         const picPrefix = "https://igx.4sqi.net/img/general/150x200";
         return ({
           name: place.venue.name,
