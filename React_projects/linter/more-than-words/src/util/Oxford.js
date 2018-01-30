@@ -12,18 +12,23 @@ const Oxford = {
             app_id: appID,
             app_key: appKey
           }
-        }).then(response => {
-          return response.json();
+        }).then((response) => {
+        if (response.status >= 400) {
+          throw new Error("Bad response from server");
+        }
+        return response.json();
         }).then(jsonResponse => {
           // console.log(jsonResponse);
           if (!jsonResponse.results) {
             return [];
           } else {
+            let partOfSpeech = jsonResponse.results[0].lexicalEntries[0].lexicalCategory.toLowerCase();
             return [
               {
                 id: jsonResponse.results[0].id,
+                part: partOfSpeech,
                 def: jsonResponse.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0],
-                ety: jsonResponse.results[0].lexicalEntries[0].entries[0].etymologies[0],
+                ety: jsonResponse.results[0].lexicalEntries[0].entries[0] ? jsonResponse.results[0].lexicalEntries[0].entries[0].etymologies : "Not available.",
                 pron: jsonResponse.results[0].lexicalEntries[0].pronunciations[0].phoneticSpelling,
                 listen: jsonResponse.results[0].lexicalEntries[0].pronunciations[0].audioFile,
               }
@@ -39,12 +44,12 @@ const Oxford = {
               app_id: appID,
               app_key: appKey
             }
-          }).then(response => {
-            return response.json();
+          }).then((response) => {
+          return response.json();
           }).then(jsonResponse => {
             console.log(jsonResponse);
             if (jsonResponse.results) {
-              let synonymResults = jsonResponse.results[0].lexicalEntries[0].entries[0].senses[0].synonyms.map(synonym => <li>{synonym.id}</li>);
+              let synonymResults = jsonResponse.results[0].lexicalEntries[0].entries[0].senses[0].synonyms.map(synonym => <li>{synonym.text}</li>);
               return [
                 {
                   syn: synonymResults,

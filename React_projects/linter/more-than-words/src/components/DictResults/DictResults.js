@@ -4,7 +4,7 @@ import './DictResults.css';
 export const DictResults = (props) => {
     return (
           <div>
-            <p><span id="term">{props.detail.id}</span> - {props.detail.def}</p>
+            <p><span id="term">{props.detail.id} ({props.detail.part})</span> {props.detail.def}</p>
             <p><span className="classify">etymology</span>: {props.detail.ety}</p>
             <p><span className="classify">pronunciation:</span> {props.detail.pron}</p>
             <div>

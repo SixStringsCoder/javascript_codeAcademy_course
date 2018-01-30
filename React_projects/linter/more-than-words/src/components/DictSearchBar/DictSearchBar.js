@@ -33,17 +33,17 @@ class DictSearchBar extends Component {
           <h5>Dictionary & Thesaurus</h5>
         <div className="dictTitleAndBtn">
           <input onChange={this.handleWordEntry} type="text" className="wordInputGoBtn" placeholder="Enter word"/>
-          <button onClick={this.handleSearch} id="defineBtn">Go</button>
+          <button type="submit" onClick={this.handleSearch} id="defineBtn">Go</button>
         </div>
         <div className="definitionBox">
         {
-          this.props.wordDefDetails.map((detail) => {
+          this.props.wordDefDetails.map((detail, key) => {
             return <DictResults detail={detail} key={detail.id} />;
           })
         }
 
         {
-          this.props.wordThesDetails.map((detail) => {
+          this.props.wordThesDetails.map((detail, key) => {
             return <ThesResults detail={detail} key={detail.id} />;
           })
         }

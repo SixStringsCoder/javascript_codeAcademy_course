@@ -120,7 +120,7 @@ class App extends Component {
 
     Oxford.searchThesaurus(word).then(results => {
       this.setState({
-        wordThesDetails: results 
+        wordThesDetails: results
       });
     });
   }
