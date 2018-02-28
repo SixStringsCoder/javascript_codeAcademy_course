@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Newsstand from '../Newsstand/Newsstand';
+import ApiCall from '../../utilities/main';
 
 const spacer = '&nbsp;'
 
@@ -9,13 +10,19 @@ class App extends Component {
     super(props);
     this.state = {
       buttonID: '',
+      articles: []
     }
     this.getNewsId = this.getNewsId.bind(this);
   }
 
+
   getNewsId(id) {
-    this.setState({
-      buttonID: id
+    ApiCall.getNews(id).then(articles => {
+      console.log(articles)
+
+      this.setState({
+        articles: articles
+      });
     });
   }
 

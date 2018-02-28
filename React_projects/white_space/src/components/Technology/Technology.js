@@ -10,7 +10,9 @@ class Technology extends Component {
     this.clickEventHandler = this.clickEventHandler.bind(this);
   }
 
+
   clickEventHandler(event) {
+    event.preventDefault();
     let newsID = event.target.id;
 
     this.setState({
@@ -18,7 +20,6 @@ class Technology extends Component {
     });
 
     this.props.getId(this.state.news_id);
-        event.preventDefault();
   }
 
   render() {

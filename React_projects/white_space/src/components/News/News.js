@@ -11,6 +11,7 @@ class News extends Component {
   }
 
   clickEventHandler(event) {
+    event.preventDefault();
     let newsID = event.target.id;
 
     this.setState({
@@ -18,7 +19,6 @@ class News extends Component {
     });
 
     this.props.getId(this.state.news_id);
-        event.preventDefault();
   }
 
   render() {
