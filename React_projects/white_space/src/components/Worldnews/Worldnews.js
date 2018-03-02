@@ -1,24 +1,18 @@
 import React, { Component } from 'react';
-import './News.css';
+import './Worldnews.css';
 
-class News extends Component {
+class Worldnews extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      news_id: ''
+
     }
     this.clickEventHandler = this.clickEventHandler.bind(this);
   }
 
   clickEventHandler(event) {
     event.preventDefault();
-    let newsID = event.target.id;
-
-    this.setState({
-      news_id: newsID
-    });
-
-    this.props.getId(this.state.news_id);
+    this.props.getId(event.target.id);
   }
 
   render() {
@@ -33,4 +27,4 @@ class News extends Component {
   }
 }
 
-export default News;
+export default Worldnews;

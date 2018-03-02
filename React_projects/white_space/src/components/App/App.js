@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Newsstand from '../Newsstand/Newsstand';
 import ApiCall from '../../utilities/main';
+import moment from 'moment';
 
 const spacer = '&nbsp;'
 
@@ -9,24 +10,18 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      buttonID: '',
       articles: []
     }
     this.getNewsId = this.getNewsId.bind(this);
   }
 
-
   getNewsId(id) {
     ApiCall.getNews(id).then(articles => {
-      console.log(articles)
-
       this.setState({
         articles: articles
       });
     });
   }
-
-
 
   render() {
     return (

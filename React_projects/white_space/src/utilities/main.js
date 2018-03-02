@@ -1,15 +1,9 @@
-// Page Elements
-// const politicoNews = document.getElementById('politicoNews');
-// const viceNews = document.getElementById('viceNews');
-// const washPost = document.getElementById('washPost');
-// const engadget = document.getElementById('engadget');
-// const recode = document.getElementById('recode');
-// const nextWeb = document.getElementById('nextWeb');
-// const main = document.getElementsByTagName('main')[0];
+import moment from 'moment';
 
 // News API Data
 const url = 'https://newsapi.org/v2/'
 const apiKey = 'bb5acac8bd5147e1b2937a726b4ff7e1';
+const cors = 'https://cors-anywhere.herokuapp.com/';
 
 const engadget = `top-headlines?sources=engadget&apiKey=`;
 const recode = `top-headlines?sources=recode&apiKey=`;
@@ -53,11 +47,12 @@ const politicoNews = `top-headlines?sources=financial-times&apiKey=`;
 //   }
 // }
 
-// Button Event Listeners
+
 const ApiCall = {
-  // Request News Function
-  getNews: function(newsUrl) {
-    return fetch(`${url}${newsUrl}${apiKey}`)
+  // Request News Source
+  getNews: function(newsId) {
+    let newsUrl = eval(newsId);
+    return fetch(`${cors}${url}${newsUrl}${apiKey}`)
     .then(response => {
       return response.json();
     }).then(jsonResponse => {
@@ -65,8 +60,16 @@ const ApiCall = {
         let articlesArray = jsonResponse.articles.slice(0, 10);
         console.log(articlesArray);
         return articlesArray.map(article => {
+          let calendar = moment(article.publishedAt).calendar();
+          let fromNow = moment(article.publishedAt).fromNow();
+          console.log(`${calendar} (${fromNow})`);
           return {
-            // key-values
+            title: article.title,
+            author: article.author,
+            pubDate: `${calendar} (${fromNow})`,
+            descr: article.description,
+            url: article.url,
+            image: article.urlToImage
           }
         }); // end of map()
       }
