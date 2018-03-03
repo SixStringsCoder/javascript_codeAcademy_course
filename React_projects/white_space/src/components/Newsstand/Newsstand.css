@@ -4,53 +4,7 @@ form {
   margin-bottom: 5px;
 }
 
-form h2 {
-  font-variant: bold;
-  font-family: sans-serif;
-  color: #221109;
-}
 
-button:focus {
-  outline: 0;
-}
-
-#engadget, #recode, #nextWeb, #washPost, #viceNews, #politicoNews {
-  font-family: Source Sans Pro;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 0.94;
-  letter-spacing: 0.5px;
-  text-align: center;
-  color: #000;
-  border: 0px;
-  width: 200px;
-  margin-bottom: .7rem;
-  padding: 1rem;
-  background-color: #FC8E22;
-  border: 1px solid black;
-  -webkit-transition: background-color .5s;
-  transition: background-color .5s;
-}
-
-#engadget:hover,
-#recode:hover,
-#nextWeb:hover,
-#washPost:hover,
-#viceNews:hover,
-#politicoNews:hover {
-  background-color: #000;
-  color: #fff;
-}
-
-#engadget:focus,
-#recode:focus,
-#nextWeb:focus,
-#washPost:focus,
-#viceNews:focus,
-#politicoNews:focus {
-  background-color: #33C90E;
-  color: #000;
-}
 
 @media (max-width: 640px) {
 
@@ -60,16 +14,8 @@ button:focus {
     align-items: center;
   }
 
-  h1, h2 {
-    font-size: 24px;
-  }
 }
 
 @media (max-width: 480px) {
-  a {
-    text-align: center;
-  }
-  button {
-    margin-top: 10px;
-  }
+
 }

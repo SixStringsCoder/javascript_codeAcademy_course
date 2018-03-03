@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Newsstand from '../Newsstand/Newsstand';
+import Newsarticles from '../Newsarticles/Newsarticles';
+import Article from '../Article/Article';
 import ApiCall from '../../utilities/main';
 import moment from 'moment';
 
@@ -35,7 +37,7 @@ class App extends Component {
         <Newsstand getId={this.getNewsId} />
 
         <main>
-
+          <Newsarticles articles={this.state.articles}/>
         </main>
       </div>
     );

@@ -141,21 +141,21 @@ button:focus {
   transition: background-color .5s;
 }
 
-#engadget:hover, 
-#recode:hover, 
-#nextWeb:hover, 
-#washPost:hover, 
-#viceNews:hover, 
+#engadget:hover,
+#recode:hover,
+#nextWeb:hover,
+#washPost:hover,
+#viceNews:hover,
 #politicoNews:hover {
   background-color: #000;
   color: #fff;
 }
 
-#engadget:focus, 
-#recode:focus, 
-#nextWeb:focus, 
-#washPost:focus, 
-#viceNews:focus, 
+#engadget:focus,
+#recode:focus,
+#nextWeb:focus,
+#washPost:focus,
+#viceNews:focus,
 #politicoNews:focus {
   background-color: #33C90E;
   color: #000;
