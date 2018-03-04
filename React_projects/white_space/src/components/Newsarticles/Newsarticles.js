@@ -7,7 +7,7 @@ class Newsarticles extends Component {
     return (
 
           this.props.articles.map((article, index) => {
-            <Article article={article} key={index} />;
+            return <Article article={article} key={index} />
           })
 
     );

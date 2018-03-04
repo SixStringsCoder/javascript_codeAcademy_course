@@ -9,7 +9,7 @@ class Article extends Component {
        <article className="article">
          <h2 className="title">  {this.props.article.title}  </h2>
          <h3>By   {this.props.article.author}  </h3>
-         <h4>Published: {this.props.article.pubDate}</h4>
+         <h4>Published: <span>{this.props.article.pubDate}</span></h4>
          <p>   {this.props.article.descr}  </p>
          <a href={this.props.article.url} target="_blank" className="readmore"><p>Read More</p></a>
        </article>

@@ -30,7 +30,7 @@ class App extends Component {
       <div>
         <header role="banner">
           <img src={require("./images/newspaper-976110_1280.png")} alt="newspaper icon"/>
-          <h1>| | White | | Space | |</h1>
+          <h1>between the lines</h1>
           <h2 id="subtitle">...where the margins hold the secrets...</h2>
         </header>
 

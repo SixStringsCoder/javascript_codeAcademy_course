@@ -28,7 +28,6 @@ const ApiCall = {
         return articlesArray.map(article => {
           let calendar = moment(article.publishedAt).calendar();
           let fromNow = moment(article.publishedAt).fromNow();
-          console.log(`${calendar} (${fromNow})`);
           return {
             title: article.title,
             author: article.author,

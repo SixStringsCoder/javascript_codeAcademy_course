@@ -12,8 +12,8 @@ header {
 }
 
 header img {
-  width: 30%;
-  height: 30%;
+  width: 20%;
+  height: 20%;
   margin: 0;
 }
 
@@ -23,22 +23,29 @@ h1 {
   text-shadow: 1px 1px 1px black;
   font-size: 6rem;
   font-weight: bold;
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
   letter-spacing: 1.4px;
   text-align: center;
   padding: 20px;
-  margin: 0;
+  margin: 10vh 0 0 0;
 }
 
 #subtitle {
   font-family: sans-serif;
   color: rgba(192, 192, 192, 0.0);
   text-align: center;
-  margin: 0;
+  margin: 5vh 0 0 0;
   transition: color 1s;
 }
 
 #subtitle:hover {
   color: rgba(192, 192, 192, 0.2);
+}
+
+main {
+  width: 90vw;
+  margin: 0 auto;
 }
 
 @media (max-width: 640px) {
