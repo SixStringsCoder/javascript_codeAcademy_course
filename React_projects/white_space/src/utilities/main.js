@@ -13,7 +13,6 @@ const viceNews = `everything?sources=vice-news&apiKey=`;
 const politicoNews = `top-headlines?sources=financial-times&apiKey=`;
 
 
-
 const ApiCall = {
   // Request News Source
   getNews: function(newsId) {
@@ -34,44 +33,14 @@ const ApiCall = {
             pubDate: `${calendar} (${fromNow})`,
             descr: article.description,
             url: article.url,
-            image: article.urlToImage
+            image: article.urlToImage,
+            id: articlesArray.indexOf(article),
           }
         }); // end of map()
       }
     }); // end of 2nd then()
   } // end of getNews method
 } // end of ApiCall object
-
-
-  // engadget.addEventListener('click', function() {
-  //   main.innerHTML = ' ';
-  //   getNews(engadgetUrl).then(articlesArray => renderNews(articlesArray)).then(articles => sendTweets(articles));
-  // }, false);
-  //
-  // recode.addEventListener('click', function() {
-  //   main.innerHTML = ' ';
-  //   getNews(recodeUrl).then(articlesArray => renderNews(articlesArray)).then(articles => sendTweets(articles));
-  // }, false);
-  //
-  // nextWeb.addEventListener('click', function() {
-  //   main.innerHTML = ' ';
-  //   getNews(nextWebUrl).then(articlesArray => renderNews(articlesArray)).then(articles => sendTweets(articles));
-  // }, false);
-  //
-  // washPost.addEventListener('click', function() {
-  //   main.innerHTML = ' ';
-  //   getNews(washPostUrl).then(articlesArray => renderNews(articlesArray)).then(articles => sendTweets(articles));
-  // }, false);
-  //
-  // viceNews.addEventListener('click', function() {
-  //   main.innerHTML = ' ';
-  //   getNews(viceNewsUrl).then(articlesArray => renderNews(articlesArray)).then(articles => sendTweets(articles));
-  // }, false);
-  //
-  // politicoNews.addEventListener('click', function() {
-  //   main.innerHTML = ' ';
-  //   getNews(politicoNewsUrl).then(articlesArray => renderNews(articlesArray)).then(articles => sendTweets(articles));
-  // }, false);
 
 
 export default ApiCall

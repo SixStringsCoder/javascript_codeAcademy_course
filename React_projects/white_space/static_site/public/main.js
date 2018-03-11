@@ -53,6 +53,7 @@ function renderNews(articles) {
 // Post Tweet Function
 
 function sendTweets(newsObjects) {
+  console.log(newsObjects);
   let tweetButtons = document.getElementsByClassName('tweet');
   for (let i = 0; i < tweetButtons.length; i++) {
     tweetButtons[i].addEventListener('click', function() {

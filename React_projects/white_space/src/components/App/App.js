@@ -8,11 +8,12 @@ import moment from 'moment';
 
 const spacer = '&nbsp;'
 
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      articles: []
+      articles: [],
     }
     this.getNewsId = this.getNewsId.bind(this);
   }
@@ -37,7 +38,10 @@ class App extends Component {
         <Newsstand getId={this.getNewsId} />
 
         <main>
-          <Newsarticles articles={this.state.articles}/>
+          <Newsarticles
+            articles={this.state.articles}
+            />
+
         </main>
       </div>
     );
