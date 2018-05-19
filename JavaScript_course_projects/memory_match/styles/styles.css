@@ -1,0 +1,86 @@
+body {
+  font-size: 16px;
+  width: 100vh;
+  height: 100vh;
+}
+
+header, footer {
+  width: 100vw;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ccc;
+}
+
+#heading {
+  font-size: 3rem;
+  font-family: 'Roboto';
+}
+
+main {
+  margin: 3% 0;
+  width: 100vw;
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#gameboard {
+  width: 80%;
+  min-height: auto;
+  padding: 3% 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #ddd;
+}
+
+.square {
+  border: 1px solid red;
+  margin: 5px;
+  width: 20%;
+  height: 200px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+p {
+  font-family: helvetica, sans-serif;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+/*   opacity: 0;
+  transition: opacity .3s;
+  padding: 20px; */
+}
+
+p:hover {
+/*   opacity: 1; */
+}
+
+
+/* Start Button */
+.btn {
+  margin: 20px;
+}
+
+button {
+  padding: 10px 60px;
+  font-size: 1.5rem;
+  background-color: yellow;
+  border: 2px solid black;
+  border-radius: 25px;
+  transition: all .2s;
+  outline: none;
+}
+
+button:active {
+  background-color: blue;
+  color: #fff;
+}

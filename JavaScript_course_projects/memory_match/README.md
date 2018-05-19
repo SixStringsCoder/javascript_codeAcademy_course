@@ -29,4 +29,14 @@ Make a _Memory Match_ game where all card pairs must be matched to win the game
 
 
   #### UX Notes
-  
+- CSS Grid to make whole page responsive layout
+- 
+
+  #### Workflow as it happened:
+
+  - Start Read Me and Proposal
+  - Make sample array of vocabulary words
+  - Make function to load array words onto DOM in a grid of squares
+  - Make initial CSS Flexbox to get Memory Match Grid centered
+  - Add Fisher-Yates function to shuffle array words
+  - Add Button to trigger Fisher-Yates Shuffle
