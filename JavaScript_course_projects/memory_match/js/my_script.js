@@ -28,4 +28,33 @@ const makeGameBoard = (someList) => {
     content.map((word, index) => {
       $('#gameboard').append(`<div class="square" data-match=${word}><p>${word}</p></div>`);
     });
+
+    // start timer
+    timeHandler();
+}
+
+
+// Timer
+let centiseconds = 0;
+let seconds = 0;
+let min = 0;
+
+function timeHandler() {
+
+  const timer = setInterval(function(){ myTimer() }, 100);
+
+}
+
+const myTimer = () => {
+	let increment = centiseconds++;
+    if (centiseconds > 9 && seconds >= 59) {
+      min += 1;
+      seconds = 0;
+      centiseconds = 0;
+    }
+	  if (centiseconds > 9) {
+      seconds += 1;
+      centiseconds = 0;
+    }
+    return $('#time').html(`<span>${min}:${seconds}:${centiseconds}</span>`)
 }
