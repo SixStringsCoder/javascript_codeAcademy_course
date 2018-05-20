@@ -26,7 +26,7 @@ const makeGameBoard = (someList) => {
     $('#gameboard').empty();
     // Populate game baord
     content.map((word, index) => {
-      $('#gameboard').append(`<div class="square" data-match=${word}><p>${word}</p></div>`);
+      $('#gameboard').append(`<div class="square"><p class=${word}>${word}</p></div>`);
     });
 
     // start timer
@@ -34,7 +34,7 @@ const makeGameBoard = (someList) => {
 }
 
 
-// Timer
+// TIMER
 let centiseconds = 0;
 let seconds = 0;
 let min = 0;
@@ -58,3 +58,36 @@ const myTimer = () => {
     }
     return $('#time').html(`<span>${min}:${seconds}:${centiseconds}</span>`)
 }
+
+
+
+// SCORE and STRIKES
+let score = 0;
+let strikes = 0;
+
+const changeScore = () => {
+  score += 10;
+  console.log(`Your score is ${score}`);
+  $('#score').html(score);
+}
+
+const changeStrikes = () => {
+  strikes += 1;
+  console.log(`${strikes} strikes against you!`)
+  $('#strikes').html(strikes);
+}
+
+
+$("#gameboard").on('click', 'div.square > p', function(event) {
+
+  let firstPick = $(event.target).attr('class');
+  console.log(firstPick);
+  // $secondPick = $(event.target).attr('class');
+  // console.log($secondPick);
+
+  if (firstPick === "guava") {
+    changeScore();
+  } else {
+    changeStrikes();
+  }
+});

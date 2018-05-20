@@ -67,9 +67,34 @@ p:hover {
 /*=======================
       Control Panel
 =========================*/
+
+#time-strikes-score {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 40px 0;
+}
+
 .ctrl-headers {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-family: 'Alegreya', serif;
+  color: red;
+  margin-bottom: 5px;
+}
+
+#score, #strikes, #time {
+  font-size: 2rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.ctrl-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  padding: 20px 30px;
+  border-radius: 25px;
 }
 
 
@@ -102,6 +127,5 @@ button:active {
 }
 
 #time{
-  font-size: 1.8rem;
   letter-spacing: 2px;
 }
