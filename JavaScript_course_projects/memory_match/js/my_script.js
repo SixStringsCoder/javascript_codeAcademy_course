@@ -29,7 +29,7 @@ const makeGameBoard = (someList) => {
       $('#gameboard').append(`<div class="square"><p class=${word}>${word}</p></div>`);
     });
 
-    // start timer
+    // Start timer
     timeHandler();
 }
 
@@ -64,30 +64,39 @@ const myTimer = () => {
 // SCORE and STRIKES
 let score = 0;
 let strikes = 0;
+let firstPick;
+let secondPick;
 
 const changeScore = () => {
   score += 10;
   console.log(`Your score is ${score}`);
   $('#score').html(score);
-}
+};
 
 const changeStrikes = () => {
   strikes += 1;
   console.log(`${strikes} strikes against you!`)
   $('#strikes').html(strikes);
-}
+};
+
+const handleFirstPick = (event) => {
+  firstPick = $(event.target).attr('class');
+  console.log("first pick--->" + firstPick);
+};
+
+const handleSecondPick = (event) => {
+  secondPick = $(event.target).attr('class');
+  console.log("second pick--->" + secondPick);
+};
+
+$("#gameboard").on('click', 'div.square > p', handleFirstPick);
+$("#gameboard").on('click', 'div.square > p', handleSecondPick);
 
 
-$("#gameboard").on('click', 'div.square > p', function(event) {
 
-  let firstPick = $(event.target).attr('class');
-  console.log(firstPick);
-  // $secondPick = $(event.target).attr('class');
-  // console.log($secondPick);
 
-  if (firstPick === "guava") {
-    changeScore();
-  } else {
-    changeStrikes();
-  }
-});
+  // if (firstPick === "guava") {
+  //   changeScore();
+  // } else {
+  //   changeStrikes();
+  // }

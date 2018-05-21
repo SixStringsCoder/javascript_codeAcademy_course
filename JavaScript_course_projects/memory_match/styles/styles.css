@@ -7,20 +7,31 @@ body {
 header, footer {
   padding: 40px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #ccc;
+  background-color: rgba(255, 125, 0, 1);
+}
+
+footer {
+  font-family: 'Roboto', sans-serif;
 }
 
 #heading {
-  font-size: 3rem;
-  font-family: 'Roboto';
+  font-size: 4rem;
+  font-family: 'Delius Unicase', cursive;
+  margin: 0 0 20px 0;
+  text-shadow: 1px 1px 1px #FFF;
+}
+
+#sub-heading {
+  font-size: 1.5rem;
+  font-family: 'Delius Unicase', cursive;
 }
 
 main {
   margin: 3% 0;
   width: 100vw;
-  /* height: 100vh; */
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -40,7 +51,7 @@ main {
 }
 
 .square {
-  border: 1px solid red;
+  border: 1px solid #FF7D00;
   margin: 5px;
   width: 20%;
   height: 200px;
@@ -51,7 +62,7 @@ main {
 }
 
 p {
-  font-family: 'roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 1.5rem;
   text-transform: uppercase;
 /*   opacity: 0;
@@ -67,24 +78,28 @@ p:hover {
 /*=======================
       Control Panel
 =========================*/
-
 #time-strikes-score {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 80%;
   margin: 40px 0;
 }
 
 .ctrl-headers {
   font-size: 2.5rem;
-  font-family: 'Alegreya', serif;
-  color: red;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: rgba(179, 30, 201, 1);
   margin-bottom: 5px;
 }
 
 #score, #strikes, #time {
   font-size: 2rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Delius Unicase', cursive;
+}
+
+#scorehead {
+  color: rgba(255, 125, 0, 1);
 }
 
 .ctrl-container {
@@ -93,7 +108,7 @@ p:hover {
   align-items: center;
   justify-content: center;
   border: 1px solid black;
-  padding: 20px 30px;
+  padding: 2% 5%;
   border-radius: 25px;
 }
 
@@ -101,21 +116,29 @@ p:hover {
 /* Start Button */
 .btn {
   margin: 20px;
+
 }
 
 button {
   padding: 10px 60px;
   font-size: 1.5rem;
-  background-color: yellow;
-  border: 2px solid black;
+  font-family: 'Delius Unicase', cursive;
+  background-color: rgba(179, 30, 201, 1);
+  color: #fff;
+  border: 2px solid rgba(0, 0, 0, .5);
   border-radius: 25px;
   transition: all .2s;
   outline: none;
 }
 
+button:hover {
+    background-color: rgba(179, 30, 201, .9);
+}
+
 button:active {
-  background-color: blue;
-  color: #fff;
+  background-color: rgba(180, 255, 54, 1);
+  color: #000;
+  border: 2px solid black;
 }
 
 
@@ -126,6 +149,7 @@ button:active {
   align-items: center;
 }
 
-#time{
+#time span {
+  width: 100px;
   letter-spacing: 2px;
 }
