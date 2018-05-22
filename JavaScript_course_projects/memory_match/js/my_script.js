@@ -26,7 +26,7 @@ const makeGameBoard = (someList) => {
     $('#gameboard').empty();
     // Populate game baord
     content.map((word, index) => {
-      $('#gameboard').append(`<div class="square"><p class=${word}>${word}</p></div>`);
+      $('#gameboard').append(`<div class="square"><p class="${word}">${word}</p></div>`);
     });
 
     // Start timer
@@ -40,9 +40,7 @@ let seconds = 0;
 let min = 0;
 
 function timeHandler() {
-
   const timer = setInterval(function(){ myTimer() }, 100);
-
 }
 
 const myTimer = () => {
@@ -64,8 +62,7 @@ const myTimer = () => {
 // SCORE and STRIKES
 let score = 0;
 let strikes = 0;
-let firstPick;
-let secondPick;
+let cardPicks = [];
 
 const changeScore = () => {
   score += 10;
@@ -79,24 +76,29 @@ const changeStrikes = () => {
   $('#strikes').html(strikes);
 };
 
-const handleFirstPick = (event) => {
-  firstPick = $(event.target).attr('class');
-  console.log("first pick--->" + firstPick);
+// Event handler to catalog card picks
+const handlePicks = (event) => {
+  // $(event.target).toggleClass('visible');
+  let pick = $(event.target).attr('class');
+
+  cardPicks.push(pick)
+console.log(cardPicks);
+  if (cardPicks.length === 2) {
+    decideMatch(cardPicks);
+  }
 };
 
-const handleSecondPick = (event) => {
-  secondPick = $(event.target).attr('class');
-  console.log("second pick--->" + secondPick);
-};
+const emptyCardPicks = arr => cardPicks.splice(0, cardPicks.length)
 
-$("#gameboard").on('click', 'div.square > p', handleFirstPick);
-$("#gameboard").on('click', 'div.square > p', handleSecondPick);
+const decideMatch = (cardPicks) => {
+    if (cardPicks[0] === cardPicks[1]) {
+    changeScore();
+    emptyCardPicks()
+  } else {
+    changeStrikes();
+    emptyCardPicks();
+  }
+}
 
-
-
-
-  // if (firstPick === "guava") {
-  //   changeScore();
-  // } else {
-  //   changeStrikes();
-  // }
+// Event listener to pick cards
+$("#gameboard").on('click', 'div.square > p', handlePicks);
