@@ -26,7 +26,11 @@ const makeGameBoard = (someList) => {
     $('#gameboard').empty();
     // Populate game baord
     content.map((word, index) => {
-      $('#gameboard').append(`<div class="square"><p class="${word}">${word}</p></div>`);
+      $('#gameboard').append(
+        `<div class="square">
+          <div class="card-cover"></div>
+          <p class="${word}">${word}</p>
+         </div>`);
     });
 
     // Start timer
@@ -78,27 +82,37 @@ const changeStrikes = () => {
 
 // Event handler to catalog card picks
 const handlePicks = (event) => {
-  // $(event.target).toggleClass('visible');
-  let pick = $(event.target).attr('class');
+  $(event.target).toggleClass('card-show');
+  let pick = $(event.target).siblings("p").attr('class');
+  // Disable the card picked so it can't be clicked twice
+  // $(event.target).prop( "disabled", true );
+  cardPicks.push(pick);
+  console.log(cardPicks);
 
-  cardPicks.push(pick)
-console.log(cardPicks);
   if (cardPicks.length === 2) {
     decideMatch(cardPicks);
   }
 };
+
+// const hideCardsAgain = (cardPicksArr) => {
+//   $(`p.${cardPicksArr[0]}`).prev().removeClass('card-show');
+//   $(`p.${cardPicksArr[1]}`).prev().removeClass('card-show');
+// }
 
 const emptyCardPicks = arr => cardPicks.splice(0, cardPicks.length)
 
 const decideMatch = (cardPicks) => {
     if (cardPicks[0] === cardPicks[1]) {
     changeScore();
-    emptyCardPicks()
+    emptyCardPicks();
   } else {
+    // Re-enable the cards picked so they're back in play again
+    // $('div.card-cover').prop( "disabled", false );
+    // hideCardsAgain(cardPicks);
     changeStrikes();
     emptyCardPicks();
   }
 }
 
 // Event listener to pick cards
-$("#gameboard").on('click', 'div.square > p', handlePicks);
+$("#gameboard").on('click', 'div.card-cover', handlePicks);

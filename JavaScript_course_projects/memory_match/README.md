@@ -44,3 +44,4 @@ Make a _Memory Match_ game where all card pairs must be matched to win the game
   - Add SCORE section and function
   - Add STRIKES section and function
   - Add Click Event logic to compare 'Card' values
+  - Add Card covers and animation to show word underneath
