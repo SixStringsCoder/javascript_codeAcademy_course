@@ -1,11 +1,36 @@
-// Content
+/*============================================
+                  CONTENT
+============================================*/
 const content = ["strawberry", "lemon", "grapes", "durian", "mango", "guava", "apple", "plum", "strawberry", "lemon", "grapes", "durian", "mango", "guava", "apple", "plum"];
+
+
+/*============================================
+          Audio Sound effects
+============================================*/
+
+const gameAudio = {
+    clickCard: new Audio('audio/click.mp3'),
+    rightAnswer: new Audio('audio/right.mp3'),
+    wrongAnswer: new Audio('audio/wrong.mp3'),
+    winningSound: new Audio('audio/winner.mp3'),
+    losingSound: new Audio('audio/loser.mp3')
+}
+
+const playClickCard = () => gameAudio.clickCard.play();
+const playRightAnswer = () => gameAudio.rightAnswer.play();
+const playWrongAnswer = () => gameAudio.wrongAnswer.play();
+const playWinnerSound = () => gameAudio.winningSound.play();
+const playLoserSound = () => gameAudio.losingSound.play();
+
+
+/*============================================
+              Shuffle Content
+============================================*/
 
 // Click Play Button to trigger Shuffle
 $('#play-btn').on('click', () => shuffle(content));
 
-
-// Shuffle Content using Fisher-Yates method
+// Using Fisher-Yates method
 function shuffle(array) {
   var i = 0
     , j = 0
@@ -20,7 +45,9 @@ function shuffle(array) {
   makeGameBoard(array);
 }
 
-// Add Content to DOM
+/*============================================
+            Add Content to DOM
+============================================*/
 const makeGameBoard = (someList) => {
     // Remove all contents from game board
     $('#gameboard').empty();
@@ -32,13 +59,14 @@ const makeGameBoard = (someList) => {
           <p class="${word}">${word}</p>
          </div>`);
     });
-
     // Start timer
     timeHandler();
 }
 
 
-// TIMER
+/*============================================
+                    TIMER
+============================================*/
 let centiseconds = 0;
 let seconds = 0;
 let min = 0;
@@ -62,8 +90,9 @@ const myTimer = () => {
 }
 
 
-
-// SCORE and STRIKES
+/*============================================
+              SCORE and STRIKES
+============================================*/
 let score = 0;
 let strikes = 0;
 let cardPicks = [];
@@ -72,20 +101,18 @@ const changeScore = () => {
   score += 10;
   console.log(`Your score is ${score}`);
   $('#score').html(score);
-  return false;
 };
 
 const changeStrikes = () => {
   strikes += 1;
   console.log(`${strikes} strikes against you!`)
   $('#strikes').html(strikes);
-  return false;
 };
 
 // Event handler to catalog card picks in array 'cardPicks'
 const handlePicks = (event) => {
+  playClickCard(); // audio effect
   $(event.target).addClass('card-show');
-  console.log(event);
   let pick = $(event.target).siblings("p").attr('class');
   // Disable the card picked so it can't be clicked twice
   $(event.target).prop( "disabled", true );
@@ -93,7 +120,7 @@ const handlePicks = (event) => {
   console.log(cardPicks);
 
   if (cardPicks.length === 2) {
-    setTimeout(decideMatch, 1000, cardPicks);
+    setTimeout(decideMatch, 500, cardPicks);
   }
 };
 
@@ -111,15 +138,36 @@ const decideMatch = (cardPicksArr) => {
     if (cardPicksArr[0] === cardPicksArr[1]) {
       makeCardsInactive(cardPicks);
       changeScore();
+      score === 80 ? wonGame() : playRightAnswer(); // audio effect
       emptyCardPicks();
   } else {
     // Re-enable the cards picked so they're back in play again
      $('div.card-cover').prop( "disabled", false );
-      hideCardsAgain(cardPicks);
-      changeStrikes();
-      emptyCardPicks();
+       changeStrikes();
+       strikes === 20 ?  lostGame() : playWrongAnswer(); // audio effect
+       console.log(strikes);
+       hideCardsAgain(cardPicks);
+       emptyCardPicks();
   }
 };
 
 // Event listener to pick cards
 $("#gameboard").on('click', 'div.card-cover', handlePicks);
+
+
+
+/*============================================
+              WINNING and LOSING
+============================================*/
+
+const wonGame = () => {
+  playWinnerSound();
+  // stop clock
+  // show modal window with totals + Play Again button;
+};
+
+const lostGame = () => {
+  playLoserSound();
+  // stop clock;
+  // show modal window with totals and consolatioin message + Play Again button;
+};
