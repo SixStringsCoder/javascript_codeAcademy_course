@@ -72,47 +72,54 @@ const changeScore = () => {
   score += 10;
   console.log(`Your score is ${score}`);
   $('#score').html(score);
+  return false;
 };
 
 const changeStrikes = () => {
   strikes += 1;
   console.log(`${strikes} strikes against you!`)
   $('#strikes').html(strikes);
+  return false;
 };
 
-// Event handler to catalog card picks
+// Event handler to catalog card picks in array 'cardPicks'
 const handlePicks = (event) => {
-  $(event.target).toggleClass('card-show');
+  $(event.target).addClass('card-show');
+  console.log(event);
   let pick = $(event.target).siblings("p").attr('class');
   // Disable the card picked so it can't be clicked twice
-  // $(event.target).prop( "disabled", true );
+  $(event.target).prop( "disabled", true );
   cardPicks.push(pick);
   console.log(cardPicks);
 
   if (cardPicks.length === 2) {
-    decideMatch(cardPicks);
+    setTimeout(decideMatch, 1000, cardPicks);
   }
 };
 
-// const hideCardsAgain = (cardPicksArr) => {
-//   $(`p.${cardPicksArr[0]}`).prev().removeClass('card-show');
-//   $(`p.${cardPicksArr[1]}`).prev().removeClass('card-show');
-// }
+const hideCardsAgain = (cardPicksArr) => {
+  $(`p.${cardPicksArr[0]}, p.${cardPicksArr[1]}`).siblings('div.card-cover').removeClass('card-show');
+};
+
+const makeCardsInactive = (cardPicksArr) => {
+  $(`p.${cardPicksArr[0]}, p.${cardPicksArr[1]}`).siblings('div.card-cover').prop( "disabled", true );
+};
 
 const emptyCardPicks = arr => cardPicks.splice(0, cardPicks.length)
 
-const decideMatch = (cardPicks) => {
-    if (cardPicks[0] === cardPicks[1]) {
-    changeScore();
-    emptyCardPicks();
+const decideMatch = (cardPicksArr) => {
+    if (cardPicksArr[0] === cardPicksArr[1]) {
+      makeCardsInactive(cardPicks);
+      changeScore();
+      emptyCardPicks();
   } else {
     // Re-enable the cards picked so they're back in play again
-    // $('div.card-cover').prop( "disabled", false );
-    // hideCardsAgain(cardPicks);
-    changeStrikes();
-    emptyCardPicks();
+     $('div.card-cover').prop( "disabled", false );
+      hideCardsAgain(cardPicks);
+      changeStrikes();
+      emptyCardPicks();
   }
-}
+};
 
 // Event listener to pick cards
 $("#gameboard").on('click', 'div.card-cover', handlePicks);
