@@ -28,7 +28,10 @@ const playLoserSound = () => gameAudio.losingSound.play();
 ============================================*/
 
 // Click Play Button to trigger Shuffle
-$('#play-btn').on('click', () => shuffle(content));
+$('#play-btn').on('click', () => {
+  resetGame();
+  shuffle(content);
+});
 
 // Using Fisher-Yates method
 function shuffle(array) {
@@ -61,24 +64,31 @@ const makeGameBoard = (someList) => {
     });
     // Start timer
     timeHandler();
-}
+};
 
 
 /*============================================
                     TIMER
 ============================================*/
+let timer;
 let centiseconds = 0;
 let seconds = 0;
-let min = 0;
+let minutes = 0;
+let timerGoing = true;
 
-function timeHandler() {
-  const timer = setInterval(function(){ myTimer() }, 100);
+const timeHandler = () => {
+  return timerGoing ? (
+    timer = setInterval(function(){ timeCounter() }, 100)
+  ) : (
+    clearInterval(timer)
+  );
 }
 
-const myTimer = () => {
+const timeCounter = () => {
 	let increment = centiseconds++;
+
     if (centiseconds > 9 && seconds >= 59) {
-      min += 1;
+      minutes += 1;
       seconds = 0;
       centiseconds = 0;
     }
@@ -86,9 +96,14 @@ const myTimer = () => {
       seconds += 1;
       centiseconds = 0;
     }
-    return $('#time').html(`<span>${min}:${seconds}:${centiseconds}</span>`)
-}
+    return $('#time').html(`<span>${minutes}:${seconds}:${centiseconds}</span>`)
+};
 
+const stopTimer = () => {
+  timerGoing = false;
+  console.log(timerGoing);
+  timeHandler();
+};
 
 /*============================================
               SCORE and STRIKES
@@ -113,6 +128,7 @@ const changeStrikes = () => {
 const handlePicks = (event) => {
   playClickCard(); // audio effect
   $(event.target).addClass('card-show');
+  console.log(event);
   let pick = $(event.target).siblings("p").attr('class');
   // Disable the card picked so it can't be clicked twice
   $(event.target).prop( "disabled", true );
@@ -144,7 +160,7 @@ const decideMatch = (cardPicksArr) => {
     // Re-enable the cards picked so they're back in play again
      $('div.card-cover').prop( "disabled", false );
        changeStrikes();
-       strikes === 20 ?  lostGame() : playWrongAnswer(); // audio effect
+       strikes === 3 ? lostGame() : playWrongAnswer(); // audio effect
        console.log(strikes);
        hideCardsAgain(cardPicks);
        emptyCardPicks();
@@ -155,19 +171,41 @@ const decideMatch = (cardPicksArr) => {
 $("#gameboard").on('click', 'div.card-cover', handlePicks);
 
 
-
 /*============================================
               WINNING and LOSING
 ============================================*/
 
 const wonGame = () => {
   playWinnerSound();
+  // Disable game board
+  // $('#gameboard').prop( "disabled", true );
   // stop clock
+  stopTimer();
   // show modal window with totals + Play Again button;
 };
 
 const lostGame = () => {
   playLoserSound();
+  // Disable game board
+  // $('#gameboard, div.card-cover').prop( "disabled", true );
   // stop clock;
+  stopTimer();
   // show modal window with totals and consolatioin message + Play Again button;
+};
+
+
+/*============================================
+                  RESET GAME
+============================================*/
+const resetGame = () => {
+  score = 0;
+  strikes = 0;
+  centiseconds = 0;
+  seconds = 0;
+  minutes =  0;
+  timerGoing = true;
+
+  $('#time').html(`<span>${minutes}:${seconds}:${centiseconds}</span>`);
+  $('#score').html(score);
+  $('#strikes').html(strikes);
 };
