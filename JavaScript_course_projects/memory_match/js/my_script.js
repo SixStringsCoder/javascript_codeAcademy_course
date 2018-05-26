@@ -28,7 +28,7 @@ const playLoserSound = () => gameAudio.losingSound.play();
 ============================================*/
 
 // Click Play Button to trigger Shuffle
-$('#play-btn').on('click', () => {
+$('.play-btn').on('click', () => {
   resetGame();
   shuffle(content);
 });
@@ -133,7 +133,7 @@ const handlePicks = (event) => {
   cardPicks.push(pick);
 
   if (cardPicks.length === 2) {
-    setTimeout(decideMatch, 500, cardPicks);
+    setTimeout(decideMatch, 650, cardPicks);
   }
 };
 
@@ -157,8 +157,8 @@ const decideMatch = (cardPicksArr) => {
     // Re-enable the cards picked so they're back in play again
      $('div.card-cover').prop( "disabled", false );
        changeStrikes();
-       strikes === 3 ? lostGame() : playWrongAnswer(); // audio effect
        hideCardsAgain(cardPicks);
+       strikes === 3 ? lostGame() : playWrongAnswer(); // audio effect
        emptyCardPicks();
   }
 };
@@ -178,6 +178,7 @@ const wonGame = () => {
   // stop clock
   stopTimer();
   // show modal window with totals + Play Again button;
+  $('.results').addClass('show-results');
 };
 
 const lostGame = () => {
@@ -187,6 +188,7 @@ const lostGame = () => {
   // stop clock;
   stopTimer();
   // show modal window with totals and consolatioin message + Play Again button;
+  $('.results').addClass('show-results');
 };
 
 
@@ -206,4 +208,5 @@ const resetGame = () => {
   $('#time').html(`<span>${minutes}:${seconds}:${centiseconds}</span>`);
   $('#score').html(score);
   $('#strikes').html(strikes);
+  $('.results').removeClass('show-results');
 };
