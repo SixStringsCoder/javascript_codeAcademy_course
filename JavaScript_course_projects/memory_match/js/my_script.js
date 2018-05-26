@@ -178,7 +178,7 @@ $("#gameboard").on('click', 'div.card-cover', handlePicks);
 const wonGame = () => {
   playWinnerSound();
   // Disable game board
-  // $('#gameboard').prop( "disabled", true );
+  $('#gameboard, div.card-cover').prop( "disabled", true );
   // stop clock
   stopTimer();
   // show modal window with totals + Play Again button;
@@ -187,7 +187,7 @@ const wonGame = () => {
 const lostGame = () => {
   playLoserSound();
   // Disable game board
-  // $('#gameboard, div.card-cover').prop( "disabled", true );
+  $('#gameboard, div.card-cover').prop( "disabled", true );
   // stop clock;
   stopTimer();
   // show modal window with totals and consolatioin message + Play Again button;
