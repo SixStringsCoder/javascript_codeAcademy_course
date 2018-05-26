@@ -158,7 +158,7 @@ const decideMatch = (cardPicksArr) => {
      $('div.card-cover').prop( "disabled", false );
        changeStrikes();
        hideCardsAgain(cardPicks);
-       strikes === 3 ? lostGame() : playWrongAnswer(); // audio effect
+       strikes === 10 ? lostGame() : playWrongAnswer(); // audio effect
        emptyCardPicks();
   }
 };
@@ -178,7 +178,7 @@ const wonGame = () => {
   // stop clock
   stopTimer();
   // show modal window with totals + Play Again button;
-  $('.results').addClass('show-results');
+  showResults();
 };
 
 const lostGame = () => {
@@ -188,8 +188,13 @@ const lostGame = () => {
   // stop clock;
   stopTimer();
   // show modal window with totals and consolatioin message + Play Again button;
-  $('.results').addClass('show-results');
 };
+
+const showResults = () => {
+  $('.results').addClass('show-results');
+  $('#win-time').html(`You did it in: <span>${seconds}.${centiseconds} seconds</span>`)
+  $('#first').html(`<li>${minutes}:${seconds}:${centiseconds}</li>`)
+}
 
 
 /*============================================

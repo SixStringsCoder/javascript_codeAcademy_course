@@ -25,14 +25,23 @@
 
       <!-- Results window -->
       <section class="results">
-        <p id="you-won-msg">You won!</p>
+        <h2 id="you-won-msg">You won!</h2>
         <p id="win-time"></p>
+
         <div class="btn">
           <button class="play-btn">Play Again</button>
         </div>
-        <ul class="winners-board">
 
-        </ul>
+        <div id="top-five-container">
+          <h3 id="top-five-heading">Top 5 Best Scores</h3>
+            <ul id="winners-board">
+              <li class="placing">1st Place: <span id="first"></span> </li>
+              <li class="placing">2nd Place: <span id="second"></span></li>
+              <li class="placing">3rd Place: <span id="third"></span></li>
+              <li class="placing">4th Place: <span id="fourth"></span></li>
+              <li class="placing">5th Place: <span id="fifth"></span></li>
+            </ul>
+        </div>
       </section>
 
       <!-- Time-Score-Strikes Panel -->

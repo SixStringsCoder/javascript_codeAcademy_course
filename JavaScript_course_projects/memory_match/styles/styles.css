@@ -190,7 +190,7 @@ button:active {
 .results {
   position: absolute;
   z-index: 1;
-  top: 100px;
+  top: 25%;
   left: -62vw;
   width: 60%;
   height: 60%;
@@ -199,7 +199,7 @@ button:active {
   align-items: center;
   justify-content: space-around;
   padding: 20px 0;
-  background-color: yellow;
+  background-color: #ffd26b;
   border-radius: 25px;
   opacity: 0;
   transition: all .5s;
@@ -208,4 +208,55 @@ button:active {
 .show-results {
   opacity: 1;
   left: 19vw;
+}
+
+#top-five-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 35%;
+  border: 1px solid black;
+  padding: 10px;
+  font-family: 'Roboto', sans-serif;
+}
+
+#you-won-msg {
+  font-size: 2.2rem;
+  font-weight: bold;
+  font-family: 'Delius Unicase', cursive;
+}
+
+#top-five-heading {
+  font-size: 1.5rem;
+  color: #ff6402;
+  font-weight: bold;
+  font-family: 'Delius Unicase', cursive;
+}
+
+#winners-board {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 63%;
+  padding: 10px 50px 10px 5px;
+}
+
+#win-time span {
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-family: 'Delius Unicase', cursive;
+  color: #ff6402;
+}
+
+.placing {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3rem;
+  width: 100%;
+  line-height: 1.5;
+  font-weight: bold;
+}
+
+.placing span {
+  color: #b31fc9;
 }
