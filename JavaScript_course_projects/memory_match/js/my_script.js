@@ -48,6 +48,7 @@ function shuffle(array) {
   makeGameBoard(array);
 }
 
+
 /*============================================
             Add Content to DOM
 ============================================*/
@@ -71,7 +72,7 @@ const makeGameBoard = (someList) => {
                     TIMER
 ============================================*/
 let timer;
-let centiseconds = 0;
+let centiseconds = 00;
 let seconds = 0;
 let minutes = 0;
 let timerGoing = true;
@@ -114,26 +115,22 @@ let cardPicks = [];
 
 const changeScore = () => {
   score += 10;
-  console.log(`Your score is ${score}`);
-  $('#score').html(score);
+  return $('#score').html(score);
 };
 
 const changeStrikes = () => {
   strikes += 1;
-  console.log(`${strikes} strikes against you!`)
-  $('#strikes').html(strikes);
+  return $('#strikes').html(strikes);
 };
 
 // Event handler to catalog card picks in array 'cardPicks'
 const handlePicks = (event) => {
   playClickCard(); // audio effect
   $(event.target).addClass('card-show');
-  console.log(event);
   let pick = $(event.target).siblings("p").attr('class');
   // Disable the card picked so it can't be clicked twice
   $(event.target).prop( "disabled", true );
   cardPicks.push(pick);
-  console.log(cardPicks);
 
   if (cardPicks.length === 2) {
     setTimeout(decideMatch, 500, cardPicks);
@@ -161,7 +158,6 @@ const decideMatch = (cardPicksArr) => {
      $('div.card-cover').prop( "disabled", false );
        changeStrikes();
        strikes === 3 ? lostGame() : playWrongAnswer(); // audio effect
-       console.log(strikes);
        hideCardsAgain(cardPicks);
        emptyCardPicks();
   }
@@ -204,7 +200,9 @@ const resetGame = () => {
   seconds = 0;
   minutes =  0;
   timerGoing = true;
-
+  // Clear Interval so when button is clicked, the time doesn't count twice as fast
+  clearInterval(timer);
+  // Reset DOM so time, score and strikes are at 0
   $('#time').html(`<span>${minutes}:${seconds}:${centiseconds}</span>`);
   $('#score').html(score);
   $('#strikes').html(strikes);
