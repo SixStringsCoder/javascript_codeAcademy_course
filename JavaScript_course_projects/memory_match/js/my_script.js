@@ -1,8 +1,24 @@
 /*============================================
                   CONTENT
 ============================================*/
-const content = ["strawberry", "lemon", "grapes", "durian", "mango", "guava", "apple", "plum", "strawberry", "lemon", "grapes", "durian", "mango", "guava", "apple", "plum"];
-
+const content = [
+  ["strawberry", "match1"],
+  ["strawberry", "match1"],
+  ["lemon", "match2"],
+  ["lemon", "match2"],
+  ["grapes", "match3"],
+  ["grapes", "match3"],
+  ["durian", "match4"],
+  ["durian", "match4"],
+  ["mango", "match5"],
+  ["mango", "match5"],
+  ["guava","match6" ],
+  ["guava","match6" ],
+  ["apple", "match7"],
+  ["apple", "match7"],
+  ["plum", "match8"],
+  ["plum", "match8"],
+];
 
 /*============================================
           Audio Sound effects
@@ -60,7 +76,7 @@ const makeGameBoard = (someList) => {
       $('#gameboard').append(
         `<div class="square">
           <div class="card-cover"></div>
-          <p class="${word}">${word}</p>
+          <p class="${word[1]}">${word[0]}</p>
          </div>`);
     });
     // Start timer
