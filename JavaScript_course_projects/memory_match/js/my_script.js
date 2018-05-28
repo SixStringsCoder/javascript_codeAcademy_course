@@ -20,21 +20,31 @@ const content = [
   ["plum", "match8"],
 ];
 
+let timer;
+let centiseconds = 00;
+let seconds = 0;
+let minutes = 0;
+let timerGoing = true;
+
+let score = 0;
+let strikes = 0;
+let cardPicks = [];
+
 /*============================================
           Audio Sound effects
 ============================================*/
-
 const gameAudio = {
     clickCard: new Audio('audio/click.mp3'),
     rightAnswer: new Audio('audio/right.mp3'),
     wrongAnswer: new Audio('audio/wrong.mp3'),
+    aboutToLose: new Audio('audio/last_wrong.mp3'),
     winningSound: new Audio('audio/winner.mp3'),
     losingSound: new Audio('audio/loser.mp3')
-}
+};
 
 const playClickCard = () => gameAudio.clickCard.play();
 const playRightAnswer = () => gameAudio.rightAnswer.play();
-const playWrongAnswer = () => gameAudio.wrongAnswer.play();
+const playWrongAnswer = () => strikes != 9 ? gameAudio.wrongAnswer.play() : gameAudio.aboutToLose.play();
 const playWinnerSound = () => gameAudio.winningSound.play();
 const playLoserSound = () => gameAudio.losingSound.play();
 
@@ -42,7 +52,6 @@ const playLoserSound = () => gameAudio.losingSound.play();
 /*============================================
               Shuffle Content
 ============================================*/
-
 // Click Play Button to trigger Shuffle
 $('.play-btn').on('click', () => {
   resetGame();
@@ -87,19 +96,13 @@ const makeGameBoard = (someList) => {
 /*============================================
                     TIMER
 ============================================*/
-let timer;
-let centiseconds = 00;
-let seconds = 0;
-let minutes = 0;
-let timerGoing = true;
-
 const timeHandler = () => {
   return timerGoing ? (
     timer = setInterval(function(){ timeCounter() }, 100)
   ) : (
     clearInterval(timer)
   );
-}
+};
 
 const timeCounter = () => {
 	let increment = centiseconds++;
@@ -122,23 +125,10 @@ const stopTimer = () => {
   timeHandler();
 };
 
+
 /*============================================
               SCORE and STRIKES
 ============================================*/
-let score = 0;
-let strikes = 0;
-let cardPicks = [];
-
-const changeScore = () => {
-  score += 10;
-  return $('#score').html(score);
-};
-
-const changeStrikes = () => {
-  strikes += 1;
-  return $('#strikes').html(strikes);
-};
-
 // Event handler to catalog card picks in array 'cardPicks'
 const handlePicks = (event) => {
   playClickCard(); // audio effect
@@ -151,6 +141,16 @@ const handlePicks = (event) => {
   if (cardPicks.length === 2) {
     setTimeout(decideMatch, 650, cardPicks);
   }
+};
+
+const changeScore = () => {
+  score += 10;
+  return $('#score').html(score);
+};
+
+const changeStrikes = () => {
+  strikes += 1;
+  return $('#strikes').html(strikes);
 };
 
 const hideCardsAgain = (cardPicksArr) => {
@@ -186,7 +186,6 @@ $("#gameboard").on('click', 'div.card-cover', handlePicks);
 /*============================================
               WINNING and LOSING
 ============================================*/
-
 const wonGame = () => {
   playWinnerSound();
   // Disable game board
@@ -210,7 +209,7 @@ const showResults = () => {
   $('.results').addClass('show-results');
   $('#win-time').html(`You did it in: <span>${seconds}.${centiseconds} seconds</span>`)
   $('#first').html(`<li>${minutes}:${seconds}:${centiseconds}</li>`)
-}
+};
 
 
 /*============================================
