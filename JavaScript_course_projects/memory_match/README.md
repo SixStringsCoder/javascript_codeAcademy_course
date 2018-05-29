@@ -48,4 +48,7 @@ Make a _Memory Match_ game where all card pairs must be matched to win the game
   - Add sounds for action
   - Add window to show end results for winners
   - Refactor 'content' from array of strings to array of subarrays with strings allowing for more flexibility of content (word vs. word, word vs. picture, word vs. html symbol, word vs. audio)
+  - Add Top Score area to modal and functionality with localStorage to store a score
   - Add loser X symbol after losing
+  - Make PLAY button turn to a RESET button during play
+  -

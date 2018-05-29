@@ -145,7 +145,9 @@ p {
 /* Start Button */
 .btn {
   margin: 20px;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 button {
@@ -169,6 +171,11 @@ button:active {
   color: #000;
   border: 2px solid black;
 }
+
+.hide {
+  display: none;
+}
+
 
 
 /* Timer */

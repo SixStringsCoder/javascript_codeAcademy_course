@@ -51,13 +51,22 @@ const playLoserSound = () => gameAudio.losingSound.play();
 
 
 /*============================================
-              Shuffle Content
+      Play / Reset to Shuffle Content
 ============================================*/
-// Click Play Button to trigger Shuffle
-$('.play-btn').on('click', () => {
+// Click Play Button to reset values and trigger Shuffle
+$('.play-btn').on('click', (event) => {
+  $('.play-btn').addClass('hide'); // hides Play button
+  $('.reset-btn').removeClass('hide'); // shows Reset button
   resetGame();
-  shuffle(content);
+  shuffle(content); // shuffles content, makes gameboard and starts timer
 });
+
+$('.reset-btn').on('click', (event) => {
+  $('.reset-btn').addClass('hide');
+  $('.play-btn').removeClass('hide');
+  resetGame(); // resets gameboard values BUT doesn't start Timer
+});
+
 
 // Using Fisher-Yates method
 function shuffle(array) {
