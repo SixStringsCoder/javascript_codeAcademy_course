@@ -250,7 +250,7 @@ button:active {
 
 .placing {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   font-size: 1.3rem;
   width: 100%;
   line-height: 1.5;
@@ -259,4 +259,5 @@ button:active {
 
 .placing span {
   color: #b31fc9;
+  margin: 0 8px;
 }
