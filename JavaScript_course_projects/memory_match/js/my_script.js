@@ -29,6 +29,7 @@ let timerGoing = true;
 let score = 0;
 let strikes = 0;
 let cardPicks = [];
+let topFiveWinners = [];
 
 /*============================================
           Audio Sound effects
@@ -121,7 +122,6 @@ const timeCounter = () => {
 
 const stopTimer = () => {
   timerGoing = false;
-  console.log(timerGoing);
   timeHandler();
 };
 
@@ -193,6 +193,7 @@ const wonGame = () => {
   // stop clock
   stopTimer();
   // show modal window with totals + Play Again button;
+  sortScores(seconds);
   showResults();
 };
 
@@ -207,8 +208,32 @@ const lostGame = () => {
 
 const showResults = () => {
   $('.results').addClass('show-results');
-  $('#win-time').html(`You did it in: <span>${seconds}.${centiseconds} seconds</span>`)
-  $('#first').html(`<li>${minutes}:${seconds}:${centiseconds}</li>`)
+  $('#win-time').html(`You did it in: <span>${seconds}.${centiseconds} seconds</span>`);
+};
+
+
+/*============================================
+              TOP 5 WINNERS BOARD
+============================================*/
+const sortScores = (score) => {
+  console.log(`This is the new score: ${score}`)
+  // let topscore = topFiveWinners.sort((a, b) => b - a); // descending order
+  let bestScore = parseInt(localStorage.getItem("bestScore"))
+  console.log("This is the old best score:" + bestScore)
+
+  if (score < bestScore) {
+    console.log(score + 'vs' + bestScore);
+    // Store new score
+    localStorage.setItem("bestScore", score);
+    // Display new best score
+    $('#first').html(`<span>${score} seconds</span>`);
+  } else {
+    $('#first').html(`<span>${bestScore} seconds</span>`);
+    console.log("Your score was slower than best score");
+    // Display 2nd best score
+    // $('#second').html(`<span>${seconds}.${centiseconds} seconds</span>`);
+  }
+
 };
 
 
