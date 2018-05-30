@@ -206,8 +206,15 @@ const wonGame = () => {
   showResults();
 };
 
+const showResults = () => {
+  $('.results').addClass('show-results');
+  $('#win-time').html(`You did it in: <span>${seconds}.${centiseconds} seconds</span>`);
+};
+
 const lostGame = () => {
+  let xCounter = 0;
   playLoserSound();
+  showLoserX();
   // Disable game board
   $('#gameboard, div.card-cover').prop( "disabled", true );
   // stop clock;
@@ -215,10 +222,10 @@ const lostGame = () => {
   // show modal window with totals and consolatioin message + Play Again button;
 };
 
-const showResults = () => {
-  $('.results').addClass('show-results');
-  $('#win-time').html(`You did it in: <span>${seconds}.${centiseconds} seconds</span>`);
+const showLoserX = () => {
+  $('#loser-x').css('display', 'flex').fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500);
 };
+
 
 
 /*============================================

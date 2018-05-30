@@ -212,6 +212,20 @@ button:active {
   transition: all .5s;
 }
 
+#loser-x {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: 5%;
+  text-shadow: 1px 1px 2px black;
+}
+
+#loser-symbol {
+  font-size: 50rem;
+  color: rgb(198, 64, 56);
+}
+
+
 .show-results {
   opacity: 1;
   left: 19vw;
