@@ -51,9 +51,11 @@ Make a _Memory Match_ game where all card pairs must be matched to win the game
   - Add Top Score area to modal window; add functionality using localStorage to store a score
   - Add loser X symbol after losing
   - Make PLAY button turn to a RESET button during play
+  - Add Selector to pick different content arrays (i.e. fruit, animals, Spanish, etc.)
+  - Change Content Array into and Content Object with keys representing topic arrays - use words only
+  - Add SVG images to Content Array, use <img> tags and paths as the string values
 
 _To-Do-List_
-  - Add Selector to pick different content arrays (i.e. fruit, animals, Spanish, etc.),
   - Make responsive design with CSS Grid
   - Add shake animation for wrong answer
   - Add rotating animation for card selection

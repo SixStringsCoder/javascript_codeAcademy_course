@@ -55,6 +55,24 @@ const content = {
     ["manzana", "match7"],
     ["table", "match8"],
     ["mesa", "match8"]
+  ],
+  fruit_pics: [
+    ["<img src='./images/strawberry.svg' />", "match1"],
+    ["<img src='./images/strawberry.svg' />", "match1"],
+    ["<img src='./images/lemon.svg' />", "match2"],
+    ["<img src='./images/lemon.svg' />", "match2"],
+    ["<img src='./images/grapes.svg' />", "match3"],
+    ["<img src='./images/grapes.svg' />", "match3"],
+    ["<img src='./images/cherries.svg' />", "match4"],
+    ["<img src='./images/cherries.svg' />", "match4"],
+    ["<img src='./images/pear.svg' />", "match5"],
+    ["<img src='./images/pear.svg' />", "match5"],
+    ["<img src='./images/peach.svg' />","match6" ],
+    ["<img src='./images/peach.svg' />","match6" ],
+    ["<img src='./images/apple.svg' />", "match7"],
+    ["<img src='./images/apple.svg' />", "match7"],
+    ["<img src='./images/orange.svg' />", "match8"],
+    ["<img src='./images/orange.svg' />", "match8"]
   ]
 };
 
@@ -99,7 +117,6 @@ $('#menu').on("change", function(event) {
 });
 
 
-
 /*============================================
       Play / Reset to Shuffle Content
 ============================================*/
@@ -117,6 +134,11 @@ $('.reset-btn').on('click', (event) => {
   resetGame(); // resets gameboard values BUT doesn't start Timer
 });
 
+// Click Play Again Button on Modal Window
+$('.play-again-btn').on('click', (event) => {
+  resetGame();
+  shuffle(selectFromMenu);
+});
 
 // Using Fisher-Yates method
 function shuffle(array) {
@@ -145,13 +167,12 @@ const makeGameBoard = (someList) => {
       $('#gameboard').append(
         `<div class="square">
           <div class="card-cover"></div>
-          <p class="${word[1]}">${word[0]}</p>
+          <div class="${word[1]}"><p>${word[0]}</p></div>
          </div>`);
     });
     // Start timer
     timeHandler();
 };
-
 
 /*============================================
                     TIMER
@@ -192,7 +213,7 @@ const stopTimer = () => {
 const handlePicks = (event) => {
   playClickCard(); // audio effect
   $(event.target).addClass('card-show');
-  let pick = $(event.target).siblings("p").attr('class');
+  let pick = $(event.target).siblings("div").attr('class');
   // Disable the card picked so it can't be clicked twice
   $(event.target).prop( "disabled", true );
   cardPicks.push(pick);
@@ -213,11 +234,11 @@ const changeStrikes = () => {
 };
 
 const hideCardsAgain = (cardPicksArr) => {
-  $(`p.${cardPicksArr[0]}, p.${cardPicksArr[1]}`).siblings('div.card-cover').removeClass('card-show');
+  $(`div.${cardPicksArr[0]}, div.${cardPicksArr[1]}`).siblings('div.card-cover').removeClass('card-show');
 };
 
 const makeCardsInactive = (cardPicksArr) => {
-  $(`p.${cardPicksArr[0]}, p.${cardPicksArr[1]}`).siblings('div.card-cover').prop( "disabled", true );
+  $(`div.${cardPicksArr[0]}, div.${cardPicksArr[1]}`).siblings('div.card-cover').prop( "disabled", true );
 };
 
 const emptyCardPicks = arr => cardPicks.splice(0, cardPicks.length)
@@ -259,6 +280,7 @@ const wonGame = () => {
 const showResults = () => {
   $('.results').addClass('show-results');
   $('#win-time').html(`You did it in: <span>${seconds}.${centiseconds} seconds</span>`);
+  $('main').on('click', () => $('.results').removeClass('show-results'));
 };
 
 const lostGame = () => {

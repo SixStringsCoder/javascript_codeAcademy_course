@@ -92,8 +92,8 @@ p {
   font-size: 1.5rem;
 }
 
-.pic {
-  width: 100px;
+img {
+  width: 100%;
 }
 
 /* .invisible {
