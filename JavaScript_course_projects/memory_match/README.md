@@ -51,4 +51,19 @@ Make a _Memory Match_ game where all card pairs must be matched to win the game
   - Add Top Score area to modal window; add functionality using localStorage to store a score
   - Add loser X symbol after losing
   - Make PLAY button turn to a RESET button during play
-  -
+
+_To-Do-List_
+  - Add Selector to pick different content arrays (i.e. fruit, animals, Spanish, etc.),
+  - Make responsive design with CSS Grid
+  - Add shake animation for wrong answer
+  - Add rotating animation for card selection
+
+
+#### Fixes
+  - Hit Play - Get some matching cards - Hit Reset - Matched cards still show - Should be hidden again.
+
+
+#### Future features
+ - word vs pic
+ - word vs. sound
+ - pic vs. sound

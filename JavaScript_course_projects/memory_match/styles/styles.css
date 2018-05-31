@@ -92,7 +92,11 @@ p {
   font-size: 1.5rem;
 }
 
-.invisible {
+.pic {
+  width: 100px;
+}
+
+/* .invisible {
     opacity: 0;
     transition: opacity .3s;
     padding: 20px;
@@ -100,7 +104,7 @@ p {
 
 .visible {
     opacity: 1;
-}
+} */
 
 
 
@@ -141,10 +145,22 @@ p {
   border-radius: 25px;
 }
 
+#menu-container {
+  margin: 15px;
+}
+#menu {
+  width: 165px;
+  height: 30px;
+  font-size: 1.3rem;
+  background: #fa7c02;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  outline-color: black;
+}
 
 /* Start Button */
 .btn {
-  margin: 20px;
+  margin: 10px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;

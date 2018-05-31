@@ -1,25 +1,64 @@
 /*============================================
                   CONTENT
 ============================================*/
-const content = [
-  ["strawberry", "match1"],
-  ["strawberry", "match1"],
-  ["lemon", "match2"],
-  ["lemon", "match2"],
-  ["grapes", "match3"],
-  ["grapes", "match3"],
-  ["durian", "match4"],
-  ["durian", "match4"],
-  ["mango", "match5"],
-  ["mango", "match5"],
-  ["guava","match6" ],
-  ["guava","match6" ],
-  ["apple", "match7"],
-  ["apple", "match7"],
-  ["plum", "match8"],
-  ["plum", "match8"],
-];
+const content = {
+  fruit: [
+    ["strawberry", "match1"],
+    ["strawberry", "match1"],
+    ["lemon", "match2"],
+    ["lemon", "match2"],
+    ["grapes", "match3"],
+    ["grapes", "match3"],
+    ["cherries", "match4"],
+    ["cherries", "match4"],
+    ["pear", "match5"],
+    ["pear", "match5"],
+    ["peach","match6" ],
+    ["peach","match6" ],
+    ["apple", "match7"],
+    ["apple", "match7"],
+    ["orange", "match8"],
+    ["orange", "match8"]
+  ],
+  animals: [
+    ["bird", "match1"],
+    ["bird", "match1"],
+    ["elephant", "match2"],
+    ["elephant", "match2"],
+    ["tiger", "match3"],
+    ["tiger", "match3"],
+    ["lion", "match4"],
+    ["lion", "match4"],
+    ["monkey", "match5"],
+    ["monkey", "match5"],
+    ["turkey","match6" ],
+    ["turkey","match6" ],
+    ["eagle", "match7"],
+    ["eagle", "match7"],
+    ["zebra", "match8"],
+    ["zebra", "match8"]
+  ],
+  spanish: [
+    ["hello", "match1"],
+    ["hola", "match1"],
+    ["goodbye", "match2"],
+    ["adios", "match2"],
+    ["grapes", "match3"],
+    ["uvas", "match3"],
+    ["horse", "match4"],
+    ["caballo", "match4"],
+    ["car", "match5"],
+    ["carro", "match5"],
+    ["house","match6" ],
+    ["casa","match6" ],
+    ["apple", "match7"],
+    ["manzana", "match7"],
+    ["table", "match8"],
+    ["mesa", "match8"]
+  ]
+};
 
+let selectFromMenu;
 let timer;
 let centiseconds = 00;
 let seconds = 0;
@@ -51,6 +90,17 @@ const playLoserSound = () => gameAudio.losingSound.play();
 
 
 /*============================================
+          Select Menu for Content
+============================================*/
+
+$('#menu').on("change", function(event) {
+  selectFromMenu = content[event.target.value];
+  console.log(selectFromMenu);
+});
+
+
+
+/*============================================
       Play / Reset to Shuffle Content
 ============================================*/
 // Click Play Button to reset values and trigger Shuffle
@@ -58,7 +108,7 @@ $('.play-btn').on('click', (event) => {
   $('.play-btn').addClass('hide'); // hides Play button
   $('.reset-btn').removeClass('hide'); // shows Reset button
   resetGame();
-  shuffle(content); // shuffles content, makes gameboard and starts timer
+  shuffle(selectFromMenu); // shuffles content, makes gameboard and starts timer
 });
 
 $('.reset-btn').on('click', (event) => {
@@ -91,7 +141,7 @@ const makeGameBoard = (someList) => {
     // Remove all contents from game board
     $('#gameboard').empty();
     // Populate game baord
-    content.map((word, index) => {
+    someList.map((word, index) => {
       $('#gameboard').append(
         `<div class="square">
           <div class="card-cover"></div>
