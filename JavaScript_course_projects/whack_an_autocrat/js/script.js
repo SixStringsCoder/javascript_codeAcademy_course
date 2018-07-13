@@ -52,10 +52,20 @@ const picHandler = (arr) => {
 /*==========================
       SMACK THE PICTURE
 ===========================*/
+let points = 0;
 
 //  if the event equals class picture then play Audio
 $('#gameboard').on('click', function(event) {
-   $(event.target).hasClass('picture') ? whackAcrat() : ohYouMissed()
+   if ( $(event.target).hasClass('picture') ) {
+     whackAcrat();
+     points += 10;
+     $('#score').html(points);
+   } else {
+     ohYouMissed();
+     points -= 5;
+     $('#score').html(points);
+   }
+
 });
 
 
