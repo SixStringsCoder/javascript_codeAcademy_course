@@ -2,10 +2,13 @@
 // window.jQuery = $;
 // window.$ = $;
 
+const gitHubLink = "https://rawgit.com/SixStringsCoder/javascript_codeAcademy_course/master/JavaScript_course_projects/whack_an_autocrat";
+
 /*==========================
             CONTENT
 ===========================*/
 const autocrats_club = ["putin", "duterte", "erdogan", "trump", "maduro", "mussolini", "mugabe", "stalin", "kim"];
+let isSmacked = false;
 
 // Audio SFX
 const whack = new Audio('./audio/smack.mp3');
@@ -31,10 +34,12 @@ const buildBoard = () => {
       APPEAR / DISAPPEAR
 ===========================*/
 const randomNumber = (totalChoices) => Math.floor(Math.random() * totalChoices)
+let pickHole;
+let picAutocrat = [];
 
 const picHandler = (arr) => {
-  let pickHole = randomNumber(15);
-  let picAutocrat = arr[randomNumber(arr.length)]
+  pickHole = randomNumber(15);
+  picAutocrat = arr[randomNumber(arr.length)];
   // Add picture to the hole picked by randomNumber(15)
   $(`#${pickHole}`).html(`<img src=./images/${picAutocrat}.jpg class="picture" />`);
   // Detach picture from the hole
@@ -43,7 +48,7 @@ const picHandler = (arr) => {
     picHandler(autocrats_club);
   }
   // Set random delay for detaching the picture
-  const randomTime = Math.floor(Math.random() * 1500);
+  const randomTime = Math.floor(Math.random() * 2500);
   // console.log(randomTime);
   setTimeout(disappear, randomTime);
 }
@@ -55,17 +60,17 @@ const picHandler = (arr) => {
 let points = 0;
 
 //  if the event equals class picture then play Audio
-$('#gameboard').on('click', function(event) {
+$('#gameboard').mousedown(function(event) {
    if ( $(event.target).hasClass('picture') ) {
+     $(`#${pickHole}`).html(`<img src=./images/${picAutocrat}_smacked.jpg class="picture" />`);
      whackAcrat();
      points += 10;
      $('#score').html(points);
    } else {
-     ohYouMissed();
+     // ohYouMissed();
      points -= 5;
      $('#score').html(points);
    }
-
 });
 
 
