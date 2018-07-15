@@ -8,7 +8,7 @@ const gitHubLink = "https://rawgit.com/SixStringsCoder/javascript_codeAcademy_co
             CONTENT
 ===========================*/
 const autocrats_club = ["putin", "duterte", "erdogan", "trump", "maduro", "mussolini", "mugabe", "stalin", "kim"];
-let isSmacked = false;
+
 
 // Audio SFX
 const whack = new Audio('./audio/smack.mp3');
@@ -30,6 +30,7 @@ const buildBoard = () => {
   picHandler(autocrats_club);
 }
 
+
 /*==========================
       APPEAR / DISAPPEAR
 ===========================*/
@@ -47,9 +48,8 @@ const picHandler = (arr) => {
     $('.picture').detach();
     picHandler(autocrats_club);
   }
-  // Set random delay for detaching the picture
-  const randomTime = Math.floor(Math.random() * 2500);
-  // console.log(randomTime);
+  // Set random delay to detaching/disappear the picture
+  const randomTime = Math.floor(Math.random() * 2000);
   setTimeout(disappear, randomTime);
 }
 
@@ -59,7 +59,7 @@ const picHandler = (arr) => {
 ===========================*/
 let points = 0;
 
-//  if the event equals class picture then play Audio
+//  if the event equals class picture, show smacked pic, play audio, change score
 $('#gameboard').mousedown(function(event) {
    if ( $(event.target).hasClass('picture') ) {
      $(`#${pickHole}`).html(`<img src=./images/${picAutocrat}_smacked.jpg class="picture" />`);
@@ -67,12 +67,19 @@ $('#gameboard').mousedown(function(event) {
      points += 10;
      $('#score').html(points);
    } else {
-     // ohYouMissed();
+     ohYouMissed();
      points -= 5;
      $('#score').html(points);
    }
 });
 
+$('#gameboard').mouseup(function(event) {
+   if ( $(event.target).hasClass('picture') ) {
+     $(`#${pickHole}`).html(`<img src=./images/${picAutocrat}.jpg class="picture" />`);
+   } else {
+     return false;
+   }
+});
 
 /*==========================
         START GAME
