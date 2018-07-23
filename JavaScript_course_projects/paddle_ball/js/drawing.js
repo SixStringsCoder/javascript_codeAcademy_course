@@ -5,7 +5,7 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 const ballRadius = 10;
 const paddleHeight = 20;
-const paddleWidth = 70;
+const paddleWidth = 80;
 let paddleX = (canvas.width - paddleWidth) / 2;
 let rightPressed = false;
 let leftPressed = false;
@@ -14,6 +14,7 @@ let x_pos = canvas.width / 2;
 let y_pos = canvas.height - 30;
 let draw_x = 5;
 let draw_y = -2;
+var playGame;
 
 function changeColors() {
     let red = Math.floor(Math.random() * 256);
@@ -25,14 +26,14 @@ function changeColors() {
 function drawPaddle() {
     ctx.beginPath();
     ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-    ctx.fillStyle = "red"
-    ctx.fill()
+    ctx.fillStyle = "red";
+    ctx.fill();
     ctx.closePath();
 
-    if ( rightPressed && paddleX < (canvas.width - paddleX) ) {
-        paddleX += 7;
+    if (rightPressed && paddleX < canvas.width - paddleWidth) {
+        paddleX += 3;
     } else if (leftPressed && paddleX > 0) {
-        paddleX -= 7;
+        paddleX -= 3;
     }
 }
 
@@ -55,9 +56,13 @@ function draw() {
         changeColors();
     }
     // floor and ceiling bounce
-    if (y_pos + draw_y > (canvas.height - ballRadius) || y_pos + draw_y < ballRadius) {
+    if (y_pos + draw_y < ballRadius) {
         draw_y = -draw_y;
         changeColors();
+    } else if (y_pos + draw_y > (canvas.height - ballRadius+6)) {
+        clearInterval(playGame);
+        alert("Game Over");
+        document.location.reload();
     }
     x_pos += draw_x;
     y_pos += draw_y;
@@ -86,4 +91,4 @@ function keyUpHandler(event) {
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
-setInterval(draw, 10);
+playGame = setInterval(draw, 10);
