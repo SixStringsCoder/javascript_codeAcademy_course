@@ -9,7 +9,7 @@ const paddleWidth = 80;
 let paddleX = (canvas.width - paddleWidth) / 2;
 let rightPressed = false;
 let leftPressed = false;
-let ballColor = "rgba(0, 149, 221, 1)";
+let ballColor = "rgba(100, 14, 221, 1)";
 let x_pos = canvas.width / 2;
 let y_pos = canvas.height - 30;
 let draw_x = 5;
@@ -20,7 +20,6 @@ document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
 function keyDownHandler(event) {
-    console.log(event);
     if (event.keyCode === 39) {
         rightPressed = true;
     } else if (event.keyCode === 37) {
@@ -29,7 +28,6 @@ function keyDownHandler(event) {
 }
 
 function keyUpHandler(event) {
-    console.log(event);
     if (event.keyCode === 39) {
         rightPressed = false;
     } else if (event.keyCode === 37) {
@@ -44,10 +42,38 @@ function changeColors() {
     ballColor = `rgba(${red}, ${green}, ${blue}, 1)`;
 }
 
+
+function drawBricks(brickRowCount=3, brickColumnCount=5,
+                    brickWidth=75, brickHeight=20,
+                    brickPadding=15, brickOffsetTop=40, brickOffsetLeft=35) {
+    const bricks = [];
+    for(let c = 0; c < brickColumnCount; c += 1) {
+        bricks[c] = [];
+        for(let r = 0; r < brickRowCount; r += 1) {
+            bricks[c][r] = { x: 0, y: 0 };
+        }
+        console.log(bricks);
+    }
+
+    for(let c=0; c<brickColumnCount; c++) {
+        for(let r=0; r<brickRowCount; r++) {
+            let brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+            let brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+            bricks[c][r].x = brickX;
+            bricks[c][r].y = brickY;
+            ctx.beginPath();
+            ctx.rect(brickX, brickY, brickWidth, brickHeight);
+            ctx.fillStyle = "#F7401C";
+            ctx.fill();
+            ctx.closePath();
+        }
+    }
+}
+
 function drawPaddle() {
     ctx.beginPath();
     ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "#7BAD17";
     ctx.fill();
     ctx.closePath();
 }
@@ -62,8 +88,9 @@ function drawBall() {
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawPaddle();
+    drawBricks(5, 6, 65, 20, 10, 30, 30);
     drawBall();
+    drawPaddle();
 
     // side walls bounce
     if (x_pos + draw_x > (canvas.width - ballRadius) || x_pos + draw_x < ballRadius) {
@@ -95,7 +122,5 @@ function draw() {
     x_pos += draw_x;
     y_pos += draw_y;
 }
-
-
 
 playGame = setInterval(draw, 20);

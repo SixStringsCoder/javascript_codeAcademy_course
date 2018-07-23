@@ -5,9 +5,10 @@ body {
     justify-content: center;
     align-items: center;
     font-family: sans-serif;
+    background-color: #3D5C61;
 }
 
 canvas {
-    background-color: white;
+    background-color: #eee;
     border: 1px solid black;
 }
