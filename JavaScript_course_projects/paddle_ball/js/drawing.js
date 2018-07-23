@@ -16,6 +16,27 @@ let draw_x = 5;
 let draw_y = -2;
 var playGame;
 
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+
+function keyDownHandler(event) {
+    console.log(event);
+    if (event.keyCode === 39) {
+        rightPressed = true;
+    } else if (event.keyCode === 37) {
+       leftPressed = true;
+    }
+}
+
+function keyUpHandler(event) {
+    console.log(event);
+    if (event.keyCode === 39) {
+        rightPressed = false;
+    } else if (event.keyCode === 37) {
+       leftPressed = false;
+    }
+}
+
 function changeColors() {
     let red = Math.floor(Math.random() * 256);
     let green = Math.floor(Math.random() * 256);
@@ -29,12 +50,6 @@ function drawPaddle() {
     ctx.fillStyle = "red";
     ctx.fill();
     ctx.closePath();
-
-    if (rightPressed && paddleX < canvas.width - paddleWidth) {
-        paddleX += 3;
-    } else if (leftPressed && paddleX > 0) {
-        paddleX -= 3;
-    }
 }
 
 function drawBall() {
@@ -55,40 +70,32 @@ function draw() {
         draw_x = -draw_x;
         changeColors();
     }
-    // floor and ceiling bounce
+    // Ceiling bounce
     if (y_pos + draw_y < ballRadius) {
         draw_y = -draw_y;
         changeColors();
-    } else if (y_pos + draw_y > (canvas.height - ballRadius+6)) {
+    // Touch floor Game Over
+    } else if (y_pos + draw_y > (canvas.height - ballRadius+5)) {
         clearInterval(playGame);
         alert("Game Over");
         document.location.reload();
+    // Hit the paddle
+    } else if (y_pos + draw_y > (canvas.height - paddleHeight-3) && x_pos > paddleX && x_pos < paddleX + paddleWidth) {
+        draw_y = -draw_y;
+        setInterval(draw, 100); // Moves ball faster with each paddle hit
     }
+
+    // Move Paddles and keep them on screen
+    if (rightPressed && paddleX < canvas.width - paddleWidth) {
+        paddleX += 3;
+    } else if (leftPressed && paddleX > 0) {
+        paddleX -= 3;
+    }
+
     x_pos += draw_x;
     y_pos += draw_y;
-
-    drawPaddle();
 }
 
-function keyDownHandler(event) {
-    console.log(event);
-    if (event.keyCode === 39) {
-        rightPressed = true;
-    } else if (event.keyCode === 37) {
-       leftPressed = true;
-    }
-}
 
-function keyUpHandler(event) {
-    console.log(event);
-    if (event.keyCode === 39) {
-        rightPressed = false;
-    } else if (event.keyCode === 37) {
-       leftPressed = false;
-    }
-}
 
-document.addEventListener("keydown", keyDownHandler, false);
-document.addEventListener("keyup", keyUpHandler, false);
-
-playGame = setInterval(draw, 10);
+playGame = setInterval(draw, 20);
