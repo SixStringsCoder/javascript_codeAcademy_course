@@ -55,10 +55,12 @@ function collisionDetection() {
     for(let c=0; c<brickColumnCount; c++) {
         for(let r=0; r<brickRowCount; r++) {
             let b = bricks[c][r];
-            if (x_pos > b.x_pos && x_pos < b.x_pos+brickWidth && y_pos > b.y_pos && y_pos < b.y_pos+brickHeight) {
-                draw_y = -draw_y;
-                changeColors();
-                b.visible = false;
+            if (b.visible) {
+                if (x_pos > b.x_pos && x_pos < b.x_pos + brickWidth && y_pos > b.y_pos && y_pos < b.y_pos + brickHeight) {
+                    draw_y = -draw_y;
+                    changeColors();
+                    b.visible = false;
+                }
             }
         }
     }
