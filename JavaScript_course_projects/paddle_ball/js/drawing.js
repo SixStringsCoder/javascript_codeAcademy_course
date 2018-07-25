@@ -15,6 +15,22 @@ let y_pos = canvas.height - 30;
 let draw_x = 5;
 let draw_y = -2;
 var playGame;
+let brickRowCount=5;
+let brickColumnCount=6;
+let brickWidth=65;
+let brickHeight=20;
+let brickPadding=10;
+let brickOffsetTop=30;
+let brickOffsetLeft=30;
+
+const bricks = [];
+for(let c = 0; c < brickColumnCount; c += 1) {
+    bricks[c] = [];
+    for(let r = 0; r < brickRowCount; r += 1) {
+        bricks[c][r] = { x_pos: 0, y_pos: 0, visible: true };
+    }
+    console.log(bricks);
+}
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
@@ -35,39 +51,24 @@ function keyUpHandler(event) {
     }
 }
 
+function collisionDetection() {
+    for(let c=0; c<brickColumnCount; c++) {
+        for(let r=0; r<brickRowCount; r++) {
+            let b = bricks[c][r];
+            if (x_pos > b.x_pos && x_pos < b.x_pos+brickWidth && y_pos > b.y_pos && y_pos < b.y_pos+brickHeight) {
+                draw_y = -draw_y;
+                changeColors();
+                b.visible = false;
+            }
+        }
+    }
+}
+
 function changeColors() {
     let red = Math.floor(Math.random() * 256);
     let green = Math.floor(Math.random() * 256);
     let blue = Math.floor(Math.random() * 256);
     ballColor = `rgba(${red}, ${green}, ${blue}, 1)`;
-}
-
-
-function drawBricks(brickRowCount=3, brickColumnCount=5,
-                    brickWidth=75, brickHeight=20,
-                    brickPadding=15, brickOffsetTop=40, brickOffsetLeft=35) {
-    const bricks = [];
-    for(let c = 0; c < brickColumnCount; c += 1) {
-        bricks[c] = [];
-        for(let r = 0; r < brickRowCount; r += 1) {
-            bricks[c][r] = { x: 0, y: 0 };
-        }
-        console.log(bricks);
-    }
-
-    for(let c=0; c<brickColumnCount; c++) {
-        for(let r=0; r<brickRowCount; r++) {
-            let brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
-            let brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
-            bricks[c][r].x = brickX;
-            bricks[c][r].y = brickY;
-            ctx.beginPath();
-            ctx.rect(brickX, brickY, brickWidth, brickHeight);
-            ctx.fillStyle = "#F7401C";
-            ctx.fill();
-            ctx.closePath();
-        }
-    }
 }
 
 function drawPaddle() {
@@ -86,11 +87,30 @@ function drawBall() {
     ctx.closePath();
 }
 
-function draw() {
+function drawBricks() {
+    for(let c=0; c<brickColumnCount; c++) {
+        for(let r=0; r<brickRowCount; r++) {
+            if (bricks[c][r].visible) {
+                let brickX = (c * (brickWidth + brickPadding)) + brickOffsetLeft;
+                let brickY = (r * (brickHeight + brickPadding)) + brickOffsetTop;
+                bricks[c][r].x_pos = brickX;
+                bricks[c][r].y_pos = brickY;
+                ctx.beginPath();
+                ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                ctx.fillStyle = "#F7401C";
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+    }
+}
+
+function drawGameBoard() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawBricks(5, 6, 65, 20, 10, 30, 30);
+    drawBricks();
     drawBall();
     drawPaddle();
+    collisionDetection();
 
     // side walls bounce
     if (x_pos + draw_x > (canvas.width - ballRadius) || x_pos + draw_x < ballRadius) {
@@ -102,14 +122,14 @@ function draw() {
         draw_y = -draw_y;
         changeColors();
     // Touch floor Game Over
-    } else if (y_pos + draw_y > (canvas.height - ballRadius+5)) {
+    } else if (y_pos + draw_y > (canvas.height - ballRadius)) {
         clearInterval(playGame);
-        alert("Game Over");
+        console.log("Game Over");
         document.location.reload();
     // Hit the paddle
-    } else if (y_pos + draw_y > (canvas.height - paddleHeight-3) && x_pos > paddleX && x_pos < paddleX + paddleWidth) {
+    } else if (y_pos + draw_y > (canvas.height - paddleHeight-3) && (x_pos+ballRadius) > paddleX && (x_pos-ballRadius) < paddleX + paddleWidth) {
         draw_y = -draw_y;
-        setInterval(draw, 100); // Moves ball faster with each paddle hit
+        setInterval(drawGameBoard, 100); // Moves ball faster with each paddle hit
     }
 
     // Move Paddles and keep them on screen
@@ -123,4 +143,4 @@ function draw() {
     y_pos += draw_y;
 }
 
-playGame = setInterval(draw, 20);
+playGame = setInterval(drawGameBoard, 30);
