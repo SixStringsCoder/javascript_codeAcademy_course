@@ -22,6 +22,8 @@ let brickHeight=20;
 let brickPadding=10;
 let brickOffsetTop=30;
 let brickOffsetLeft=30;
+let score = 0;
+let lives = 3;
 
 const bricks = [];
 for(let c = 0; c < brickColumnCount; c += 1) {
@@ -29,11 +31,16 @@ for(let c = 0; c < brickColumnCount; c += 1) {
     for(let r = 0; r < brickRowCount; r += 1) {
         bricks[c][r] = { x_pos: 0, y_pos: 0, visible: true };
     }
-    console.log(bricks);
+    // console.log(bricks);
 }
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
+
+function startGame() {
+    "use strict";
+    document.location.reload();
+}
 
 function keyDownHandler(event) {
     if (event.keyCode === 39) {
@@ -43,7 +50,52 @@ function keyDownHandler(event) {
     }
 }
 
+function drawInfoPanel() {
+    "use strict";
+    ctx.font = "20px Helvetica";
+    ctx.fillStyle = "black";
+    ctx.fillText(`Score: ${score}`, 8, 20);
+    ctx.fillText(`Lives: ${lives}`, canvas.width - 75, 20);
+}
+
+function drawWinningMsg() {
+    "use strict";
+    ctx.font = "70px Arial";
+    ctx.fillStyle = "green";
+    ctx.fillText("YOU WON!", canvas.width / 7, canvas.height / 2);
+    setTimeout(startGame, 3000);
+}
+
+function lostGame() {
+    "use strict";
+    ctx.font = "70px Arial";
+    ctx.fillStyle = "purple";
+    ctx.fillText("Game Over!", canvas.width /7, canvas.height /2);
+    clearInterval(playGame);
+    setTimeout(startGame, 3000);
+}
+
+function scoreKeeper(result) {
+    "use strict";
+    if (result) {
+        score += 10;
+    } else {
+        score -= 10;
+        // document.location.reload();
+    }
+}
+
+function resetBallPaddle() {
+    "use strict";
+    x_pos = canvas.width/2;
+    y_pos = canvas.height-30;
+    draw_x = 2;
+    draw_y = -2;
+    paddleX = (canvas.width-paddleWidth)/2;
+}
+
 function keyUpHandler(event) {
+    "use strict";
     if (event.keyCode === 39) {
         rightPressed = false;
     } else if (event.keyCode === 37) {
@@ -52,6 +104,7 @@ function keyUpHandler(event) {
 }
 
 function collisionDetection() {
+    "use strict";
     for(let c=0; c<brickColumnCount; c++) {
         for(let r=0; r<brickRowCount; r++) {
             let b = bricks[c][r];
@@ -60,6 +113,10 @@ function collisionDetection() {
                     draw_y = -draw_y;
                     changeColors();
                     b.visible = false;
+                    scoreKeeper(true);
+                    if (score === 300) {
+                      drawWinningMsg();
+                    }
                 }
             }
         }
@@ -67,6 +124,7 @@ function collisionDetection() {
 }
 
 function changeColors() {
+    "use strict";
     let red = Math.floor(Math.random() * 256);
     let green = Math.floor(Math.random() * 256);
     let blue = Math.floor(Math.random() * 256);
@@ -74,6 +132,7 @@ function changeColors() {
 }
 
 function drawPaddle() {
+    "use strict";
     ctx.beginPath();
     ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
     ctx.fillStyle = "#7BAD17";
@@ -82,6 +141,7 @@ function drawPaddle() {
 }
 
 function drawBall() {
+    "use strict";
     ctx.beginPath();
     ctx.arc(x_pos, y_pos, ballRadius, 0, Math.PI * 2);
     ctx.fillStyle = ballColor;
@@ -90,6 +150,7 @@ function drawBall() {
 }
 
 function drawBricks() {
+    "use strict";
     for(let c=0; c<brickColumnCount; c++) {
         for(let r=0; r<brickRowCount; r++) {
             if (bricks[c][r].visible) {
@@ -108,7 +169,9 @@ function drawBricks() {
 }
 
 function drawGameBoard() {
+    "use strict";
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawInfoPanel();
     drawBricks();
     drawBall();
     drawPaddle();
@@ -123,26 +186,33 @@ function drawGameBoard() {
     if (y_pos + draw_y < ballRadius) {
         draw_y = -draw_y;
         changeColors();
-    // Touch floor Game Over
-    } else if (y_pos + draw_y > (canvas.height - ballRadius)) {
-        clearInterval(playGame);
-        console.log("Game Over");
-        document.location.reload();
     // Hit the paddle
-    } else if (y_pos + draw_y > (canvas.height - paddleHeight-3) && (x_pos+ballRadius) > paddleX && (x_pos-ballRadius) < paddleX + paddleWidth) {
-        draw_y = -draw_y;
-        setInterval(drawGameBoard, 100); // Moves ball faster with each paddle hit
-    }
+    } else if (y_pos + draw_y > (canvas.height - paddleHeight)) {
+        if ((x_pos+ballRadius) > paddleX && (x_pos-ballRadius) < paddleX + paddleWidth) {
+          draw_y = -draw_y;
+          //setInterval(drawGameBoard, 100); // Moves ball faster with each paddle hit
+        } else { // Hits the floor
+            lives -= 1;
+              if (!lives) {
+                lives = 0;
+                lostGame();
+              } else {
+                resetBallPaddle();
+              }
+          }
+      }
 
-    // Move Paddles and keep them on screen
+
+    // Move Paddles and keeps them on screen
     if (rightPressed && paddleX < canvas.width - paddleWidth) {
-        paddleX += 3;
+        paddleX += 5;
     } else if (leftPressed && paddleX > 0) {
-        paddleX -= 3;
+        paddleX -= 5;
     }
 
     x_pos += draw_x;
     y_pos += draw_y;
+    // requestAnimationFrame(drawGameBoard);
 }
 
-playGame = setInterval(drawGameBoard, 30);
+playGame = setInterval(drawGameBoard, 10);
