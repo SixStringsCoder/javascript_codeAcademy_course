@@ -12,7 +12,7 @@ let leftPressed = false;
 let ballColor = "rgba(100, 14, 221, 1)";
 let x_pos = canvas.width / 2;
 let y_pos = canvas.height - 30;
-let draw_x = 5;
+let draw_x = 2;
 let draw_y = -2;
 var playGame;
 let brickRowCount=5;
@@ -37,12 +37,22 @@ for(let c = 0; c < brickColumnCount; c += 1) {
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
+
+const paddleAudio = new Audio("audio/paddleHit.mp3");
+const brickAudio = new Audio("audio/brickHit.mp3");
+const floorAudio = new Audio("audio/FloorHit.mp3")
+
+const hitPaddleSound = () => paddleAudio.play();
+const hitBrickSound = () => brickAudio.play();
+const hitFloorAudio = () => floorAudio.play();
+
 function startGame() {
     "use strict";
     document.location.reload();
 }
 
 function keyDownHandler(event) {
+    "use strict";
     if (event.keyCode === 39) {
         rightPressed = true;
     } else if (event.keyCode === 37) {
@@ -63,6 +73,7 @@ function drawWinningMsg() {
     ctx.font = "70px Arial";
     ctx.fillStyle = "green";
     ctx.fillText("YOU WON!", canvas.width / 7, canvas.height / 2);
+    clearInterval(winner);
     setTimeout(startGame, 3000);
 }
 
@@ -111,11 +122,12 @@ function collisionDetection() {
             if (b.visible) {
                 if (x_pos > b.x_pos && x_pos < b.x_pos + brickWidth && y_pos > b.y_pos && y_pos < b.y_pos + brickHeight) {
                     draw_y = -draw_y;
+                    hitBrickSound();
                     changeColors();
                     b.visible = false;
                     scoreKeeper(true);
                     if (score === 300) {
-                      drawWinningMsg();
+                      let winner = setInterval(drawWinningMsg, 10);
                     }
                 }
             }
@@ -189,12 +201,13 @@ function drawGameBoard() {
     // Hit the paddle
     } else if (y_pos + draw_y > (canvas.height - paddleHeight)) {
         if ((x_pos+ballRadius) > paddleX && (x_pos-ballRadius) < paddleX + paddleWidth) {
+          hitPaddleSound();
           draw_y = -draw_y;
           //setInterval(drawGameBoard, 100); // Moves ball faster with each paddle hit
         } else { // Hits the floor
             lives -= 1;
+            hitFloorAudio();
               if (!lives) {
-                lives = 0;
                 lostGame();
               } else {
                 resetBallPaddle();
@@ -212,7 +225,7 @@ function drawGameBoard() {
 
     x_pos += draw_x;
     y_pos += draw_y;
-    // requestAnimationFrame(drawGameBoard);
+    requestAnimationFrame(playGame);
 }
 
-playGame = setInterval(drawGameBoard, 10);
+playGame = setInterval(drawGameBoard, 15);
